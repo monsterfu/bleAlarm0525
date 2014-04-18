@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
+		643454211901273900CFD3CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454201901273900CFD3CC /* CoreGraphics.framework */; };
+		643454231901273900CFD3CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454221901273900CFD3CC /* UIKit.framework */; };
+		643454291901273900CFD3CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 643454271901273900CFD3CC /* InfoPlist.strings */; };
+		6434542B1901273900CFD3CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434542A1901273900CFD3CC /* main.m */; };
+		6434542F1901273900CFD3CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434542E1901273900CFD3CC /* AppDelegate.m */; };
+		643454321901273900CFD3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643454301901273900CFD3CC /* Main.storyboard */; };
+		643454351901273900CFD3CC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643454341901273900CFD3CC /* FirstViewController.m */; };
+		643454381901273900CFD3CC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643454371901273900CFD3CC /* SecondViewController.m */; };
+		6434543A1901273900CFD3CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643454391901273900CFD3CC /* Images.xcassets */; };
+		643454411901273900CFD3CC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454401901273900CFD3CC /* XCTest.framework */; };
+		643454421901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
+		643454431901273900CFD3CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454221901273900CFD3CC /* UIKit.framework */; };
+		6434544B1901273900CFD3CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 643454491901273900CFD3CC /* InfoPlist.strings */; };
+		6434544D1901273900CFD3CC /* bleAlarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434544C1901273900CFD3CC /* bleAlarmTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		643454441901273900CFD3CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 643454131901273900CFD3CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6434541A1901273900CFD3CC;
+			remoteInfo = bleAlarm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6434541B1901273900CFD3CC /* bleAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6434541E1901273900CFD3CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		643454201901273900CFD3CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		643454221901273900CFD3CC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		643454261901273900CFD3CC /* bleAlarm-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bleAlarm-Info.plist"; sourceTree = "<group>"; };
+		643454281901273900CFD3CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6434542A1901273900CFD3CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6434542C1901273900CFD3CC /* bleAlarm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bleAlarm-Prefix.pch"; sourceTree = "<group>"; };
+		6434542D1901273900CFD3CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6434542E1901273900CFD3CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		643454311901273900CFD3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		643454331901273900CFD3CC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		643454341901273900CFD3CC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		643454361901273900CFD3CC /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		643454371901273900CFD3CC /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		643454391901273900CFD3CC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6434543F1901273900CFD3CC /* bleAlarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bleAlarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		643454401901273900CFD3CC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		643454481901273900CFD3CC /* bleAlarmTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bleAlarmTests-Info.plist"; sourceTree = "<group>"; };
+		6434544A1901273900CFD3CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6434544C1901273900CFD3CC /* bleAlarmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bleAlarmTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		643454181901273900CFD3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643454211901273900CFD3CC /* CoreGraphics.framework in Frameworks */,
+				643454231901273900CFD3CC /* UIKit.framework in Frameworks */,
+				6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6434543C1901273900CFD3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643454411901273900CFD3CC /* XCTest.framework in Frameworks */,
+				643454431901273900CFD3CC /* UIKit.framework in Frameworks */,
+				643454421901273900CFD3CC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		643454121901273900CFD3CC = {
+			isa = PBXGroup;
+			children = (
+				643454241901273900CFD3CC /* bleAlarm */,
+				643454461901273900CFD3CC /* bleAlarmTests */,
+				6434541D1901273900CFD3CC /* Frameworks */,
+				6434541C1901273900CFD3CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6434541C1901273900CFD3CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6434541B1901273900CFD3CC /* bleAlarm.app */,
+				6434543F1901273900CFD3CC /* bleAlarmTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6434541D1901273900CFD3CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6434541E1901273900CFD3CC /* Foundation.framework */,
+				643454201901273900CFD3CC /* CoreGraphics.framework */,
+				643454221901273900CFD3CC /* UIKit.framework */,
+				643454401901273900CFD3CC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		643454241901273900CFD3CC /* bleAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				6434542D1901273900CFD3CC /* AppDelegate.h */,
+				6434542E1901273900CFD3CC /* AppDelegate.m */,
+				643454301901273900CFD3CC /* Main.storyboard */,
+				643454331901273900CFD3CC /* FirstViewController.h */,
+				643454341901273900CFD3CC /* FirstViewController.m */,
+				643454361901273900CFD3CC /* SecondViewController.h */,
+				643454371901273900CFD3CC /* SecondViewController.m */,
+				643454391901273900CFD3CC /* Images.xcassets */,
+				643454251901273900CFD3CC /* Supporting Files */,
+			);
+			path = bleAlarm;
+			sourceTree = "<group>";
+		};
+		643454251901273900CFD3CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				643454261901273900CFD3CC /* bleAlarm-Info.plist */,
+				643454271901273900CFD3CC /* InfoPlist.strings */,
+				6434542A1901273900CFD3CC /* main.m */,
+				6434542C1901273900CFD3CC /* bleAlarm-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		643454461901273900CFD3CC /* bleAlarmTests */ = {
+			isa = PBXGroup;
+			children = (
+				6434544C1901273900CFD3CC /* bleAlarmTests.m */,
+				643454471901273900CFD3CC /* Supporting Files */,
+			);
+			path = bleAlarmTests;
+			sourceTree = "<group>";
+		};
+		643454471901273900CFD3CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				643454481901273900CFD3CC /* bleAlarmTests-Info.plist */,
+				643454491901273900CFD3CC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6434541A1901273900CFD3CC /* bleAlarm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643454501901273900CFD3CC /* Build configuration list for PBXNativeTarget "bleAlarm" */;
+			buildPhases = (
+				643454171901273900CFD3CC /* Sources */,
+				643454181901273900CFD3CC /* Frameworks */,
+				643454191901273900CFD3CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bleAlarm;
+			productName = bleAlarm;
+			productReference = 6434541B1901273900CFD3CC /* bleAlarm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6434543E1901273900CFD3CC /* bleAlarmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643454531901273900CFD3CC /* Build configuration list for PBXNativeTarget "bleAlarmTests" */;
+			buildPhases = (
+				6434543B1901273900CFD3CC /* Sources */,
+				6434543C1901273900CFD3CC /* Frameworks */,
+				6434543D1901273900CFD3CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				643454451901273900CFD3CC /* PBXTargetDependency */,
+			);
+			name = bleAlarmTests;
+			productName = bleAlarmTests;
+			productReference = 6434543F1901273900CFD3CC /* bleAlarmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		643454131901273900CFD3CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = HYQ;
+				TargetAttributes = {
+					6434543E1901273900CFD3CC = {
+						TestTargetID = 6434541A1901273900CFD3CC;
+					};
+				};
+			};
+			buildConfigurationList = 643454161901273900CFD3CC /* Build configuration list for PBXProject "bleAlarm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 643454121901273900CFD3CC;
+			productRefGroup = 6434541C1901273900CFD3CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6434541A1901273900CFD3CC /* bleAlarm */,
+				6434543E1901273900CFD3CC /* bleAlarmTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		643454191901273900CFD3CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6434543A1901273900CFD3CC /* Images.xcassets in Resources */,
+				643454291901273900CFD3CC /* InfoPlist.strings in Resources */,
+				643454321901273900CFD3CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6434543D1901273900CFD3CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6434544B1901273900CFD3CC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		643454171901273900CFD3CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643454381901273900CFD3CC /* SecondViewController.m in Sources */,
+				6434542F1901273900CFD3CC /* AppDelegate.m in Sources */,
+				643454351901273900CFD3CC /* FirstViewController.m in Sources */,
+				6434542B1901273900CFD3CC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6434543B1901273900CFD3CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6434544D1901273900CFD3CC /* bleAlarmTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		643454451901273900CFD3CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6434541A1901273900CFD3CC /* bleAlarm */;
+			targetProxy = 643454441901273900CFD3CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		643454271901273900CFD3CC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				643454281901273900CFD3CC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		643454301901273900CFD3CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				643454311901273900CFD3CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		643454491901273900CFD3CC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6434544A1901273900CFD3CC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6434544E1901273900CFD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6434544F1901273900CFD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		643454511901273900CFD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bleAlarm/bleAlarm-Prefix.pch";
+				INFOPLIST_FILE = "bleAlarm/bleAlarm-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		643454521901273900CFD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bleAlarm/bleAlarm-Prefix.pch";
+				INFOPLIST_FILE = "bleAlarm/bleAlarm-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		643454541901273900CFD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bleAlarm.app/bleAlarm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bleAlarm/bleAlarm-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "bleAlarmTests/bleAlarmTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		643454551901273900CFD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bleAlarm.app/bleAlarm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bleAlarm/bleAlarm-Prefix.pch";
+				INFOPLIST_FILE = "bleAlarmTests/bleAlarmTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		643454161901273900CFD3CC /* Build configuration list for PBXProject "bleAlarm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6434544E1901273900CFD3CC /* Debug */,
+				6434544F1901273900CFD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643454501901273900CFD3CC /* Build configuration list for PBXNativeTarget "bleAlarm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643454511901273900CFD3CC /* Debug */,
+				643454521901273900CFD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		643454531901273900CFD3CC /* Build configuration list for PBXNativeTarget "bleAlarmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643454541901273900CFD3CC /* Debug */,
+				643454551901273900CFD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 643454131901273900CFD3CC /* Project object */;
+}

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConnectionManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

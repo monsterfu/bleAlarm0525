@@ -93,19 +93,6 @@
     [_findButton setTitle:@"失去连接" forState:UIControlStateNormal];
     [[soundVibrateManager sharedInstance]playAlertSound];
     [[soundVibrateManager sharedInstance]vibrate];
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        if (cameraVC) {
-            [cameraVC takePicture];
-        }else{
-            cameraVC = [[UIImagePickerController alloc] init];
-            [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-            [cameraVC setDelegate:self];
-            [cameraVC setAllowsEditing:YES];
-            [self presentViewController:cameraVC animated:YES completion:nil];
-        }
-    }
 }
 - (void) didConnectWithDevice:(deviceInfo*)device
 {
@@ -129,18 +116,6 @@
     [[soundVibrateManager sharedInstance]playAlertSound];
     [[soundVibrateManager sharedInstance]vibrate];
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        if (cameraVC) {
-            [cameraVC takePicture];
-        }else{
-            cameraVC = [[UIImagePickerController alloc] init];
-            [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-            [cameraVC setDelegate:self];
-            [cameraVC setAllowsEditing:YES];
-            [self presentViewController:cameraVC animated:YES completion:nil];
-        }
-    }
 }
 #pragma mark -devInfo
 

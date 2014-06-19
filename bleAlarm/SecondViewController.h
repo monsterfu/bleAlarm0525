@@ -19,6 +19,10 @@
     UIAlertView* _alertView;
     
     BOOL _canNotice;
+    
+    NSArray* _areaIndexArray;
+    
+    UIImagePickerController* cameraVC;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *radarImagView;
 
@@ -31,7 +35,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *singalImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *findButton;
+@property (weak, nonatomic) IBOutlet UILabel *mixLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxLabel;
+
+
+
 - (IBAction)findButtonTouch:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedView;
+
+- (IBAction)alarmSegmentControlValueChanged:(UISegmentedControl *)sender;
+
 
 @property (strong, nonatomic) deviceInfo *devInfo;
 -(void)setDevInfo:(deviceInfo *)devsInfo;

@@ -33,9 +33,16 @@
     }else{
         [_findButton setTitle:@"CONNECT" forState:UIControlStateNormal];
     }
-    _slider.value = [_devInfo.warningStrength floatValue];
     _openl  = NO;
     _canNotice = YES;
+    
+    _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
+    _slider.minimumValue = [[_areaIndexArray objectAtIndex:2]integerValue];
+    _slider.maximumValue = [[_areaIndexArray objectAtIndex:3]integerValue];
+    _slider.value = [_devInfo.warningStrength floatValue];
+    _segmentedView.selectedSegmentIndex = 3;
+    [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",[[_areaIndexArray objectAtIndex:3]integerValue]]];
+    [_maxLabel setText:[NSString stringWithFormat:@"-%ddbm",[[_areaIndexArray objectAtIndex:4]integerValue]]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -88,12 +95,16 @@
     [[soundVibrateManager sharedInstance]vibrate];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *cameraVC = [[UIImagePickerController alloc] init];
-        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-        [cameraVC setDelegate:self];
-        [cameraVC setAllowsEditing:YES];
-        [self presentViewController:cameraVC animated:YES completion:nil];
+        if (cameraVC) {
+            [cameraVC takePicture];
+        }else{
+            cameraVC = [[UIImagePickerController alloc] init];
+            [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+            [cameraVC setDelegate:self];
+            [cameraVC setAllowsEditing:YES];
+            [self presentViewController:cameraVC animated:YES completion:nil];
+        }
     }
 }
 - (void) didConnectWithDevice:(deviceInfo*)device
@@ -119,12 +130,16 @@
     [[soundVibrateManager sharedInstance]vibrate];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *cameraVC = [[UIImagePickerController alloc] init];
-        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-        [cameraVC setDelegate:self];
-        [cameraVC setAllowsEditing:YES];
-        [self presentViewController:cameraVC animated:YES completion:nil];
+        if (cameraVC) {
+            [cameraVC takePicture];
+        }else{
+            cameraVC = [[UIImagePickerController alloc] init];
+            [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+            [cameraVC setDelegate:self];
+            [cameraVC setAllowsEditing:YES];
+            [self presentViewController:cameraVC animated:YES completion:nil];
+        }
     }
 }
 #pragma mark -devInfo
@@ -143,7 +158,6 @@
     if (_devInfo != info) {
         return;
     }
-    NSLog(@"signalStrength:%f",[info.signalStrength floatValue]);
     _singalImageView.image = [info currentSignalStrengthImage];
     _batteryImageView.image = [info currentBatteryStrengthImage];
     CGFloat meter = (-1)*[info.signalStrength floatValue];
@@ -180,6 +194,16 @@
         
     }
     
+}
+
+- (IBAction)alarmSegmentControlValueChanged:(UISegmentedControl *)sender {
+    NSLog(@"sender:%d",sender.selectedSegmentIndex);
+    NSUInteger index = sender.selectedSegmentIndex;
+    _slider.minimumValue = [[_areaIndexArray objectAtIndex:index]integerValue];
+    _slider.maximumValue = [[_areaIndexArray objectAtIndex:index+1]integerValue];
+    _slider.value = [[_areaIndexArray objectAtIndex:index+1]integerValue];
+    [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",[[_areaIndexArray objectAtIndex:index]integerValue]]];
+    [_maxLabel setText:[NSString stringWithFormat:@"-%ddbm",[[_areaIndexArray objectAtIndex:index+1]integerValue]]];
 }
 
 

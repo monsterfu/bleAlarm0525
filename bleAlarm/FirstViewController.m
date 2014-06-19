@@ -114,13 +114,34 @@ static NSUInteger searchInd = 0;
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device
 {
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
-    [[soundVibrateManager sharedInstance]playAlertSound];
-    [[soundVibrateManager sharedInstance]vibrate];
+    if (cameraVC) {
+        [cameraVC takePicture];
+    }else{
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [[soundVibrateManager sharedInstance]playAlertSound];
+        [[soundVibrateManager sharedInstance]vibrate];
+        
+        cameraVC = [[UIImagePickerController alloc] init];
+        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+        [cameraVC setDelegate:self];
+        [cameraVC setAllowsEditing:YES];
+        [self presentViewController:cameraVC animated:YES completion:nil];
+        
+        NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop]addTimer:takePickTimer forMode:NSDefaultRunLoopMode];
+    }
+    
+}
+#pragma mark - action
+- (IBAction)searchButtonTouched:(UIButton *)sender {
+}
+
+- (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender {
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *cameraVC = [[UIImagePickerController alloc] init];
+        cameraVC = [[UIImagePickerController alloc] init];
         [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
         [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
         [cameraVC setDelegate:self];
@@ -128,10 +149,32 @@ static NSUInteger searchInd = 0;
         [self presentViewController:cameraVC animated:YES completion:nil];
     }
 }
-#pragma mark - action
-- (IBAction)searchButtonTouched:(UIButton *)sender {
+-(void)takePictureAction
+{
+    if (cameraVC) {
+        [cameraVC takePicture];
+    }
 }
+#pragma mark -cameraDelegate
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    NSLog(@"didFinishPickingImage");
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"didFinishPickingMediaWithInfo");
+    UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    [cameraVC dismissViewControllerAnimated:YES completion:nil];
+    cameraVC = nil;
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [cameraVC dismissViewControllerAnimated:YES completion:nil];
+    cameraVC = nil;
+}
 #pragma mark - viewControlsegement
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

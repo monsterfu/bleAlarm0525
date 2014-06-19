@@ -51,7 +51,7 @@
     dev.identifier = identifier;
     dev.connected = NO;
     dev.open = YES;
-    dev.warningStrength = [NSNumber numberWithFloat:100.0f];
+    dev.warningStrength = [NSNumber numberWithFloat:90.0f];
     return dev;
 }
 

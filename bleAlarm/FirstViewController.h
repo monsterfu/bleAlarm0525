@@ -24,6 +24,8 @@
     
     addedDeviceTableViewCell* addedCell;
     newDeviceTableViewCell* newCell;
+    
+    UIImagePickerController *cameraVC;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;
@@ -46,5 +48,6 @@
 
 - (IBAction)searchButtonTouched:(UIButton *)sender;
 
+- (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender;
 
 @end

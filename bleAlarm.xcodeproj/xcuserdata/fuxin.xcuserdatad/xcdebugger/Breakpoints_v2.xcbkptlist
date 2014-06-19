@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "@implementation ConnectionManager"
-            landmarkType = "3">
+            landmarkName = "-findDevice:isOn:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bleAlarm/SecondViewController.m"
-            timestampString = "422622970.616513"
+            timestampString = "424891454.176301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-didUpdateData:"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-didOutofRangWithDevice:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,26 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bleAlarm/SecondViewController.m"
-            timestampString = "422625450.759025"
+            timestampString = "424891454.176301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bleAlarm/SecondViewController.m"
-            timestampString = "422622970.616513"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-didUpdateData:"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "-setDevInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -136,12 +122,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bleAlarm/SecondViewController.m"
-            timestampString = "422622970.616513"
+            timestampString = "424891454.176301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-didUpdateData:"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-didOutofRangWithDevice:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bleAlarm/SecondViewController.m"
+            timestampString = "424891454.176301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-didOutofRangWithDevice:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -296,12 +298,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bleAlarm/bleConnect/ConnectionManager.m"
-            timestampString = "422625071.882098"
+            timestampString = "424884707.051218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
-            landmarkName = "-centralManager:didDiscoverPeripheral:advertisementData:RSSI:"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-peripheralManager:didReceiveReadRequest:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bleAlarm/bleConnect/ConnectionManager.m"
+            timestampString = "424884716.326876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-peripheralManager:didReceiveWriteRequests:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bleAlarm/SecondViewController.m"
+            timestampString = "424891454.176301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-didDeviceWanaFindMe:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bleAlarm/FirstViewController.m"
+            timestampString = "424889696.250052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bleAlarm/FirstViewController.m"
+            timestampString = "424889699.090256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-takePictureAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

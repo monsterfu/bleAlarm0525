@@ -47,7 +47,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [[ConnectionManager sharedInstance]setDelegate:self];
+}
 static NSUInteger searchInd = 0;
 -(void)searchAnimation
 {

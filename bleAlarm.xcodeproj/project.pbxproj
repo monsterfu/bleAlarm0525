@@ -102,6 +102,8 @@
 		649BDA5C192E23100053A92A /* deviceDisconnectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA5B192E23100053A92A /* deviceDisconnectInfo.m */; };
 		64DF94741910CAD700C41FDB /* locationCoordinateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */; };
 		64DF94771910E29800C41FDB /* newDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94761910E29800C41FDB /* newDeviceTableViewCell.m */; };
+		64E609CA1953FC74002CD827 /* ic_number_status_37.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E609C81953FC74002CD827 /* ic_number_status_37.png */; };
+		64E609CB1953FC74002CD827 /* ic_number_status_45.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E609C91953FC74002CD827 /* ic_number_status_45.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +231,8 @@
 		64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = locationCoordinateInfo.m; path = Model/locationCoordinateInfo.m; sourceTree = "<group>"; };
 		64DF94751910E29800C41FDB /* newDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newDeviceTableViewCell.h; path = deviceManagerViewController/newDeviceTableViewCell.h; sourceTree = "<group>"; };
 		64DF94761910E29800C41FDB /* newDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newDeviceTableViewCell.m; path = deviceManagerViewController/newDeviceTableViewCell.m; sourceTree = "<group>"; };
+		64E609C81953FC74002CD827 /* ic_number_status_37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_number_status_37.png; sourceTree = "<group>"; };
+		64E609C91953FC74002CD827 /* ic_number_status_45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_number_status_45.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,6 +496,8 @@
 		643454891901276F00CFD3CC /* start */ = {
 			isa = PBXGroup;
 			children = (
+				64E609C81953FC74002CD827 /* ic_number_status_37.png */,
+				64E609C91953FC74002CD827 /* ic_number_status_45.png */,
 				6434548A1901276F00CFD3CC /* delete_off.png */,
 				6434548B1901276F00CFD3CC /* delete_on.png */,
 				6434548C1901276F00CFD3CC /* find_text.png */,
@@ -641,6 +647,7 @@
 				0FB7EBB1190206FF000E4104 /* radar_on@2x.png in Resources */,
 				0F18FB4C1910023700327A5C /* signal3@2x.png in Resources */,
 				643454A01901276F00CFD3CC /* signal_ball.png in Resources */,
+				64E609CA1953FC74002CD827 /* ic_number_status_37.png in Resources */,
 				643454A71901276F00CFD3CC /* signal_r2.png in Resources */,
 				6434549C1901276F00CFD3CC /* 1138×640(start).jpg in Resources */,
 				0FB7EBB2190206FF000E4104 /* settings_off@2x.png in Resources */,
@@ -678,6 +685,7 @@
 				643454C01901276F00CFD3CC /* key.png in Resources */,
 				643454A81901276F00CFD3CC /* signal_r3.png in Resources */,
 				643454321901273900CFD3CC /* Main.storyboard in Resources */,
+				64E609CB1953FC74002CD827 /* ic_number_status_45.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

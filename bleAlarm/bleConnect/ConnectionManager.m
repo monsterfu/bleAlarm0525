@@ -39,7 +39,7 @@ static ConnectionManager *sharedConnectionManager;
 //        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &_soundID);
         
         _localAskFoundNotice = [[UILocalNotification alloc] init];
-        _localOutOfRangeNotice = [[UILocalNotification alloc] init];
+        
         
         manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
@@ -51,6 +51,9 @@ static ConnectionManager *sharedConnectionManager;
         _newsDeviceArray = [NSMutableArray array];
         
         _deviceManagerDictionary = [NSMutableDictionary dictionary];
+        
+        
+        warningStrength = 0;
         
         NSData* aData = [USER_DEFAULT objectForKey:KEY_DEVICELIST_INFO];
         _addedDeviceArray = [NSKeyedUnarchiver unarchiveObjectWithData:aData];
@@ -65,7 +68,9 @@ static ConnectionManager *sharedConnectionManager;
                 
             }
         }
-
+        
+        warningStrengthCheckTimer = [NSTimer timerWithTimeInterval:4.0f target:self selector:@selector(outOfRangeWarning) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:warningStrengthCheckTimer forMode:NSDefaultRunLoopMode];
     }
     return self;
 }
@@ -86,8 +91,21 @@ static ConnectionManager *sharedConnectionManager;
     [manager stopScan];
 }
 
-
-#pragma mark - fuction 
+#pragma mark - alarmFuc
+-(void)outOfRangeWarning
+{
+    if (!checkDevice) {
+        return;
+    }
+    if ([checkDevice.warningStrength floatValue] > warningStrength + 5) {
+        return;
+    }
+    if (checkDevice.open) {
+        [self.delegate didOutofRangWithDevice:checkDevice];
+        [self scheduleOutOfRangeNotification:checkDevice];
+    }
+}
+#pragma mark - fuction
 -(BOOL)findDevice:(NSString*)name isOn:(BOOL)on
 {
     BOOL result = NO;
@@ -111,8 +129,8 @@ static ConnectionManager *sharedConnectionManager;
 
 -(void)scheduleOutOfRangeNotification:(deviceInfo*)device
 {
-    if (_localOutOfRangeNotice) {
-        [[UIApplication sharedApplication]cancelLocalNotification:_localOutOfRangeNotice];
+    if (!_localOutOfRangeNotice) {
+        _localOutOfRangeNotice = [[UILocalNotification alloc] init];
     }
     if ([[UIApplication sharedApplication]applicationState] != UIApplicationStateBackground) {
         return;
@@ -337,33 +355,22 @@ static ConnectionManager *sharedConnectionManager;
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)arg_peripheral error:(NSError *)error
 {
     NSLog(@"[[[[[[[[[[[[[[[peripheral.ddd:%f]]]]]]]]]]]]]]]",[arg_peripheral.RSSI floatValue]);
-    deviceInfo* device = [_deviceManagerDictionary objectForKey:[arg_peripheral.identifier UUIDString]];
-    if (device) {
-        device.signalStrength = arg_peripheral.RSSI;
+    checkDevice = [_deviceManagerDictionary objectForKey:[arg_peripheral.identifier UUIDString]];
+    if (checkDevice) {
+        checkDevice.signalStrength = arg_peripheral.RSSI;
         
         CGFloat meter = (-1)*[arg_peripheral.RSSI floatValue];
         
         if (meter < 30.0f) {
             meter = 31.0f;
-        }else if(meter > [device.warningStrength floatValue])
-        {
-            if (device.open) {
-                [self.delegate didOutofRangWithDevice:device];
-                [self scheduleOutOfRangeNotification:device];
-                [device.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
-                [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
-                NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:_addedDeviceArray];
-                [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
-                [USER_DEFAULT synchronize];
-            }
-            
         }
-        
-        if (meter > 70.0f) {
-            meter = 69.0f;
+        if (warningStrength == 0) {
+            warningStrength = meter;
         }
+        //不停取均值
+        warningStrength = (warningStrength + meter)/2;
         
-        [device.delegate didUpdateData:device];
+        [checkDevice.delegate didUpdateData:checkDevice];
     }
     _peripheral = arg_peripheral;
     checkRssiTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateRSSIAction) userInfo:nil repeats:NO];

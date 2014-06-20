@@ -26,7 +26,7 @@
     
     _deviceNameLabel.text = _devInfo.idString;
     
-    [[ConnectionManager sharedInstance]setDelegate:self];
+   
     
     if (_devInfo.connected) {
         [_findButton setTitle:@"FIND ME" forState:UIControlStateNormal];
@@ -47,7 +47,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+     [[ConnectionManager sharedInstance]setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,13 +156,17 @@
         if (_openl){
             _openl = NO;
             if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:@"FIND ME" forState:UIControlStateNormal];
+                [_findButton setTitle:@"找到我" forState:UIControlStateNormal];
+                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateNormal];
+                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateHighlighted];
             }
         }
         else{
             _openl = YES;
             if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:@"SILENCE TAG" forState:UIControlStateNormal];
+                [_findButton setTitle:@"安静" forState:UIControlStateNormal];
+                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateNormal];
+                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateHighlighted];
             }
         }
         

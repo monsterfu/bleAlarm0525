@@ -37,6 +37,11 @@
     CLLocation* _location;
     UILocalNotification *_localOutOfRangeNotice;  //超出距离通知
     UILocalNotification *_localAskFoundNotice;    //被找请求通知
+    
+    deviceInfo* checkDevice;
+    CGFloat warningStrength;
+    NSTimer* warningStrengthCheckTimer;
+    
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;

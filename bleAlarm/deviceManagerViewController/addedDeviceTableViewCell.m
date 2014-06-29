@@ -37,7 +37,11 @@
 
 -(void)setDevInfo:(deviceInfo *)newDevInfo
 {
-    self.deviceLabel.text = newDevInfo.idString;
+    if ([USER_DEFAULT objectForKey:newDevInfo.identifier]) {
+        self.deviceLabel.text = [USER_DEFAULT objectForKey:newDevInfo.identifier];
+    }else{
+        self.deviceLabel.text = newDevInfo.idString;
+    }
     _signalImageView.image = [newDevInfo currentSignalStrengthImage];
     _devInfo = newDevInfo;
     if (newDevInfo.connected) {
@@ -57,5 +61,14 @@
 -(void)didUpdateData:(deviceInfo*)info
 {
     [self setDevInfo:info];
+}
+
+-(void)didDisconnectedNotice:(deviceInfo *)device
+{
+    [self.delegate updateCellInfo:device];
+}
+
+-(void)didConnectedNotice:(deviceInfo *)device{
+    [self.delegate updateCellInfo:device];
 }
 @end

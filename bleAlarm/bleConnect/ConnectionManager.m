@@ -106,6 +106,13 @@ static ConnectionManager *sharedConnectionManager;
     }
 }
 #pragma mark - fuction
+
+- (void) removeDevice:(deviceInfo*)device
+{
+    if (device.connected) {
+        [self.manager cancelPeripheralConnection:[_peripheralDictionary objectForKey:device.identifier]];
+    }
+}
 -(BOOL)findDevice:(NSString*)name isOn:(BOOL)on
 {
     BOOL result = NO;
@@ -327,6 +334,19 @@ static ConnectionManager *sharedConnectionManager;
     NSLog(@"Connecting Fail: %@",error);
     [manager connectPeripheral:arg_peripheral options:nil];
 }
+
+-(void)disconnectNotice:(NSTimer*)timer
+{
+    deviceInfo* device = (deviceInfo*) [timer userInfo];
+    [self.delegate didDisconnectWithDevice:device];
+    [self scheduleOutOfRangeNotification:device];
+    [device.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
+    
+    [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+    NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:_addedDeviceArray];
+    [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+    [USER_DEFAULT synchronize];
+}
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)persipheral error:(NSError *)error
 {
     NSLog(@"disconnect!!!!");
@@ -338,16 +358,13 @@ static ConnectionManager *sharedConnectionManager;
     if (!device.open) {
         return;
     }
-    
+    device.connected = NO;
     if (device) {
-        [self.delegate didDisconnectWithDevice:device];
-        [self scheduleOutOfRangeNotification:device];
-        [device.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
-        
-        [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
-        NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:_addedDeviceArray];
-        [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
-        [USER_DEFAULT synchronize];
+        if (disconnectTimer) {
+            return;
+        }
+        disconnectTimer = [NSTimer timerWithTimeInterval:3.0f target:self selector:@selector(disconnectNotice:) userInfo:device repeats:NO];
+        [[NSRunLoop currentRunLoop]addTimer:disconnectTimer forMode:NSDefaultRunLoopMode];
     }
     
 }
@@ -387,10 +404,6 @@ static ConnectionManager *sharedConnectionManager;
     [args_peripheral setDelegate:self];
     [args_peripheral readRSSI];
     [args_peripheral discoverServices:nil];
-    
-    deviceInfo* device = [_deviceManagerDictionary objectForKey:[args_peripheral.identifier UUIDString]];
-    device.connected = YES;
-    [self.delegate didConnectWithDevice:device];
 }
 
 -(void)peripheral:(CBPeripheral *)args_peripheral didDiscoverServices:(NSError *)error{
@@ -405,6 +418,12 @@ static ConnectionManager *sharedConnectionManager;
             [args_peripheral discoverCharacteristics:nil forService:service];
         }
     }
+    
+    deviceInfo* device = [_deviceManagerDictionary objectForKey:[args_peripheral.identifier UUIDString]];
+    device.connected = YES;
+    [self.delegate didConnectWithDevice:device];
+    [disconnectTimer invalidate];
+    disconnectTimer = nil;
     
 }
 

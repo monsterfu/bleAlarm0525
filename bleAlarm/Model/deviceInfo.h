@@ -14,10 +14,15 @@
 
 @protocol deviceInfoDelegate
 -(void)didUpdateData:(deviceInfo*)info;
+-(void)didConnectedNotice:(deviceInfo*)device;
+-(void)didDisconnectedNotice:(deviceInfo*)device;
+
 @end
 
 @interface deviceInfo : NSObject
-
+{
+    NSTimer* connectNoticeTimer;
+}
 @property (nonatomic, retain) id<deviceInfoDelegate> delegate;
 @property (nonatomic, retain) NSNumber *batteryLevel;
 @property (nonatomic, retain) NSString *idString;
@@ -42,4 +47,7 @@
 - (UIImage *) currentBatteryStrengthImage;
 
 -(void)addLocationCoordArray:(locationCoordinateInfo*)objects;
+
+-(void)connectedNotice;
+-(void)disconnectedNotice;
 @end

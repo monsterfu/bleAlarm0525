@@ -68,13 +68,13 @@
 - (UIImage *) currentSignalStrengthImage
 {
     NSString *imageName;
-    if (self.signalStrength.floatValue > -30.0)
+    if (self.signalStrength.floatValue > -44.0)
         imageName = @"signal5.png";
-    else if (self.signalStrength.floatValue > -40.0)
-        imageName = @"signal4.png";
     else if (self.signalStrength.floatValue > -50.0)
-        imageName = @"signal3.png";
+        imageName = @"signal4.png";
     else if (self.signalStrength.floatValue > -60.0)
+        imageName = @"signal3.png";
+    else if (self.signalStrength.floatValue > -70.0)
         imageName = @"signal2.png";
     else
         imageName = @"signal1.png";
@@ -84,7 +84,7 @@
 {
     NSString *imageName;
     if (self.batteryLevel.floatValue < 10.0)
-        imageName = @"battery1.png";
+        imageName = @"battery6.png";
     else if (self.batteryLevel.floatValue < 30.0)
         imageName = @"battery2.png";
     else if (self.batteryLevel.floatValue < 45.0)
@@ -123,5 +123,28 @@
         _locationCoordArray = [aDecoder decodeObjectForKey:COORDINATE_VALUE_KEY];
     }
     return self;
+}
+
+-(void)connectedNotice
+{
+//    if (self.delegate&&[self.delegate respondsToSelector:@selector(didConnectedNotice)]) {
+        [self.delegate didConnectedNotice:self];
+    
+    if (connectNoticeTimer) {
+        [connectNoticeTimer invalidate];
+        connectNoticeTimer = nil;
+    }
+}
+-(void)dos
+{
+    [self.delegate didDisconnectedNotice:self];
+}
+-(void)disconnectedNotice
+{
+    if (connectNoticeTimer) {
+        return;
+    }
+    connectNoticeTimer = [NSTimer timerWithTimeInterval:3.0f target:self selector:@selector(dos) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop]addTimer:connectNoticeTimer forMode:NSRunLoopCommonModes];
 }
 @end

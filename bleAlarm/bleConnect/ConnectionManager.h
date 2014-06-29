@@ -42,6 +42,8 @@
     CGFloat warningStrength;
     NSTimer* warningStrengthCheckTimer;
     
+    NSTimer* disconnectTimer;
+    
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;
@@ -63,7 +65,7 @@
 + (ConnectionManager*) sharedInstance;
 - (void) startScanForDevice;
 - (void) stopScanForDevice;
-
+- (void) removeDevice:(deviceInfo*)device;
 
 -(BOOL)findDevice:(NSString*)name isOn:(BOOL)on;
 @end

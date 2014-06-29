@@ -11,7 +11,7 @@
 
 @protocol addedDeviceTableViewCellDelegate <NSObject>
 
--(void)test;
+-(void)updateCellInfo:(deviceInfo*)device;
 
 @end
 

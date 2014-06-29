@@ -26,6 +26,8 @@
     newDeviceTableViewCell* newCell;
     
     UIImagePickerController *cameraVC;
+    
+    BOOL _searchOpen;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;

@@ -1,0 +1,27 @@
+
+/* Class = "IBUIBarButtonItem"; title = "丢失详情"; ObjectID = "54G-IR-LP5"; */
+"54G-IR-LP5.title" = "丢失详情";
+
+/* Class = "IBUIViewController"; title = "First"; ObjectID = "CZ4-MO-1fc"; */
+"CZ4-MO-1fc.title" = "First";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "O67-PK-iR7"; */
+"O67-PK-iR7.text" = "Label";
+
+/* Class = "IBUITextView"; text = "待开发……"; ObjectID = "QTD-cU-rWu"; */
+"QTD-cU-rWu.text" = "待开发……";
+
+/* Class = "IBUIViewController"; title = "Second"; ObjectID = "QUy-BD-bpt"; */
+"QUy-BD-bpt.title" = "Second";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "W9n-SI-uph"; */
+"W9n-SI-uph.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "YoT-MR-iiN"; */
+"YoT-MR-iiN.text" = "Title";
+
+/* Class = "IBUITextView"; text = "待开发……"; ObjectID = "lec-V2-MfO"; */
+"lec-V2-MfO.text" = "待开发……";
+
+/* Class = "IBUIButton"; normalTitle = "找到我"; ObjectID = "z1y-8r-hyJ"; */
+"z1y-8r-hyJ.normalTitle" = "找到我";

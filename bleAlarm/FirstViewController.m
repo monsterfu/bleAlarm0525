@@ -31,14 +31,21 @@
     
     [[ConnectionManager sharedInstance]setDelegate:self];
     
-    searchAnimationTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(searchAnimation) userInfo:nil repeats:YES];
-    
-    [[NSRunLoop currentRunLoop]addTimer:searchAnimationTimer forMode:NSDefaultRunLoopMode];
-    
     _devicesArray = [NSMutableArray array];
     
     addedDeviceArray = [ConnectionManager sharedInstance].addedDeviceArray;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
+    
+    _searchOpen = NO;
+    
+    for (UIImageView* img in rImgArray) {
+        [img setHidden:YES];
+    }
+    for (UIImageView* img in lImgArray) {
+        [img setHidden:YES];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [[ConnectionManager sharedInstance]setDelegate:self];
+    [_tableView reloadData];
 }
 static NSUInteger searchInd = 0;
 -(void)searchAnimation
@@ -91,11 +99,6 @@ static NSUInteger searchInd = 0;
 
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
-    
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"您已失去与%@的连接,正在重新连接",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
-    [[soundVibrateManager sharedInstance]playAlertSound];
-    [[soundVibrateManager sharedInstance]vibrate];  
     addedDeviceArray = [ConnectionManager sharedInstance].addedDeviceArray;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     
@@ -117,28 +120,46 @@ static NSUInteger searchInd = 0;
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device
 {
-    if (cameraVC) {
-        [cameraVC takePicture];
-    }else{
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        [[soundVibrateManager sharedInstance]playAlertSound];
-        [[soundVibrateManager sharedInstance]vibrate];
-        
-        cameraVC = [[UIImagePickerController alloc] init];
-        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-        [cameraVC setDelegate:self];
-        [cameraVC setAllowsEditing:YES];
-        [self presentViewController:cameraVC animated:YES completion:nil];
-        
-        NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop]addTimer:takePickTimer forMode:NSDefaultRunLoopMode];
-    }
+    return;
+//    if (cameraVC) {
+//        [cameraVC takePicture];
+//    }else{
+//        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+//        [[soundVibrateManager sharedInstance]playAlertSound];
+//        [[soundVibrateManager sharedInstance]vibrate];
+//        
+//        cameraVC = [[UIImagePickerController alloc] init];
+//        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+//        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+//        [cameraVC setDelegate:self];
+//        [cameraVC setAllowsEditing:YES];
+//        [self presentViewController:cameraVC animated:YES completion:nil];
+//        
+//        NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];
+//        [[NSRunLoop currentRunLoop]addTimer:takePickTimer forMode:NSDefaultRunLoopMode];
+//    }
     
 }
 #pragma mark - action
 - (IBAction)searchButtonTouched:(UIButton *)sender {
+    if (!_searchOpen) {
+        _searchOpen = YES;
+        
+        searchAnimationTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(searchAnimation) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop currentRunLoop]addTimer:searchAnimationTimer forMode:NSDefaultRunLoopMode];
+    }else{
+        _searchOpen = NO;
+        [searchAnimationTimer invalidate];
+        searchAnimationTimer = nil;
+        for (UIImageView* img in rImgArray) {
+            [img setHidden:YES];
+        }
+        for (UIImageView* img in lImgArray) {
+            [img setHidden:YES];
+        }
+    }
 }
 
 - (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender {
@@ -158,26 +179,7 @@ static NSUInteger searchInd = 0;
         [cameraVC takePicture];
     }
 }
-#pragma mark -cameraDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    NSLog(@"didFinishPickingImage");
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSLog(@"didFinishPickingMediaWithInfo");
-    UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
-    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    [cameraVC dismissViewControllerAnimated:YES completion:nil];
-    cameraVC = nil;
-}
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [cameraVC dismissViewControllerAnimated:YES completion:nil];
-    cameraVC = nil;
-}
 #pragma mark - viewControlsegement
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -212,11 +214,11 @@ static NSUInteger searchInd = 0;
 {
     if (section == 0) {
         if ([addedDeviceArray count] == 0) {
-            return @"无绑定设备";
+            return NSLocalizedString(@"welcome", nil);
         }else
-            return @"已绑定设备";
+            return NSLocalizedString(@"welcome", nil);
     }else{
-        return @"正在搜索";
+        return NSLocalizedString(@"welcome", nil);
     }
 }
 
@@ -313,11 +315,23 @@ static NSUInteger searchInd = 0;
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [[ConnectionManager sharedInstance]removeDevice:[addedDeviceArray objectAtIndex:indexPath.row]];
         [addedDeviceArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+        NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:addedDeviceArray];
+        [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+        [USER_DEFAULT synchronize];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+#pragma mark - cellDelegate
 
+-(void)updateCellInfo:(deviceInfo*)device
+{
+    
+}
 @end

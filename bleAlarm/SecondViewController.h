@@ -23,6 +23,7 @@
     
     BOOL _canNotice;
     BOOL _canCamera;
+    BOOL _canmeraOpen;
     
     NSArray* _areaIndexArray;
     

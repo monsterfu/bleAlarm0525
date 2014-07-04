@@ -45,7 +45,7 @@
     _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
     _slider.value = 100.0f;
     [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",100]];
-    UIImage* image = [UIImage imageNamed:@"xx"];
+    UIImage* image = [UIImage imageNamed:@"camera_enable"];
     _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
     _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
     self.navigationItem.rightBarButtonItems = @[_dismissButton,_cameraButton];
@@ -53,9 +53,10 @@
     UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     if (_devInfo.connected) {
-        UIImage* image = [UIImage imageNamed:@"camera"];
-        [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 40)]];
+        [_cameraButton setEnabled:YES];
         _canCamera = YES;
+    }else{
+        [_cameraButton setEnabled:NO];
     }
 }
 
@@ -85,6 +86,19 @@
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"设备未连接，无法使用遥控相机，请连接后使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
         [alertView show];
     }else{
+        
+        if (_canmeraOpen) {
+            _canmeraOpen = NO;
+            UIImage* image = [UIImage imageNamed:@"camera_enable"];
+            
+            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];
+        }else{
+            _canmeraOpen = YES;
+            UIImage* image = [UIImage imageNamed:@"camera_disable"];
+            
+            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];
+        }
+        return;
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             cameraVC = [[UIImagePickerController alloc] init];
             [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];

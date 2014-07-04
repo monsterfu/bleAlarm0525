@@ -11,4 +11,5 @@
 @interface UIImage (Extras)
 
 - (UIImage *)imageByScalingToSize:(CGSize)targetSize;
+- (UIImage*)grayscale:(UIImage*)anImage type:(char)type;
 @end

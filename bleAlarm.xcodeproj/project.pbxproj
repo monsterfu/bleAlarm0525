@@ -36,10 +36,11 @@
 		0FC8E86E19043A4E00F71B3D /* searchRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8E86D19043A4E00F71B3D /* searchRadarView.m */; };
 		0FD333AC1906CC93004960A6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD333AB1906CC93004960A6 /* AudioToolbox.framework */; };
 		0FD333AF1906CD07004960A6 /* soundVibrateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD333AE1906CD07004960A6 /* soundVibrateManager.m */; };
-		0FEA339D1960494200CBEC18 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA339C1960494200CBEC18 /* camera.png */; };
 		0FEA339F196049D400CBEC18 /* xx.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA339E196049D400CBEC18 /* xx.png */; };
 		0FEA33AC196052E900CBEC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA33AA196052E900CBEC18 /* Main.storyboard */; };
 		641D189E1966ACC2005228B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A01966ACC2005228B8 /* Localizable.strings */; };
+		641D18A41966C931005228B8 /* camera_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A21966C931005228B8 /* camera_enable.png */; };
+		641D18A51966C931005228B8 /* camera_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A31966C931005228B8 /* camera_disable.png */; };
 		6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
 		643454211901273900CFD3CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454201901273900CFD3CC /* CoreGraphics.framework */; };
 		643454231901273900CFD3CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454221901273900CFD3CC /* UIKit.framework */; };
@@ -156,7 +157,6 @@
 		0FD333AB1906CC93004960A6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0FD333AD1906CD07004960A6 /* soundVibrateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = soundVibrateManager.h; path = Model/soundVibrateManager.h; sourceTree = "<group>"; };
 		0FD333AE1906CD07004960A6 /* soundVibrateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = soundVibrateManager.m; path = Model/soundVibrateManager.m; sourceTree = "<group>"; };
-		0FEA339C1960494200CBEC18 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		0FEA339E196049D400CBEC18 /* xx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xx.png; sourceTree = "<group>"; };
 		0FEA33A419604EE200CBEC18 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0FEA33A519604EE200CBEC18 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -165,6 +165,8 @@
 		641D189B1966AC55005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		641D189F1966ACC2005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		641D18A11966ACC7005228B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		641D18A21966C931005228B8 /* camera_enable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_enable.png; sourceTree = "<group>"; };
+		641D18A31966C931005228B8 /* camera_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_disable.png; sourceTree = "<group>"; };
 		6434541B1901273900CFD3CC /* bleAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434541E1901273900CFD3CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		643454201901273900CFD3CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -464,8 +466,9 @@
 		6434546A1901276F00CFD3CC /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				641D18A21966C931005228B8 /* camera_enable.png */,
+				641D18A31966C931005228B8 /* camera_disable.png */,
 				0FEA339E196049D400CBEC18 /* xx.png */,
-				0FEA339C1960494200CBEC18 /* camera.png */,
 				0FB7EBA1190202E1000E4104 /* find_off@2x.png */,
 				0FB7EBA3190206FF000E4104 /* find_on@2x.png */,
 				0FB7EBA4190206FF000E4104 /* map_off@2x.png */,
@@ -642,6 +645,7 @@
 				643454BA1901276F00CFD3CC /* battery2.png in Resources */,
 				0FB7EBAE190206FF000E4104 /* map_off@2x.png in Resources */,
 				643454D51901276F00CFD3CC /* select_on.png in Resources */,
+				641D18A51966C931005228B8 /* camera_disable.png in Resources */,
 				0F9C78271906CF9600CCDCD5 /* 4031.wav in Resources */,
 				643454A91901276F00CFD3CC /* signal_r4.png in Resources */,
 				643454C81901276F00CFD3CC /* delete_off.png in Resources */,
@@ -668,6 +672,7 @@
 				643454A71901276F00CFD3CC /* signal_r2.png in Resources */,
 				6434549C1901276F00CFD3CC /* 1138×640(start).jpg in Resources */,
 				0FB7EBB2190206FF000E4104 /* settings_off@2x.png in Resources */,
+				641D18A41966C931005228B8 /* camera_enable.png in Resources */,
 				643454BC1901276F00CFD3CC /* battery4.png in Resources */,
 				643454AA1901276F00CFD3CC /* signal_r5.png in Resources */,
 				6434549E1901276F00CFD3CC /* add_on.png in Resources */,
@@ -700,7 +705,6 @@
 				643454BB1901276F00CFD3CC /* battery3.png in Resources */,
 				0F18FB4E1910023700327A5C /* signal5@2x.png in Resources */,
 				643454A21901276F00CFD3CC /* signal_left3.png in Resources */,
-				0FEA339D1960494200CBEC18 /* camera.png in Resources */,
 				0F18FB4A1910023700327A5C /* signal1@2x.png in Resources */,
 				643454C01901276F00CFD3CC /* key.png in Resources */,
 				643454A81901276F00CFD3CC /* signal_r3.png in Resources */,

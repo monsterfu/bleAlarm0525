@@ -40,7 +40,6 @@
 		0FEA33AC196052E900CBEC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA33AA196052E900CBEC18 /* Main.storyboard */; };
 		641D189E1966ACC2005228B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A01966ACC2005228B8 /* Localizable.strings */; };
 		641D18A41966C931005228B8 /* camera_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A21966C931005228B8 /* camera_enable.png */; };
-		641D18A51966C931005228B8 /* camera_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A31966C931005228B8 /* camera_disable.png */; };
 		6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
 		643454211901273900CFD3CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454201901273900CFD3CC /* CoreGraphics.framework */; };
 		643454231901273900CFD3CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454221901273900CFD3CC /* UIKit.framework */; };
@@ -166,7 +165,6 @@
 		641D189F1966ACC2005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		641D18A11966ACC7005228B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		641D18A21966C931005228B8 /* camera_enable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_enable.png; sourceTree = "<group>"; };
-		641D18A31966C931005228B8 /* camera_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_disable.png; sourceTree = "<group>"; };
 		6434541B1901273900CFD3CC /* bleAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434541E1901273900CFD3CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		643454201901273900CFD3CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -467,7 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				641D18A21966C931005228B8 /* camera_enable.png */,
-				641D18A31966C931005228B8 /* camera_disable.png */,
 				0FEA339E196049D400CBEC18 /* xx.png */,
 				0FB7EBA1190202E1000E4104 /* find_off@2x.png */,
 				0FB7EBA3190206FF000E4104 /* find_on@2x.png */,
@@ -645,7 +642,6 @@
 				643454BA1901276F00CFD3CC /* battery2.png in Resources */,
 				0FB7EBAE190206FF000E4104 /* map_off@2x.png in Resources */,
 				643454D51901276F00CFD3CC /* select_on.png in Resources */,
-				641D18A51966C931005228B8 /* camera_disable.png in Resources */,
 				0F9C78271906CF9600CCDCD5 /* 4031.wav in Resources */,
 				643454A91901276F00CFD3CC /* signal_r4.png in Resources */,
 				643454C81901276F00CFD3CC /* delete_off.png in Resources */,

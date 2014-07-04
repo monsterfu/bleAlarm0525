@@ -45,7 +45,7 @@
     _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
     _slider.value = 100.0f;
     [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",100]];
-    UIImage* image = [UIImage imageNamed:@"camera_enable"];
+    UIImage* image = [UIImage imageNamed:@"settings_off"];
     _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
     _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
     self.navigationItem.rightBarButtonItems = @[_dismissButton,_cameraButton];
@@ -58,6 +58,7 @@
     }else{
         [_cameraButton setEnabled:NO];
     }
+    _canmeraOpen = NO;
 }
 
 -(void)tap:(UITapGestureRecognizer*)ge
@@ -89,24 +90,17 @@
         
         if (_canmeraOpen) {
             _canmeraOpen = NO;
-            UIImage* image = [UIImage imageNamed:@"camera_enable"];
+            UIImage* image = [UIImage imageNamed:@"settings_off"];
             
             [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];
         }else{
             _canmeraOpen = YES;
-            UIImage* image = [UIImage imageNamed:@"camera_disable"];
+            UIImage* image = [UIImage imageNamed:@"camera_enable"];
             
-            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];
+            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];//
         }
         return;
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            cameraVC = [[UIImagePickerController alloc] init];
-            [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-            [cameraVC setDelegate:self];
-            [cameraVC setAllowsEditing:YES];
-            [self presentViewController:cameraVC animated:YES completion:nil];
-        }
+        
     }
 }
 -(void)takePictureAction
@@ -219,22 +213,30 @@
 //    [alert show];
 //    [[soundVibrateManager sharedInstance]playAlertSound];
 //    [[soundVibrateManager sharedInstance]vibrate];
-    
-    if (![device isEqual:_devInfo]) {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
-        [alert show];
-        [[soundVibrateManager sharedInstance]playAlertSound];
-        [[soundVibrateManager sharedInstance]vibrate];
-        return;
-    }
-    
-    if (cameraVC) {
-        [cameraVC takePicture];
+    if (!_canmeraOpen) {
+        if ([device isEqual:_devInfo]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+            [alert show];
+            [[soundVibrateManager sharedInstance]playAlertSound];
+            [[soundVibrateManager sharedInstance]vibrate];
+            return;
+        }
     }else{
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        [[soundVibrateManager sharedInstance]playAlertSound];
-        [[soundVibrateManager sharedInstance]vibrate];
+        if (cameraVC) {
+            [cameraVC takePicture];
+        }else{
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                cameraVC = [[UIImagePickerController alloc] init];
+                [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+                [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+                [cameraVC setDelegate:self];
+                [cameraVC setAllowsEditing:YES];
+                [self presentViewController:cameraVC animated:YES completion:nil];
+                
+                NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];
+                [[NSRunLoop currentRunLoop]addTimer:takePickTimer forMode:NSDefaultRunLoopMode];
+            }
+        }
     }
 }
 #pragma mark -devInfo

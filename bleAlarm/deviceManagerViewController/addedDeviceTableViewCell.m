@@ -55,7 +55,7 @@
     
     _devInfo.delegate = self;
 }
-
+  //
 
 #pragma mark - deviceinfoUpdate
 -(void)didUpdateData:(deviceInfo*)info

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nh7-qo-CDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nh7-qo-CDr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -36,7 +36,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-6x-NpY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-6x-NpY">
                                 <rect key="frame" x="0.0" y="237" width="320" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.84078015560928798" green="0.95959611175927373" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,8 +60,8 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O67-PK-iR7">
                                                     <rect key="frame" x="39" y="14" width="113" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bluetooth-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="egG-aq-fDj">
@@ -80,7 +80,6 @@
                                             <outlet property="deviceLabel" destination="O67-PK-iR7" id="vC7-7n-0md"/>
                                             <outlet property="signalImageView" destination="2JC-vN-Ti6" id="Jkc-8Z-fhJ"/>
                                             <outlet property="switchView" destination="ywl-Nl-DKg" id="TZt-Yd-Nd9"/>
-                                            <segue destination="QUy-BD-bpt" kind="push" identifier="deviceConnect" id="DCC-LE-fQ9"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newDeviceCell" textLabel="YoT-MR-iiN" rowHeight="44" style="IBUITableViewCellStyleDefault" id="f3L-1m-iMg" customClass="newDeviceTableViewCell">
@@ -193,11 +192,12 @@
                         <outlet property="singelr4ImgView" destination="y0T-fw-3gP" id="T4e-xW-IaS"/>
                         <outlet property="singelr5ImgView" destination="q6B-XP-lVN" id="ICC-b8-30P"/>
                         <outlet property="tableView" destination="e1H-6x-NpY" id="ZLh-zL-WJg"/>
+                        <segue destination="QUy-BD-bpt" kind="push" identifier="deviceConnect" id="S7M-1f-kbN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1006" y="-1191"/>
+            <point key="canvasLocation" x="-1000" y="-1239"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="8SU-Gg-Nzx">
@@ -211,7 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxP-tg-AGd">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxP-tg-AGd">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
@@ -219,6 +219,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="S3d-mn-V3r"/>
                     <connections>
                         <outlet property="mapView" destination="bxP-tg-AGd" id="lYy-ef-Npu"/>
                     </connections>
@@ -272,7 +273,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-8r-hyJ">
                                 <rect key="frame" x="110" y="352" width="119" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="找到我" backgroundImage="ic_number_status_37.png"/>
+                                <state key="normal" title="fine me" backgroundImage="ic_number_status_37.png"/>
                                 <connections>
                                     <action selector="findButtonTouch:" destination="QUy-BD-bpt" eventType="touchUpInside" id="sSz-do-96a"/>
                                 </connections>
@@ -295,7 +296,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="VaZ-c4-ZUe">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" title="detail" style="plain" id="54G-IR-LP5">
+                        <barButtonItem key="rightBarButtonItem" title="Detail" style="plain" id="54G-IR-LP5">
                             <connections>
                                 <segue destination="h1L-OC-9Wg" kind="push" identifier="disconnectDetail" id="t1g-eP-tyE"/>
                             </connections>

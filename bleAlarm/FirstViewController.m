@@ -146,9 +146,11 @@ static NSUInteger searchInd = 0;
     if (!_searchOpen) {
         _searchOpen = YES;
         
+        searchInd = 0;
         searchAnimationTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(searchAnimation) userInfo:nil repeats:YES];
         
         [[NSRunLoop currentRunLoop]addTimer:searchAnimationTimer forMode:NSDefaultRunLoopMode];
+       
     }else{
         _searchOpen = NO;
         [searchAnimationTimer invalidate];
@@ -160,6 +162,7 @@ static NSUInteger searchInd = 0;
             [img setHidden:YES];
         }
     }
+     [_tableView reloadData];
 }
 
 - (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender {
@@ -198,7 +201,7 @@ static NSUInteger searchInd = 0;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return (_searchOpen)?2:1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -207,18 +210,6 @@ static NSUInteger searchInd = 0;
         return [addedDeviceArray count];
     }else{
         return [newDeviceArray count];
-    }
-}
-
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        if ([addedDeviceArray count] == 0) {
-            return NSLocalizedString(@"welcome", nil);
-        }else
-            return NSLocalizedString(@"welcome", nil);
-    }else{
-        return NSLocalizedString(@"welcome", nil);
     }
 }
 
@@ -239,9 +230,9 @@ static NSUInteger searchInd = 0;
         UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 260, CELL_HEADER_HEIGHT)];
         label.backgroundColor = [UIColor clearColor];
         if ([addedDeviceArray count] == 0) {
-            label.text = @"无绑定设备";
+            label.text = NSLocalizedString(@"无绑定设备",nil);
         }else{
-            label.text = [NSString stringWithFormat:@"已添加设备"];
+            label.text = [NSString stringWithFormat:NSLocalizedString(@"已添加设备",nil)];
         }
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:13];
@@ -253,7 +244,7 @@ static NSUInteger searchInd = 0;
         [headerView setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0f]];
         UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 260, CELL_HEADER_HEIGHT)];
         label.backgroundColor = [UIColor clearColor];
-        label.text = @"正在搜索…";
+        label.text = NSLocalizedString(@"正在搜索…",nil);
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:13];
         label.textColor = [UIColor grayColor];
@@ -287,7 +278,10 @@ static NSUInteger searchInd = 0;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+        deviceInfo* device = [addedDeviceArray objectAtIndex:indexPath.row];
+        if (device.open) {
+            [self performSegueWithIdentifier:@"deviceConnect" sender:nil];
+        }
     }else{
         [addedDeviceArray addObject:[newDeviceArray objectAtIndex:indexPath.row]];
         [newDeviceArray removeObjectAtIndex:indexPath.row];

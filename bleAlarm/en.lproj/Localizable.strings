@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  bleAlarm
+
+  Created by Monster on 14-7-4.
+  Copyright (c) 2014年 HYQ. All rights reserved.
+*/
+"已超出范围" = "has been out of range";
+"想要找到你" = "want find you";
+"无绑定设备" = "No binding device";
+"已添加设备" = "Added device";
+"正在搜索…" = "searching…";
+"找到我" = "fine me";
+"连接" = "connect";
+"丢失详情" = "detail";
+"警告" = "warning";
+"您已失去与" = "You has disconnect to";
+"的连接" = "";
+"确定" = "ok";
+"失去连接" = "disconnect";
+"已超出设定范围" = "It is more than set range";
+"安静" = "slience";

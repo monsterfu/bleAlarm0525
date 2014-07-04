@@ -148,7 +148,7 @@ static ConnectionManager *sharedConnectionManager;
     _localOutOfRangeNotice.soundName = @"4031.wav";
     _localOutOfRangeNotice.repeatInterval = NSDayCalendarUnit;
     
-    _localOutOfRangeNotice.alertBody = [NSString stringWithFormat:@"%@已超出范围",device.idString];
+    _localOutOfRangeNotice.alertBody = [NSString stringWithFormat:@"%@%@",device.idString, NSLocalizedString(@"已超出范围", nil)];
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:_localOutOfRangeNotice];
 }
@@ -167,7 +167,7 @@ static ConnectionManager *sharedConnectionManager;
     _localAskFoundNotice.soundName = @"4031.wav";
     _localAskFoundNotice.repeatInterval = NSDayCalendarUnit;
     
-    _localAskFoundNotice.alertBody = [NSString stringWithFormat:@"%@想要找到你",device.idString];
+    _localAskFoundNotice.alertBody = [NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", ni)];
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:_localAskFoundNotice];
 }

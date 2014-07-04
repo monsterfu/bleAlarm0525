@@ -34,9 +34,9 @@
    
     
     if (_devInfo.connected) {
-        [_findButton setTitle:@"找到我" forState:UIControlStateNormal];
+        [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
     }else{
-        [_findButton setTitle:@"连接" forState:UIControlStateNormal];
+        [_findButton setTitle:NSLocalizedString(@"连接",nil) forState:UIControlStateNormal];
     }
     _openl  = NO;
     _canNotice = YES;
@@ -47,7 +47,7 @@
     [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",100]];
     UIImage* image = [UIImage imageNamed:@"xx"];
     _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
-    _dismissButton = [[UIBarButtonItem alloc]initWithTitle:@"丢失详情" style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
+    _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
     self.navigationItem.rightBarButtonItems = @[_dismissButton,_cameraButton];
     
     UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
@@ -168,9 +168,9 @@
 }
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
-    _alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"您已失去与%@的连接",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), device.idString,NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
     [_alert show];
-    [_findButton setTitle:@"失去连接" forState:UIControlStateNormal];
+    [_findButton setTitle:NSLocalizedString(@"失去连接",nil) forState:UIControlStateNormal];
     
     if (_warmingTimer) {
         return;
@@ -182,7 +182,7 @@
 {
     [_warmingTimer invalidate];
     _warmingTimer = nil;
-    [_findButton setTitle:@"找到我" forState:UIControlStateNormal];
+    [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
     
     UIImage* image = [UIImage imageNamed:@"camera"];
     [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 40)]];
@@ -192,7 +192,7 @@
 {
     if (_canNotice) {
         _canNotice = NO;
-        _alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@已超出设定范围",device.idString] delegate:self cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
+        _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
         [_alertView show];
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
@@ -207,7 +207,7 @@
 //    [[soundVibrateManager sharedInstance]vibrate];
     
     if (![device isEqual:_devInfo]) {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
         [alert show];
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
@@ -217,7 +217,7 @@
     if (cameraVC) {
         [cameraVC takePicture];
     }else{
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
@@ -254,7 +254,7 @@
 }
 - (IBAction)findButtonTouch:(UIButton *)sender {
     
-    if ([sender.titleLabel.text isEqualToString:@"失去连接"]) {
+    if ([sender.titleLabel.text isEqualToString:NSLocalizedString(@"失去连接", nil) ]) {
         return;
     }
     
@@ -262,7 +262,7 @@
         if (_openl){
             _openl = NO;
             if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:@"找到我" forState:UIControlStateNormal];
+                [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
                 [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateNormal];
                 [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateHighlighted];
             }
@@ -270,7 +270,7 @@
         else{
             _openl = YES;
             if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:@"安静" forState:UIControlStateNormal];
+                [_findButton setTitle:NSLocalizedString(@"安静",nil) forState:UIControlStateNormal];
                 [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateNormal];
                 [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateHighlighted];
             }

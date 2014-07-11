@@ -199,7 +199,6 @@
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
     }
-    
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device
 {

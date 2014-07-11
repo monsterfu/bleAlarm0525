@@ -110,10 +110,13 @@ static ConnectionManager *sharedConnectionManager;
 - (void) removeDevice:(deviceInfo*)device
 {
     device.isUserForceDisconnect = YES;//用户在列表删除  则以后不再连接
+    NSLog(@"removeDevice: device : %@,,[_peripheralDictionary objectForKey:device.identifier]:%@",device.idString,[_peripheralDictionary objectForKey:device.identifier]);
     if (device.connected) {
-        [self.manager cancelPeripheralConnection:[_peripheralDictionary objectForKey:device.identifier]];
-        [self.peripheralManager removeAllServices];
-        [self.peripheralManager stopAdvertising];
+        if ([_peripheralDictionary objectForKey:device.identifier]) {
+            [self.manager cancelPeripheralConnection:[_peripheralDictionary objectForKey:device.identifier]];
+            [self.peripheralManager removeAllServices];
+            [self.peripheralManager stopAdvertising];
+        }
     }
 }
 -(BOOL)findDevice:(NSString*)name isOn:(BOOL)on
@@ -359,14 +362,28 @@ static ConnectionManager *sharedConnectionManager;
 }
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)persipheral error:(NSError *)error
 {
-    NSLog(@"disconnect!!!!");
+    NSLog(@"disconnect!!!!  error: %@",error);
     
     
     deviceInfo* device = [_deviceManagerDictionary objectForKey:[persipheral.identifier UUIDString]];
-    if (device.isUserForceDisconnect) {
+    if (!device||device.isUserForceDisconnect) {
+        if (device) {
+            [_peripheralDictionary removeObjectForKey:device.identifier];
+            [_deviceManagerDictionary removeObjectForKey:device.identifier];
+        }
         
-        [_peripheralDictionary removeObjectForKey:device.identifier];
-        [_deviceManagerDictionary removeObjectForKey:devInfo.identifier];
+        
+        
+        CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
+                                                                           primary:YES];
+        
+        // Add the characteristic to the service
+        transferService.characteristics = @[self.transferCharacteristic];
+        
+        // And add it to the peripheral manager
+        [self.peripheralManager addService:transferService];
+        
+        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
         return;
     }
     

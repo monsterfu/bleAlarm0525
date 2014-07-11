@@ -116,7 +116,11 @@ static NSUInteger searchInd = 0;
 }
 - (void) didOutofRangWithDevice:(deviceInfo*)device
 {
-    
+    return;
+    UIAlertView* _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
+    [_alertView show];
+    [[soundVibrateManager sharedInstance]playAlertSound];
+    [[soundVibrateManager sharedInstance]vibrate];
 }
 
 

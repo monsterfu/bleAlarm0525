@@ -18,6 +18,8 @@
     NSArray* rImgArray;
     NSArray* lImgArray;
     
+    BOOL _canNotice;
+    
     NSTimer* searchAnimationTimer;
     NSMutableArray* addedDeviceArray;
     NSMutableArray* newDeviceArray;

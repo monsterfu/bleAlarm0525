@@ -78,7 +78,7 @@ static ConnectionManager *sharedConnectionManager;
 #pragma mark -scan
 - (void) startScanForDevice
 {
-    NSDictionary* scanOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnNotificationKey];
+    NSDictionary* scanOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     
     // Make sure we start scan from scratch
     [manager stopScan];
@@ -109,8 +109,11 @@ static ConnectionManager *sharedConnectionManager;
 
 - (void) removeDevice:(deviceInfo*)device
 {
+    device.isUserForceDisconnect = YES;//用户在列表删除  则以后不再连接
     if (device.connected) {
         [self.manager cancelPeripheralConnection:[_peripheralDictionary objectForKey:device.identifier]];
+        [self.peripheralManager removeAllServices];
+        [self.peripheralManager stopAdvertising];
     }
 }
 -(BOOL)findDevice:(NSString*)name isOn:(BOOL)on
@@ -148,7 +151,7 @@ static ConnectionManager *sharedConnectionManager;
     _localOutOfRangeNotice.soundName = @"4031.wav";
     _localOutOfRangeNotice.repeatInterval = NSDayCalendarUnit;
     
-    _localOutOfRangeNotice.alertBody = [NSString stringWithFormat:@"%@%@",device.idString, NSLocalizedString(@"已超出范围", nil)];
+    _localOutOfRangeNotice.alertBody = [NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device], NSLocalizedString(@"已超出范围", nil)];
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:_localOutOfRangeNotice];
 }
@@ -167,7 +170,7 @@ static ConnectionManager *sharedConnectionManager;
     _localAskFoundNotice.soundName = @"4031.wav";
     _localAskFoundNotice.repeatInterval = NSDayCalendarUnit;
     
-    _localAskFoundNotice.alertBody = [NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", ni)];
+    _localAskFoundNotice.alertBody = [NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", ni)];
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:_localAskFoundNotice];
 }
@@ -214,7 +217,7 @@ static ConnectionManager *sharedConnectionManager;
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests
 {
-    NSLog(@"w ca ni");
+    NSLog(@"didReceiveWriteRequests");
     
     CBATTRequest* request = (CBATTRequest*)[requests objectAtIndex:0];
     deviceInfo* device = [_deviceManagerDictionary objectForKey:[request.central.identifier UUIDString]];
@@ -306,27 +309,34 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     if (![_peripheralDictionary objectForKey:[args_peripheral.identifier UUIDString]]) {
-        [_peripheralDictionary setObject:args_peripheral forKey:[args_peripheral.identifier UUIDString]];
         NSLog(@"args_peripheral:%@",args_peripheral);
-        [manager connectPeripheral:args_peripheral options:nil];
         
         devInfo = [deviceInfo deviceWithId:args_peripheral.name identifier:[args_peripheral.identifier UUIDString]];
-        [devInfo.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
+//        [devInfo.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
         
         BOOL isFound = NO;
         for (deviceInfo* added in _addedDeviceArray) {
             if ([added.identifier isEqualToString:[args_peripheral.identifier UUIDString]]) {
                 isFound = YES;
+                [_peripheralDictionary setObject:args_peripheral forKey:[args_peripheral.identifier UUIDString]];
+                [manager connectPeripheral:args_peripheral options:nil];
             }
         }
         if (!isFound) {
-            [_newsDeviceArray addObject:devInfo];
-            [_deviceManagerDictionary setObject:devInfo forKey:devInfo.identifier];
+            for (deviceInfo* newDevice in _newsDeviceArray) {
+                if ([newDevice.identifier isEqualToString:[args_peripheral.identifier UUIDString]]) {
+                    isFound = YES;
+                    
+                }
+            }
+            if (!isFound){
+                [_newsDeviceArray addObject:devInfo];
+                [_deviceManagerDictionary setObject:devInfo forKey:devInfo.identifier];
+                [self.delegate didDiscoverDevice:devInfo];
+            }
+            
         }
     }
-    
-    [self.delegate didDiscoverDevice:devInfo];
-    
     
 }
 
@@ -352,9 +362,15 @@ static ConnectionManager *sharedConnectionManager;
     NSLog(@"disconnect!!!!");
     
     
-    [manager connectPeripheral:persipheral options:nil];
-    
     deviceInfo* device = [_deviceManagerDictionary objectForKey:[persipheral.identifier UUIDString]];
+    if (device.isUserForceDisconnect) {
+        
+        [_peripheralDictionary removeObjectForKey:device.identifier];
+        [_deviceManagerDictionary removeObjectForKey:devInfo.identifier];
+        return;
+    }
+    
+    [manager connectPeripheral:persipheral options:nil];
     if (!device.open) {
         return;
     }

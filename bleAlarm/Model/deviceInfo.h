@@ -33,6 +33,8 @@
 @property (nonatomic, retain) NSMutableArray *locationCoordArray;
 @property (nonatomic, assign) BOOL open;
 @property (nonatomic, assign) BOOL connected;
+@property (nonatomic, assign) BOOL isUserForceDisconnect;//用户强制删除、断开
+@property (nonatomic, retain) NSNumber *rangeLimit;
 
 + (CBUUID *) batteryServiceUUID;
 + (CBUUID *) thermometerServiceUUID;

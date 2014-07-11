@@ -37,11 +37,7 @@
 
 -(void)setDevInfo:(deviceInfo *)newDevInfo
 {
-    if ([USER_DEFAULT objectForKey:newDevInfo.identifier]) {
-        self.deviceLabel.text = [USER_DEFAULT objectForKey:newDevInfo.identifier];
-    }else{
-        self.deviceLabel.text = newDevInfo.idString;
-    }
+    self.deviceLabel.text = [NSString deviceNameWithDevice:newDevInfo];
     _signalImageView.image = [newDevInfo currentSignalStrengthImage];
     _devInfo = newDevInfo;
     if (newDevInfo.connected) {
@@ -49,7 +45,6 @@
     }else{
         [_bleConnectImage setHidden:YES];
     }
-    
     
     [_switchView setOn:newDevInfo.open animated:YES];
     

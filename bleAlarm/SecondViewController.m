@@ -24,12 +24,7 @@
     _searchView = [searchRadarView stardcaseFrame:frame terInt: _radarImagView.frame.size.width/4];
     [_radarImagView addSubview:_searchView];
     
-    if([USER_DEFAULT objectForKey:_devInfo.identifier])
-    {
-        _deviceNameLabel.text = [USER_DEFAULT objectForKey:_devInfo.identifier];
-    }else{
-        _deviceNameLabel.text = _devInfo.idString;
-    }
+    _deviceNameLabel.text = [NSString deviceNameWithDevice:_devInfo];
     _deviceNameLabel.delegate = self;
    
     
@@ -43,8 +38,9 @@
     _canCamera = NO;
     
     _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
-    _slider.value = 100.0f;
-    [_mixLabel setText:[NSString stringWithFormat:@"-%ddbm",100]];
+    _slider.value = [_devInfo.rangeLimit floatValue];
+    
+    [_mixLabel setText:[NSString stringWithFormat:@"-%.2fdbm",[[NSNumber exchargeRange:_slider.value] floatValue]]];
     UIImage* image = [UIImage imageNamed:@"settings_off"];
     _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
     _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
@@ -131,16 +127,14 @@
 }
 - (IBAction)sliderChange:(UISlider *)sender {
     NSLog(@"slider value Change");
+    _devInfo.rangeLimit = [NSNumber numberWithFloat:sender.value];
     
-    if (0 <= sender.value&& sender.value <= 25) {
-        _devInfo.warningStrength = [NSNumber numberWithFloat:40.0f+(40.0f/25.0f)*sender.value];
-    }else if (25 < sender.value&& sender.value <= 50){
-        _devInfo.warningStrength = [NSNumber numberWithFloat:80.0f+(10.0f/25.0f)*(sender.value - 25)];
-    }else if (50 < sender.value&& sender.value <= 75){
-        _devInfo.warningStrength = [NSNumber numberWithFloat:90.0f+(3.0f/25.0f)*(sender.value - 50)];
-    }else if (75 < sender.value&& sender.value <= 100){
-        _devInfo.warningStrength = [NSNumber numberWithFloat:93.0f+(7.0f/25.0f)*(sender.value - 75)];
-    }
+    [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+    NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:[ConnectionManager sharedInstance].addedDeviceArray];
+    [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+    [USER_DEFAULT synchronize];
+    
+    _devInfo.warningStrength = [NSNumber exchargeRange:sender.value];
     [_mixLabel setText:[NSString stringWithFormat:@"-%.2fdbm",[_devInfo.warningStrength floatValue]]];
     _canNotice = YES;
 }
@@ -176,7 +170,7 @@
 }
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
-    _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), device.idString,NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+    _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), [NSString deviceNameWithDevice:device], NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
     [_alert show];
     [_findButton setTitle:NSLocalizedString(@"失去连接",nil) forState:UIControlStateNormal];
     
@@ -200,7 +194,7 @@
 {
     if (_canNotice) {
         _canNotice = NO;
-        _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
+        _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
         [_alertView show];
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
@@ -215,7 +209,7 @@
 //    [[soundVibrateManager sharedInstance]vibrate];
     if (!_canmeraOpen) {
         if ([device isEqual:_devInfo]) {
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",device.idString,NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
             [alert show];
             [[soundVibrateManager sharedInstance]playAlertSound];
             [[soundVibrateManager sharedInstance]vibrate];

@@ -7,6 +7,7 @@
 //
 
 #import "mapViewController.h"
+#import "GlobalHeader.h"
 
 @interface mapViewController ()
 
@@ -33,7 +34,10 @@
         
         NSString* title = [info.date description];
         
-        [self createAnnotationWithCoords:info.locationCoordinate2D title:_devInfo.idString subtitle:title];
+        CLLocation* _location = [[CLLocation alloc]initWithLatitude:info.locationCoordinate2D.latitude longitude:info.locationCoordinate2D.longitude];
+        CLLocation* _newLocation = [_location locationMarsFromEarth];
+        
+        [self createAnnotationWithCoords:_newLocation.coordinate title:[NSString deviceNameWithDevice:_devInfo] subtitle:title];
     }
 }
 

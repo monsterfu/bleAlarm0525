@@ -118,28 +118,14 @@ static NSUInteger searchInd = 0;
 {
     
 }
+
+
 - (void) didDeviceWanaFindMe:(deviceInfo*)device
 {
-    return;
-//    if (cameraVC) {
-//        [cameraVC takePicture];
-//    }else{
-//        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alert show];
-//        [[soundVibrateManager sharedInstance]playAlertSound];
-//        [[soundVibrateManager sharedInstance]vibrate];
-//        
-//        cameraVC = [[UIImagePickerController alloc] init];
-//        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-//        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-//        [cameraVC setDelegate:self];
-//        [cameraVC setAllowsEditing:YES];
-//        [self presentViewController:cameraVC animated:YES completion:nil];
-//        
-//        NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];
-//        [[NSRunLoop currentRunLoop]addTimer:takePickTimer forMode:NSDefaultRunLoopMode];
-//    }
-    
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+    [alert show];
+    [[soundVibrateManager sharedInstance]playAlertSound];
+    [[soundVibrateManager sharedInstance]vibrate];
 }
 #pragma mark - action
 - (IBAction)searchButtonTouched:(UIButton *)sender {
@@ -309,14 +295,21 @@ static NSUInteger searchInd = 0;
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [[ConnectionManager sharedInstance]removeDevice:[addedDeviceArray objectAtIndex:indexPath.row]];
-        [addedDeviceArray removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (indexPath.section == 0) {
+            [[ConnectionManager sharedInstance]removeDevice:[addedDeviceArray objectAtIndex:indexPath.row]];
+            [addedDeviceArray removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+            NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:addedDeviceArray];
+            [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+            [USER_DEFAULT synchronize];
+        }else{
+            [[ConnectionManager sharedInstance]removeDevice:[newDeviceArray objectAtIndex:indexPath.row]];
+            [newDeviceArray removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
         
-        [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
-        NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:addedDeviceArray];
-        [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
-        [USER_DEFAULT synchronize];
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

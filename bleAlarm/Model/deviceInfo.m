@@ -16,6 +16,7 @@
 #define IDENTIFIER_VALUE_KEY  @"identifier"
 #define WARNING_VALUE_KEY  @"warningValue"
 #define COORDINATE_VALUE_KEY  @"coordinateArray"
+#define RANGELIMIT_VALUE_KEY  @"rangelimit"
 
 + (CBUUID *) batteryServiceUUID
 {
@@ -52,6 +53,8 @@
     dev.connected = NO;
     dev.open = YES;
     dev.warningStrength = [NSNumber numberWithFloat:90.0f];
+    dev.isUserForceDisconnect = NO;
+    dev.rangeLimit = [NSNumber numberWithFloat:100.0f];
     return dev;
 }
 
@@ -113,6 +116,7 @@
     [aCoder encodeObject:_identifier forKey:IDENTIFIER_VALUE_KEY];
     [aCoder encodeObject:_warningStrength forKey:WARNING_VALUE_KEY];
     [aCoder encodeObject:_locationCoordArray forKey:COORDINATE_VALUE_KEY];
+    [aCoder encodeObject:_rangeLimit forKey:RANGELIMIT_VALUE_KEY];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super init]){
@@ -121,6 +125,7 @@
         _identifier = [aDecoder decodeObjectForKey:IDENTIFIER_VALUE_KEY];
         _warningStrength = [aDecoder decodeObjectForKey:WARNING_VALUE_KEY];
         _locationCoordArray = [aDecoder decodeObjectForKey:COORDINATE_VALUE_KEY];
+        _rangeLimit = [aDecoder decodeObjectForKey:RANGELIMIT_VALUE_KEY];
     }
     return self;
 }

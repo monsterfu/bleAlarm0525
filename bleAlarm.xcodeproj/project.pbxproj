@@ -38,6 +38,9 @@
 		0FD333AF1906CD07004960A6 /* soundVibrateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD333AE1906CD07004960A6 /* soundVibrateManager.m */; };
 		0FEA339F196049D400CBEC18 /* xx.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA339E196049D400CBEC18 /* xx.png */; };
 		0FEA33AC196052E900CBEC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA33AA196052E900CBEC18 /* Main.storyboard */; };
+		640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38B7196FAE9000C2044A /* NSString+deviceName.m */; };
+		640D38BB196FC37600C2044A /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */; };
+		640D38BE196FC9A500C2044A /* NSNumber+exchargeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */; };
 		641D189E1966ACC2005228B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A01966ACC2005228B8 /* Localizable.strings */; };
 		641D18A41966C931005228B8 /* camera_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A21966C931005228B8 /* camera_enable.png */; };
 		6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
@@ -161,6 +164,12 @@
 		0FEA33A519604EE200CBEC18 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0FEA33A9196051C900CBEC18 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0FEA33AB196052E900CBEC18 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		640D38B6196FAE9000C2044A /* NSString+deviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+deviceName.h"; path = "3rd-Support/NSString+deviceName.h"; sourceTree = "<group>"; };
+		640D38B7196FAE9000C2044A /* NSString+deviceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+deviceName.m"; path = "3rd-Support/NSString+deviceName.m"; sourceTree = "<group>"; };
+		640D38B9196FC37600C2044A /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+YCLocation.h"; path = "3rd-Support/CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+YCLocation.m"; path = "3rd-Support/CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		640D38BC196FC9A500C2044A /* NSNumber+exchargeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+exchargeRange.h"; path = "3rd-Support/NSNumber+exchargeRange.h"; sourceTree = "<group>"; };
+		640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+exchargeRange.m"; path = "3rd-Support/NSNumber+exchargeRange.m"; sourceTree = "<group>"; };
 		641D189B1966AC55005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		641D189F1966ACC2005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		641D18A11966ACC7005228B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -313,8 +322,14 @@
 		0FB7EB9D1902002F000E4104 /* 3rd-Support */ = {
 			isa = PBXGroup;
 			children = (
+				640D38B9196FC37600C2044A /* CLLocation+YCLocation.h */,
+				640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */,
 				0FB7EB9E1902007F000E4104 /* UIImage+Extras.h */,
 				0FB7EB9F1902007F000E4104 /* UIImage+Extras.m */,
+				640D38B6196FAE9000C2044A /* NSString+deviceName.h */,
+				640D38B7196FAE9000C2044A /* NSString+deviceName.m */,
+				640D38BC196FC9A500C2044A /* NSNumber+exchargeRange.h */,
+				640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */,
 			);
 			name = "3rd-Support";
 			sourceTree = "<group>";
@@ -728,17 +743,20 @@
 				0FAB9A971904B463003B2A17 /* deviceInfo.m in Sources */,
 				6434542F1901273900CFD3CC /* AppDelegate.m in Sources */,
 				643454DD190129C400CFD3CC /* ConnectionManager.m in Sources */,
+				640D38BE196FC9A500C2044A /* NSNumber+exchargeRange.m in Sources */,
 				643454351901273900CFD3CC /* FirstViewController.m in Sources */,
 				649BDA56192E005F0053A92A /* recordAnnotation.m in Sources */,
 				649BDA5C192E23100053A92A /* deviceDisconnectInfo.m in Sources */,
 				0F18FB5419100CD500327A5C /* addedDeviceTableViewCell.m in Sources */,
 				0FD333AF1906CD07004960A6 /* soundVibrateManager.m in Sources */,
+				640D38BB196FC37600C2044A /* CLLocation+YCLocation.m in Sources */,
 				64DF94741910CAD700C41FDB /* locationCoordinateInfo.m in Sources */,
 				649BDA59192E00770053A92A /* mapViewController.m in Sources */,
 				0FB13AEE1902DBB4007A5D91 /* findTableViewCell.m in Sources */,
 				0FB7EBA01902007F000E4104 /* UIImage+Extras.m in Sources */,
 				6434542B1901273900CFD3CC /* main.m in Sources */,
 				0FC8E86E19043A4E00F71B3D /* searchRadarView.m in Sources */,
+				640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

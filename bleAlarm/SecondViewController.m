@@ -216,6 +216,13 @@
             return;
         }
     }else{
+        if (![device isEqual:_devInfo]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+            [alert show];
+            [[soundVibrateManager sharedInstance]playAlertSound];
+            [[soundVibrateManager sharedInstance]vibrate];
+            return;
+        }
         if (cameraVC) {
             [cameraVC takePicture];
         }else{

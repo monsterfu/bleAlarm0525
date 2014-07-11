@@ -265,7 +265,7 @@ static NSUInteger searchInd = 0;
 {
     if (indexPath.section == 0) {
         deviceInfo* device = [addedDeviceArray objectAtIndex:indexPath.row];
-        if (device.open) {
+        if (device.connected) {
             [self performSegueWithIdentifier:@"deviceConnect" sender:nil];
         }
     }else{

@@ -16,7 +16,6 @@
 #define CELL_ROW_HEIGHT   (48)
 
 @implementation FirstViewController
-@synthesize singell1ImgView,singelr5ImgView,singelr4ImgView,singelr3ImgView,singelr2ImgView,singelr1ImgView,singell5ImgView,singell4ImgView,singell3ImgView,singell2ImgView;
 
 
 - (void)viewDidLoad
@@ -26,8 +25,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    rImgArray = [NSArray arrayWithObjects:singelr1ImgView,singelr2ImgView,singelr3ImgView,singelr4ImgView,singelr5ImgView,nil];
-    lImgArray = [NSArray arrayWithObjects:singell1ImgView,singell2ImgView,singell3ImgView,singell4ImgView,singell5ImgView, nil];
     
     [[ConnectionManager sharedInstance]setDelegate:self];
     
@@ -38,14 +35,12 @@
     
     _searchOpen = NO;
     
-    for (UIImageView* img in rImgArray) {
-        [img setHidden:YES];
-    }
-    for (UIImageView* img in lImgArray) {
-        [img setHidden:YES];
-    }
-    
-    
+    // 读取gif图片数据
+//    NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"leida@2x" ofType:@"gif"]];
+//    // view生成
+//    
+//    _gifWebView.userInteractionEnabled = NO;//用户不可交互
+//    [_gifWebView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -191,7 +186,7 @@ static NSUInteger searchInd = 0;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return (_searchOpen)?2:1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -201,11 +196,6 @@ static NSUInteger searchInd = 0;
     }else{
         return [newDeviceArray count];
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return CELL_HEADER_HEIGHT;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -230,20 +220,7 @@ static NSUInteger searchInd = 0;
         [headerView addSubview:label];
         return headerView;
     }else{
-        UIView* headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, CELL_HEADER_HEIGHT)];
-        [headerView setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0f]];
-        UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 260, CELL_HEADER_HEIGHT)];
-        label.backgroundColor = [UIColor clearColor];
-        label.text = NSLocalizedString(@"正在搜索…",nil);
-        label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:13];
-        label.textColor = [UIColor grayColor];
-        [headerView addSubview:label];
-        
-        UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [activityIndicatorView setFrame:CGRectMake(200, 5, 20, 20)];
-        [headerView addSubview:activityIndicatorView];
-        [activityIndicatorView startAnimating];
+        UIImageView* headerView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iseek3_02"]];
         return headerView;
     }
     return nil;

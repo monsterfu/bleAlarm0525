@@ -36,22 +36,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *singelr1ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singelr2ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singelr3ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singelr4ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singelr5ImgView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *singell1ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singell2ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singell3ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singell4ImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *singell5ImgView;
 
 @property (nonatomic, retain)NSMutableArray* devicesArray;
-
-- (IBAction)searchButtonTouched:(UIButton *)sender;
-
-- (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender;
 
 @end

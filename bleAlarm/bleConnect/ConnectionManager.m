@@ -381,9 +381,10 @@ static ConnectionManager *sharedConnectionManager;
         transferService.characteristics = @[self.transferCharacteristic];
         
         // And add it to the peripheral manager
-        [self.peripheralManager addService:transferService];
         
-        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+//        [self.peripheralManager addService:transferService];
+//        
+//        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
         return;
     }
     

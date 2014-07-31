@@ -28,12 +28,15 @@
     newDeviceTableViewCell* newCell;
     
     UIImagePickerController *cameraVC;
-    
+    NSTimer* _ldTimer;
+    NSUInteger _ldAnimationIndex;
     BOOL _searchOpen;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;
+@property (weak, nonatomic) IBOutlet UIImageView *animImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 

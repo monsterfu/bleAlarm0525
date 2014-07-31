@@ -34,15 +34,29 @@
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     
     _searchOpen = NO;
-    
+    _ldAnimationIndex = 0;
     // 读取gif图片数据
 //    NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"leida@2x" ofType:@"gif"]];
 //    // view生成
 //    
 //    _gifWebView.userInteractionEnabled = NO;//用户不可交互
 //    [_gifWebView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+    
+    _ldTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(leidaAnimation) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop]addTimer:_ldTimer forMode:NSRunLoopCommonModes];
+    
 }
-
+-(void)leidaAnimation
+{
+    if (_ldAnimationIndex < 9) {
+        _ldAnimationIndex ++;
+    }else{
+        _ldAnimationIndex = 0;
+    }
+    [UIView animateWithDuration:0.4 animations:^{
+        [_animImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.png",_ldAnimationIndex+1]]];
+    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

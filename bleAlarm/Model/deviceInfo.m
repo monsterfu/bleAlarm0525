@@ -75,7 +75,7 @@
         return [UIImage imageNamed:@"signal1.png"];
     }
     if (self.signalStrength.floatValue > -44.0)
-        imageName = @"signal5.png";
+        imageName = @"signal4.png";
     else if (self.signalStrength.floatValue > -50.0)
         imageName = @"signal4.png";
     else if (self.signalStrength.floatValue > -60.0)
@@ -90,17 +90,15 @@
 {
     NSString *imageName;
     if (self.batteryLevel.floatValue < 10.0)
-        imageName = @"battery6.png";
+        imageName = @"battery1.png";
     else if (self.batteryLevel.floatValue < 30.0)
         imageName = @"battery2.png";
     else if (self.batteryLevel.floatValue < 45.0)
         imageName = @"battery3.png";
     else if (self.batteryLevel.floatValue < 60.0)
         imageName = @"battery4.png";
-    else if (self.batteryLevel.floatValue < 75.0)
-        imageName = @"battery5.png";
     else
-        imageName = @"battery6.png";
+        imageName = @"battery5.png";
     
     return [UIImage imageNamed:imageName];
 }

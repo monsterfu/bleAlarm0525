@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nh7-qo-CDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nh7-qo-CDr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -38,7 +38,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-6x-NpY">
                                 <rect key="frame" x="0.0" y="320" width="320" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.84078015560928798" green="0.95959611175927373" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -169,10 +169,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="radarplate.png" translatesAutoresizingMaskIntoConstraints="NO" id="4aG-yL-f39">
-                                <rect key="frame" x="48" y="103" width="244" height="244"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery6.png" translatesAutoresizingMaskIntoConstraints="NO" id="hMy-V2-P7A">
                                 <rect key="frame" x="36" y="71" width="46" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -181,7 +177,7 @@
                                 <rect key="frame" x="254" y="71" width="46" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-LG-I8z">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" minimumValueImage="iseek2_18.png" maximumValueImage="iseek2_18.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-LG-I8z">
                                 <rect key="frame" x="33" y="408" width="273" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1514251861380721" green="0.17194248878605967" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -191,25 +187,21 @@
                                     <action selector="sliderChange:" destination="QUy-BD-bpt" eventType="valueChanged" id="DZG-4v-0k0"/>
                                 </connections>
                             </slider>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M.png" translatesAutoresizingMaskIntoConstraints="NO" id="SRm-Cs-bYh">
-                                <rect key="frame" x="29" y="350" width="58" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-8r-hyJ">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-8r-hyJ">
                                 <rect key="frame" x="110" y="352" width="119" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="找到我" backgroundImage="ic_number_status_37.png"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="iseek1 (18).png"/>
+                                <state key="selected" backgroundImage="iseek1 (19).png">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" backgroundImage="iseek1 (19).png">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="findButtonTouch:" destination="QUy-BD-bpt" eventType="touchUpInside" id="sSz-do-96a"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9n-SI-uph">
-                                <rect key="frame" x="107" y="446" width="130" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7d-VF-6TQ">
                                 <rect key="frame" x="90" y="67" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -231,8 +223,6 @@
                         <outlet property="batteryImageView" destination="hMy-V2-P7A" id="LgR-bB-VQb"/>
                         <outlet property="deviceNameLabel" destination="i7d-VF-6TQ" id="nX3-4o-Tp0"/>
                         <outlet property="findButton" destination="z1y-8r-hyJ" id="tVZ-wp-u8W"/>
-                        <outlet property="mixLabel" destination="W9n-SI-uph" id="rXn-VO-DSd"/>
-                        <outlet property="radarImagView" destination="4aG-yL-f39" id="Rfi-f0-6CT"/>
                         <outlet property="singalImageView" destination="Jll-bx-z96" id="VsG-07-n5n"/>
                         <outlet property="slider" destination="Vpx-LG-I8z" id="Nx5-Bc-hUN"/>
                     </connections>
@@ -300,13 +290,13 @@
     </scenes>
     <resources>
         <image name="Bluetooth-Logo.png" width="256" height="256"/>
-        <image name="M.png" width="86" height="30"/>
         <image name="battery6.png" width="81" height="46"/>
-        <image name="ic_number_status_37.png" width="150" height="89"/>
+        <image name="iseek1 (18).png" width="145" height="145"/>
+        <image name="iseek1 (19).png" width="145" height="145"/>
+        <image name="iseek2_18.png" width="222" height="9"/>
         <image name="leida.gif" width="320" height="320"/>
-        <image name="radarplate.png" width="639" height="639"/>
-        <image name="signal1.png" width="40" height="23"/>
-        <image name="signal5.png" width="40" height="23"/>
+        <image name="signal1.png" width="26" height="26"/>
+        <image name="signal5.png" width="13" height="13"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

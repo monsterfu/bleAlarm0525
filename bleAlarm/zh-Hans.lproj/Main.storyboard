@@ -176,14 +176,10 @@
                         <viewControllerLayoutGuide type="top" id="FgS-U6-xeU"/>
                         <viewControllerLayoutGuide type="bottom" id="stI-4g-hlJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gMD-aP-Fq6">
+                    <view key="view" contentMode="scaleToFill" id="gMD-aP-Fq6" customClass="GLKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg2.png" translatesAutoresizingMaskIntoConstraints="NO" id="jn5-y6-Yhv">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery6.png" translatesAutoresizingMaskIntoConstraints="NO" id="hMy-V2-P7A">
                                 <rect key="frame" x="36" y="71" width="46" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -303,7 +299,6 @@
         <image name="Bluetooth-Logo.png" width="256" height="256"/>
         <image name="battery6.png" width="81" height="46"/>
         <image name="bg.png" width="640" height="1136"/>
-        <image name="bg2.png" width="640" height="1136"/>
         <image name="iseek1 (18).png" width="145" height="145"/>
         <image name="iseek1 (19).png" width="145" height="145"/>
         <image name="iseek2_18.png" width="222" height="9"/>

@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad
 {
+    self.rippleImageName = @"bg2.png";
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [_slider setThumbImage:[UIImage imageNamed:@"bar dot.png"] forState:UIControlStateNormal];
@@ -47,7 +48,7 @@
     self.navigationItem.rightBarButtonItems = @[_dismissButton,_cameraButton];
     
     UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    //[self.view addGestureRecognizer:tapGestureRecognizer];
     if (_devInfo.connected) {
         [_cameraButton setEnabled:YES];
         _canCamera = YES;
@@ -74,6 +75,7 @@
 - (void)handlePanGesture:(UITapGestureRecognizer *)gesture {
     CGPoint location = [gesture locationInView:nil];
     [_ripple initiateRippleAtLocation:location];
+    [_deviceNameLabel resignFirstResponder];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

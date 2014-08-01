@@ -55,6 +55,31 @@
         [_cameraButton setEnabled:NO];
     }
     _canmeraOpen = NO;
+    
+    
+    UIPanGestureRecognizer  *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    panGestureRecognizer.enabled = YES;
+    panGestureRecognizer.cancelsTouchesInView = NO;
+    panGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panGestureRecognizer];
+    
+    UITapGestureRecognizer  *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    singleTapGestureRecognizer.enabled = YES;
+    singleTapGestureRecognizer.cancelsTouchesInView = NO;
+    singleTapGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:singleTapGestureRecognizer];
+}
+
+- (void)handlePanGesture:(UITapGestureRecognizer *)gesture {
+    CGPoint location = [gesture locationInView:nil];
+    [_ripple initiateRippleAtLocation:location];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 -(void)tap:(UITapGestureRecognizer*)ge
@@ -83,7 +108,6 @@
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"设备未连接，无法使用遥控相机，请连接后使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
         [alertView show];
     }else{
-        
         if (_canmeraOpen) {
             _canmeraOpen = NO;
             UIImage* image = [UIImage imageNamed:@"settings_off"];

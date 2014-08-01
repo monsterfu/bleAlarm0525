@@ -15,11 +15,6 @@
 
 @interface FirstViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ConnectionManagerDelegate,deviceInfoDelegate,addedDeviceTableViewCellDelegate,newDeviceTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
-    NSArray* rImgArray;
-    NSArray* lImgArray;
-    
-    BOOL _canNotice;
-    
     NSTimer* searchAnimationTimer;
     NSMutableArray* addedDeviceArray;
     NSMutableArray* newDeviceArray;
@@ -30,7 +25,6 @@
     UIImagePickerController *cameraVC;
     NSTimer* _ldTimer;
     NSUInteger _ldAnimationIndex;
-    BOOL _searchOpen;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;

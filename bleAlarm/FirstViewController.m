@@ -25,22 +25,13 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    
     [[ConnectionManager sharedInstance]setDelegate:self];
     
     _devicesArray = [NSMutableArray array];
     
     addedDeviceArray = [ConnectionManager sharedInstance].addedDeviceArray;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
-    
-    _searchOpen = NO;
     _ldAnimationIndex = 0;
-    // 读取gif图片数据
-//    NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"leida@2x" ofType:@"gif"]];
-//    // view生成
-//    
-//    _gifWebView.userInteractionEnabled = NO;//用户不可交互
-//    [_gifWebView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     
     _ldTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(leidaAnimation) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:_ldTimer forMode:NSRunLoopCommonModes];
@@ -54,7 +45,7 @@
         _ldAnimationIndex = 0;
     }
     [UIView animateWithDuration:0.4 animations:^{
-        [_animImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.png",_ldAnimationIndex+1]]];
+        [_animImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%u.png",_ldAnimationIndex+1]]];
     }];
 }
 - (void)didReceiveMemoryWarning
@@ -68,28 +59,7 @@
     [[ConnectionManager sharedInstance]setDelegate:self];
     [_tableView reloadData];
 }
-static NSUInteger searchInd = 0;
--(void)searchAnimation
-{
-    if (searchInd == 0) {
-        searchInd ++;
-        
-        for (UIImageView* img in rImgArray) {
-            [img setHidden:YES];
-        }
-        for (UIImageView* img in lImgArray) {
-            [img setHidden:YES];
-        }
-    
-    }else if(searchInd == 6){
-        searchInd = 0;
-    }else{
-        [[rImgArray objectAtIndex:searchInd -1] setHidden:NO];
-        [[lImgArray objectAtIndex:searchInd -1] setHidden:NO];
-        searchInd ++;
-    }
-    
-}
+
 #pragma mark - connectionManagerDelegate
 - (void) isBluetoothEnabled:(bool) enabled
 {
@@ -141,40 +111,6 @@ static NSUInteger searchInd = 0;
     [[soundVibrateManager sharedInstance]vibrate];
 }
 #pragma mark - action
-- (IBAction)searchButtonTouched:(UIButton *)sender {
-    if (!_searchOpen) {
-        _searchOpen = YES;
-        
-        searchInd = 0;
-        searchAnimationTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(searchAnimation) userInfo:nil repeats:YES];
-        
-        [[NSRunLoop currentRunLoop]addTimer:searchAnimationTimer forMode:NSDefaultRunLoopMode];
-       
-    }else{
-        _searchOpen = NO;
-        [searchAnimationTimer invalidate];
-        searchAnimationTimer = nil;
-        for (UIImageView* img in rImgArray) {
-            [img setHidden:YES];
-        }
-        for (UIImageView* img in lImgArray) {
-            [img setHidden:YES];
-        }
-    }
-     [_tableView reloadData];
-}
-
-- (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender {
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        cameraVC = [[UIImagePickerController alloc] init];
-        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
-        [cameraVC setDelegate:self];
-        [cameraVC setAllowsEditing:YES];
-        [self presentViewController:cameraVC animated:YES completion:nil];
-    }
-}
 -(void)takePictureAction
 {
     if (cameraVC) {
@@ -219,25 +155,21 @@ static NSUInteger searchInd = 0;
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        UIView* headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, CELL_HEADER_HEIGHT)];
-        [headerView setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0f]];
-        UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 260, CELL_HEADER_HEIGHT)];
-        label.backgroundColor = [UIColor clearColor];
+        UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, CELL_HEADER_HEIGHT)];
+        label.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
         if ([addedDeviceArray count] == 0) {
             label.text = NSLocalizedString(@"无绑定设备",nil);
         }else{
             label.text = [NSString stringWithFormat:NSLocalizedString(@"已添加设备",nil)];
         }
-        label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:13];
-        label.textColor = [UIColor grayColor];
-        [headerView addSubview:label];
-        return headerView;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:16];
+        label.textColor = [UIColor getColor:@"e2fafc"];
+        return label;
     }else{
         UIImageView* headerView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iseek3_02"]];
         return headerView;
     }
-    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -245,6 +177,7 @@ static NSUInteger searchInd = 0;
     if (indexPath.section == 0) {
         addedCell = [tableView dequeueReusableCellWithIdentifier:@"addedDeviceCell" forIndexPath:indexPath];
         addedCell.delegate = self;
+        addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
         [addedCell setDevInfo:[addedDeviceArray objectAtIndex:indexPath.row]];
         return addedCell;
     }else{

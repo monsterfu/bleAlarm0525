@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hex Color Picker: Read me</title>
+		<style type="text/css">
+			body {
+				font-family: "Lucida Grande";
+				font-size: 0.9em;
+				background-color: #f4f4f4;
+			}
+			
+			section, header, hgroup, footer {
+				display: block;
+			}
+			
+			b {
+				font-size: 1.3em;
+				color: maroon;
+			}
+			
+			section#wrap {
+				margin-left: auto;
+				margin-right: auto;
+				width: 40em;
+				background-color: white;
+				padding: 0;
+				
+				-webkit-border-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+				
+			}
+			
+			section section {
+				padding: 0.8em;
+				font-size: 0.85em;
+				line-height: 1.6em;
+			}
+			
+			samp {
+				font-family: Menlo, Monaco;
+			}
+			
+			dd {
+				padding-bottom: 0.8em;
+			}
+			
+			header {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: #c6c6c6;
+
+				-webkit-border-top-left-radius: 0.5em;
+				-webkit-border-top-right-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+			}
+			
+			
+			footer {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: white;
+
+				-webkit-border-bottom-left-radius: 0.5em;
+				-webkit-border-bottom-right-radius: 0.5em;
+				-webkit-box-shadow: 0 -0.1em 0.17em rgba(0, 0, 0, 0.5);
+				padding: 0.4em;
+				font-size: 0.8em;
+				text-align: center;
+				color: #444;
+			}
+			
+			header hgroup {
+				display: block;
+				padding: 0.8em;
+			}
+			
+			nav {
+				width: 100%;
+				display: table;
+				border-top: 1px solid #aaa;
+			}
+
+			nav a:first-child {
+				border-left: 0 none;
+			}
+			
+			nav a {
+				display: table-cell;
+				text-align: center;
+				width: 16.667%;
+				line-height: 1.9em;
+				
+				border-left: 1px solid #aaa;
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d7d7d7), to(#b9B9b9));
+				background-color: #c9c9c9;
+				
+				color: #333;
+				text-decoration: none;
+				
+			}
+			
+			body.en nav a.en,
+			body.ca nav a.ca,
+			body.es nav a.es,
+			body.no nav a.no,
+			body.nl nav a.nl
+			 {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b9b9b9), to(#d7d7d7));
+				background-color: #d4d4d4;
+				font-weight: bold;
+			}
+			
+			
+			h2 {
+				display: block;
+				margin: 0;
+				padding: 0;
+			}
+			
+			h2 em {
+				font-style: normal;
+				font-weight: normal;
+			}
+			
+			h3 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			h3:after {
+				content: " · ";
+			}
+			
+			h4 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+			}
+			h4 a {
+				color: #444;
+			}
+			
+			h1 {
+				font-size: 1.2em;
+			}
+		</style>
+	</head>
+	<body class="nl">
+		<section id="wrap">
+		<header>
+		<hgroup>
+		<h2>Hex Color Picker <em>1.6</em></h2>
+		<h3>waffle software</h3>
+		<h4><a href="http://wafflesoftware.net/hexpicker">wafflesoftware.net/hexpicker</a></h4></hgroup>
+		<nav><a class="en" href="Read%20me.html">English</a><a class="ca" href="Llegiu-me%20%5Bcatalà%5D.html">Catalá</a><a class="de" href="Lies%20mich%20%5BDeutsch%5D.html">Deutsch</a><a class="es" href="Léeme%20%5Bespañol%5D.html">Español</a><a class="nl" href="Read%20me%20%5Bnederlands%5D.html">Nederlands</a><a class="no" href="Les%20meg%20%5Bnorsk%5D.html">Norsk</a></nav>
+		</header>
+		<section lang="nl">
+<p>Vertaling door <a href="http://jorislandman.com">Joris Landman</a></p>
+
+<h1>Installatie</h1>
+
+<p>Verplaats het bestand HexColorPicker.colorPicker naar een van de volgende locaties:</p>
+
+<dl><dt>Voor installatie in uitsluitend uw eigen account:</dt>
+<dd>Kopieer of verplaats het bestand naar...<br />
+    <samp>[uw thuismap] &rarr; Bibliotheek &rarr; ColorPickers</samp><br />
+    (maak een map aan met de naam "ColorPickers" wanneer die niet aanwezig is)</dd>
+
+<dt>Voor installatie op de gehele computer (beschikbaar in alle accounts):</dt>
+<dd>Kopieer of verplaats het bestand naar...<br />
+    <samp>[uw harde schijf] &rarr; Bibliotheek &rarr; ColorPickers</samp><br />
+    (maak een map aan met de naam "ColorPickers" wanneer die niet aanwezig is)</dd>
+
+<dt>Voor installatie in sommige accounts, maar niet alle:</dt>
+<dd>Kopieer het bestand naar...<br />
+    <samp>[uw harde schijf] &rarr; Gebruikers &rarr; [een account] &rarr; Bibliotheek &rarr; ColorPickers</samp><br />
+    (maak een map aan met de naam "ColorPickers" wanneer die niet aanwezig is)<br />
+Herhaal deze stap voor elke account waarin u Hex Color Picker wilt gebruiken.</dd>
+</dl>
+
+<p>Toepassingen die geopend zijn moeten mogelijk worden herstart voordat ze gebruik kunnen maken van Hex Color Picker.</p>
+
+<h1>Gebruiksaanwijzing</h1>
+
+<ol>
+<li><p>Activeer het Kleuren-paneel. (Het paneel wordt geactiveerd door in het menu "Toon Kleuren" te kiezen, of door in een toepassing een kleur aan te clicken om die aan te passen.)</p></li>
+<li><p>Click bovenaan in het paneel op het icoon van Hex Color Picker (een "#"-teken in een blauwe cirkel). </p></li>
+<li><p>Gebruik het invoerveld om de hex-code van een kleur in te typen of te kopiëren, of gebruik de overige mogelijkheden van het Kleuren-paneel (inclusief andere paletten) om de kleur naar wens af te stemmen.</p></li>
+</ol>
+
+<h2>Shorthand Hex-code en HTML/CSS-kleurnamen</h2>
+
+<p>U kunt verkorte ("shorthand") hex-code gebruiken om kleuren uit te kiezen. De volgende formats worden ondersteund:</p>
+<ul>
+<li>"A" &rarr; "AAAAAA"</li>
+<li>"AB" &rarr; "ABABAB"</li>
+<li>"ABC" &rarr; "AABBCC"</li>
+</ul>
+
+<p>U hoeft het "#"-teken aan het begin van de hexadecimale kleurcode niet in te voeren, dit wordt automatisch toegevoegd.</p>
+
+<p>Als u onderaan in het paneel op "Opties" clickt en vervolgens "Herken HTML-kleurnamen" aanvinkt, kunt u HTML/CSS-kleurnamen gebruiken. Hex Color Picker gebruikt de standaard kleurnaam/kleur-combinaties zoals die zijn vastgelegd op <a href="http://www.w3.org/TR/css3-color/#svg-color" hreflang="en">http://www.w3.org/TR/css3-color/#svg-color</a>.</p>
+
+<h2>Hoofdletters &amp; kleine letters</h2>
+
+<p>U kunt kiezen of u wilt dat Hex Color Picker hoofdletters of kleine letters gebruikt (dus, of u wilt dat de letters in hex-waardes worden weergegeven als A-F of als a-f). Click onderaan in het paneel op "Opties" en gebruik de optie "Gebruik hoofdletters voor hexadecimale waardes" om uw voorkeur in te stellen.</p>
+
+<h2>Zoeken naar updates</h2>
+
+<p>Aangezien u waarschijnlijk vergeet om op de Hex Color Picker website te kijken voor periodieke updates, heeft u de mogelijkheid om Hex Color Picker zelf te laten zoeken naar nieuwe updates. De eerste keer dat u Hex Color Picker activeert, kunt u aangeven of u wilt dat er automatisch naar updates wordt gezocht of niet. U kunt deze instelling daarna altijd wijzigen door onder "Opties" het vakje "Zoek automatisch naar updates" aan of uit te vinken.</p>
+
+<p>Wanneer Hex Color Picker naar updates zoekt (eens per 12 uur) vraagt het de Hex Color Picker website om informatie.</p>
+
+<p>Wanneer Hex Color Picker informatie vraagt aan de website over beschikbare versies, stuurt het ook informatie mee: de versie van Hex Color Picker en de versie van Mac OS X die u gebruikt, alsmede het processor-type van uw computer (Intel of PowerPC, 32-bit of 64-bit). Deze drie gegevens zijn nodig om een correct antwoord te kunnen krijgen op de vraag "is er een update beschikbaar?". Er wordt verder geen informatie (waarmee bijvoorbeeld uw computer zou kunnen worden geïdentificeerd of uw locatie zou kunnen worden achterhaald) verstuurd door Hex Color Picker.</p>
+
+<h1>Vragen</h1>
+
+<p>V: Ik zie het icoon van Hex Color Picker niet in de knoppenbalk van het Kleuren-paneel!</p>
+
+<p>A:  Als u geen enkel icoon ziet, click dan op de langwerpige knop in de rechterbovenhoek van het venster om de knoppenbalk te tonen. Als u iconen ziet, maar niet het icoon van Hex Color Picker, kunt u het Kleuren-paneel groter maken om alle iconen op de knoppenbalk te laten passen, of op de >> pijlen bovenaan in het paneel clicken om resterende iconen te tonen in een menu.</p>
+
+<p>Als u <em>nog steeds</em> het icoon niet ziet, controleer dan of Hex Color Picker correct is geïnstalleerd, en of u de huidige toepassing heeft herstart na de installatie.</p>
+
+<p>V: Hoe gebruik ik Hex Color Picker in Adobe Photoshop?</p>
+
+<p>A: Sommige programma's gebruiken eigen kleurpaletten. Photoshop heeft gelukkig een instelling om het Mac OS X Kleuren-paneel te gebruiken, waardoor u ook Hex Color Picker kunt gebruiken.</p>
+
+<p>Ga naar het menu Photoshop > Preferences > General.
+Verander de optie voor "Color Picker" van "Adobe" in "Apple" en click op "OK".</p>
+
+<p>Als u een toepassing gebruikt waarin u het Apple Kleuren-paneel niet kunt activeren, dan verzoeken wij u om aan de producent van die toepassing te vragen om deze mogelijkheid toe te voegen aan zijn software.</p>
+
+<p>V: Waarom geeft het Acties-menu van Hex Color Picker's de optie om te kopiëren?</p>
+
+<p>A: In sommige toepassingen wordt het menu "Wijzig" onder bepaalde omstandigheden gedeactiveerd. Deze optie om te kopiëren maakt dat de shortcut Command+C gewoon blijft werken, en is alleen dan actief wanneer het Kleuren-paneel op de voorgrond is.</p>
+</p>
+		</section>
+		<footer>Copyright © 2010 waffle software</footer>
+		</section>
+	</body>
+</html>

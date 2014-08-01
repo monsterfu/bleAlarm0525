@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hex Color Picker: Lies mich</title>
+		<style type="text/css">
+			body {
+				font-family: "Lucida Grande";
+				font-size: 0.9em;
+				background-color: #f4f4f4;
+			}
+			
+			section, header, hgroup, footer {
+				display: block;
+			}
+			
+			b {
+				font-size: 1.3em;
+				color: maroon;
+			}
+			
+			section#wrap {
+				margin-left: auto;
+				margin-right: auto;
+				width: 40em;
+				background-color: white;
+				padding: 0;
+				
+				-webkit-border-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+				
+			}
+			
+			section section {
+				padding: 0.8em;
+				font-size: 0.85em;
+				line-height: 1.6em;
+			}
+			
+			samp {
+				font-family: Menlo, Monaco;
+			}
+			
+			dd {
+				padding-bottom: 0.8em;
+			}
+			
+			header {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: #c6c6c6;
+
+				-webkit-border-top-left-radius: 0.5em;
+				-webkit-border-top-right-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+			}
+			
+			
+			footer {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: white;
+
+				-webkit-border-bottom-left-radius: 0.5em;
+				-webkit-border-bottom-right-radius: 0.5em;
+				-webkit-box-shadow: 0 -0.1em 0.17em rgba(0, 0, 0, 0.5);
+				padding: 0.4em;
+				font-size: 0.8em;
+				text-align: center;
+				color: #444;
+			}
+			
+			header hgroup {
+				display: block;
+				padding: 0.8em;
+			}
+			
+			nav {
+				width: 100%;
+				display: table;
+				border-top: 1px solid #aaa;
+			}
+
+			nav a:first-child {
+				border-left: 0 none;
+			}
+			
+			nav a {
+				display: table-cell;
+				text-align: center;
+				width: 16.667%;
+				line-height: 1.9em;
+				
+				border-left: 1px solid #aaa;
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d7d7d7), to(#b9B9b9));
+				background-color: #c9c9c9;
+				
+				color: #333;
+				text-decoration: none;
+				
+			}
+			
+			body.en nav a.en,
+			body.de nav a.de,
+			body.ca nav a.ca,
+			body.es nav a.es,
+			body.no nav a.no,
+			body.nl nav a.nl
+			{
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b9b9b9), to(#d7d7d7));
+				background-color: #d4d4d4;
+				font-weight: bold;
+			}
+			
+			
+			h2 {
+				display: block;
+				margin: 0;
+				padding: 0;
+			}
+			
+			h2 em {
+				font-style: normal;
+				font-weight: normal;
+			}
+			
+			h3 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			h3:after {
+				content: " · ";
+			}
+			
+			h4 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+			}
+			h4 a {
+				color: #444;
+			}
+			
+			h1 {
+				font-size: 1.2em;
+			}
+		</style>
+	</head>
+	<body class="de">
+		<section id="wrap">
+		<header>
+		<hgroup>
+		<h2>Hex Color Picker <em>1.6</em></h2>
+		<h3>waffle software</h3>
+		<h4><a href="http://wafflesoftware.net/hexpicker">wafflesoftware.net/hexpicker</a></h4></hgroup>
+		<nav><a class="en" href="Read%20me.html">English</a><a class="ca" href="Llegiu-me%20%5Bcatalà%5D.html">Catalá</a><a class="de" href="Lies%20mich%20%5BDeutsch%5D.html">Deutsch</a><a class="es" href="Léeme%20%5Bespañol%5D.html">Español</a><a class="nl" href="Read%20me%20%5Bnederlands%5D.html">Nederlands</a><a class="no" href="Les%20meg%20%5Bnorsk%5D.html">Norsk</a></nav>
+		</header>
+		<section lang="de">
+		<p>Übersetzung von <a href="http://www.tekl.de">Wolfgang Reszel</a></p>
+
+		<h1>Installation</h1>
+		
+<p>Die Datei <samp>HexColorPicker.colorPicker</samp> kann in einem der folgenden Ordner installiert werden:</p>
+
+<dl>
+<dt>Installation nur für ihren Benutzer-Account:</dt>
+<dd>Verschieben oder kopieren Sie die Datei nach ... <br />
+    <samp>[Ihr Benutzerordner] &rarr; Library &rarr; ColorPickers</samp><br />
+    (Falls der Ordner ColorPickers nicht existiert, muss er angelegt werden)</dd>
+
+
+<dt>Installation für alle Benutzer:</dt>
+<dd>Verschieben oder kopieren Sie die Datei nach ... <br />
+    <samp>[Macintosh HD] &rarr; Library &rarr; ColorPickers</samp><br />
+    (Falls der Ordner ColorPickers nicht existiert, muss er angelegt werden)</dd>
+
+<dt>Installation für mehrere Benutzer-Accounts:</dt>
+<dd>Verschieben oder kopieren Sie die Datei nach ... <br />
+    <samp>[Macintosh HD] &rarr; Benutzer &rarr; [Account-Name] &rarr; Library &rarr; ColorPickers</samp><br />
+   (Falls der Ordner ColorPickers nicht existiert, muss er angelegt werden). Wiederholen Sie diesen Schritt für jeden Benutzer-Account.</dd>
+</dl>
+
+<p>Um Hex Color Picker in bereits geöffneten Anwendungen nutzen zu können, müssen diese neu gestartet werden.</p>
+
+<h1>Wie verwendet man den Hex Color Picker</h1>
+
+<ol>
+<li><p>Rufen Sie die Farben-Palette auf. (Über den Menüpunkt „Farben einblenden“, ⇧⌘C oder durch Anklicken eines Farbfelds.)</p></li>
+<li><p>Klicken Sie auf das Hex-Color-Picker-Symbol (Ein #-Zeichen in einem blauen Kreis) oben in der Symbolleiste der Palette. Falls dort schon zu viele Symbole zu sehen sind, muss die Palette ggf. breiter gezogen werden.</p></li>
+<li><p>Verwenden Sie das Textfeld um dort Hex-Werte einzugeben oder um Hex-Werte der aktuellen Farbe in die Zwischenablage zu kopieren. Die Hex-Werte werden auch über die andere Farbwähler beeinflusst, falls gewünscht.</p></li>
+</ol>
+
+<h2>Hex-Code-Kurzschreibweisen und HTML/CSS-Farbnamen</h2>
+
+<p>Es kann auch eine Kurzschreibweise für die Eingabe von Hex-Werten verwendet werden. Folgende Schreibweisen sind möglich:</p>
+<ul>
+<li>"A" &rarr; "AAAAAA"</li>
+<li>"AB" &rarr; "ABABAB"</li>
+<li>"ABC" &rarr; "AABBCC"</li>
+</ul>
+
+<p>Das #-Zeichen muss nicht mit eingegeben werden.</p>
+
+<p>Über die Einstellungen kann die Option „HTML-Farbnamen erkennen“ aktiviert werden. Dann können auch die zahlreichen HTML/CSS-Farbnamen eingegeben werden. Hex Color Picker hält sich dabei an die <a href="http://www.w3.org/TR/css3-color/#svg-color" hreflang="en">Spezifikation des W3C</a> .</p>
+
+<h2>Groß-/Kleinschreibung</h2>
+
+<p>In den Einstellungen lässt sich festlegen, ob große oder kleine Buchstaben bei den Hex-Werten verwendet werden sollen. Das bezieht sich alleine auf die ermittelten Hex-Werte, bei der Eingabe ist die Schreibweise generell egal.</p>
+
+<h2>Nach Aktualisierung suchen</h2>
+
+<p>Beim ersten Aufruf von Hex Color Picker werden Sie gefragt, ob regelmäßig geprüft werden soll, ob eine Aktualisierung vorliegt. Sie sind nicht zu einer Aktualisierung verpflichtet und es werden keine persönlichen Daten bei der Verbindung mit dem Server übermittelt. Die Automatische Prüfung lässt sich jederzeit in den Einstellungen ein- bzw. ausschalten.</p>
+
+<p>Wenn Hex Color Picker nach einer Aktualisierung sucht (das passiert einmal in 12 Stunden) wird eine Verbindung zur Hex-Color-Picker-Website aufgebaut, um an die entsprechenden Informationen zu gelangen.</p>
+
+<p>Folgende Daten werden dabei an den Server übermittelt: Version von Hex Color Picker, Version von Mac OS X und der Prozessortyp (Intel oder PowerPC, 32 Bit oder 64 Bit). Diese Daten sind für die Überprüfung notwendig und sie können nicht dazu verwendet werden ihren Computer oder Standort eindeutig zu identifizieren.</p>
+
+<h1>Fragen und Antworten (FAQ)</h1>
+
+<p>F: Das Symbol erscheint nicht in der Symbolleiste</p>
+
+<p>A: Falls überhaupt keine Symbole zu sehen sind, klicken Sie auf die Schaltfläche oben rechts in der Palette. Falls sie nur andere Symbole sehen, ist die Palette vermutlich zu klein und muss vergrößert werden. Alternativ können Sie auch auf die Pfeile (>>) rechts in der Symbolleiste klicken, womit die übrigen Symbole in einem Menü angezeigt werden.</p>
+
+<p>Falls Sie den Hex Color Picker <em>trotzdem</em> nicht finden können, vergewissern Sie sich, ob er korrekt installiert wurde und Sie ggf. ihre Anwendungen neu gestartet haben die während der Installation bereits geöffnet waren.</p>
+
+<p>F: Wie verwendet man den Hex Color Picker in Adobe Photoshop?</p>
+
+<p>A: Einigen Anwendungen verwenden ihren eigenen Farbwähler. </p>
+
+<p>In Adobe Photoshop gibt es eine Einstellung, mit welcher man den OS-X-Farbwähler wieder aktivieren kann:
+  Rufen Sie dazu den Menüpunkt Photoshop &rarr; Voreinstellungen &rarr; Allgemein auf und ändern Sie die Option Farbwähler von Adobe auf Apple.</p>
+
+<p>Wenn Sie andere Anwendungen einsetzen, die nicht die Möglichkeit bieten den Farbwähler zu bestimmen, kontaktieren Sie bitte den Hersteller, damit er die Einstellungsmöglichkeit in die Anwendung einbaut.</p>
+
+<p>F: Warum gibt es im Aktions-Menü (Zahnrad) einen Kopieren-Befehl?</p>
+
+<p>A: In einigen Anwendung oder unter gewissen Umständen ist der entsprechende Befehl im Bearbeiten-Menü deaktiviert. Der Kopieren-Befehl im Aktions-Menü sorgt dafür, dass ⌘C auch in diesem Fall funktioniert. Er ist dann aber nur aktiv, wenn die Eingabemarke (Cursor) im Eingabefeld steht.</p>
+		
+		</section>
+		<footer>Copyright © 2010 waffle software</footer>
+		</section>
+	</body>
+</html>

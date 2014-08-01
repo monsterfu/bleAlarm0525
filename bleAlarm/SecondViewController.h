@@ -11,8 +11,9 @@
 #import "deviceInfo.h"
 #import "GlobalHeader.h"
 #import "mapViewController.h"
+#import "GLIRViewController.h"
 
-@interface SecondViewController : UIViewController<deviceInfoDelegate,ConnectionManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface SecondViewController : GLIRViewController<deviceInfoDelegate,ConnectionManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
     searchRadarView* _searchView;
     BOOL _openl;

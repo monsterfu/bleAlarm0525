@@ -19,6 +19,7 @@
 #import "NSString+deviceName.h"
 #import "CLLocation+YCLocation.h"
 #import "NSNumber+exchargeRange.h"
+#import "UIColor+getColor.h"
 
 //customer used define
 #define USER_DEFAULT  [NSUserDefaults standardUserDefaults]

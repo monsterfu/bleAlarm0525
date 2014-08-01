@@ -159,6 +159,12 @@
 		649BDA5C192E23100053A92A /* deviceDisconnectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA5B192E23100053A92A /* deviceDisconnectInfo.m */; };
 		64DF94741910CAD700C41FDB /* locationCoordinateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */; };
 		64DF94771910E29800C41FDB /* newDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94761910E29800C41FDB /* newDeviceTableViewCell.m */; };
+		64E582D1198B6401006872EB /* GLIRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E582CA198B6401006872EB /* GLIRViewController.m */; };
+		64E582D2198B6401006872EB /* RippleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E582CC198B6401006872EB /* RippleModel.m */; };
+		64E582D3198B6401006872EB /* RippleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E582CE198B6401006872EB /* RippleTableViewController.m */; };
+		64E582D4198B6401006872EB /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 64E582CF198B6401006872EB /* Shader.fsh */; };
+		64E582D5198B6401006872EB /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 64E582D0198B6401006872EB /* Shader.vsh */; };
+		64E582DB198B72AB006872EB /* UIColor+getColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E582DA198B72AB006872EB /* UIColor+getColor.m */; };
 		64E609CA1953FC74002CD827 /* ic_number_status_37.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E609C81953FC74002CD827 /* ic_number_status_37.png */; };
 		64E609CB1953FC74002CD827 /* ic_number_status_45.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E609C91953FC74002CD827 /* ic_number_status_45.png */; };
 		64EF52AF1988B91000E9D088 /* iseek2_18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64EF52AE1988B91000E9D088 /* iseek2_18@2x.png */; };
@@ -353,6 +359,16 @@
 		64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = locationCoordinateInfo.m; path = Model/locationCoordinateInfo.m; sourceTree = "<group>"; };
 		64DF94751910E29800C41FDB /* newDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newDeviceTableViewCell.h; path = deviceManagerViewController/newDeviceTableViewCell.h; sourceTree = "<group>"; };
 		64DF94761910E29800C41FDB /* newDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newDeviceTableViewCell.m; path = deviceManagerViewController/newDeviceTableViewCell.m; sourceTree = "<group>"; };
+		64E582C9198B6401006872EB /* GLIRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIRViewController.h; sourceTree = "<group>"; };
+		64E582CA198B6401006872EB /* GLIRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIRViewController.m; sourceTree = "<group>"; };
+		64E582CB198B6401006872EB /* RippleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleModel.h; sourceTree = "<group>"; };
+		64E582CC198B6401006872EB /* RippleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RippleModel.m; sourceTree = "<group>"; };
+		64E582CD198B6401006872EB /* RippleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleTableViewController.h; sourceTree = "<group>"; };
+		64E582CE198B6401006872EB /* RippleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RippleTableViewController.m; sourceTree = "<group>"; };
+		64E582CF198B6401006872EB /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		64E582D0198B6401006872EB /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		64E582D9198B72AB006872EB /* UIColor+getColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+getColor.h"; path = "3rd-Support/UIColor+getColor.h"; sourceTree = "<group>"; };
+		64E582DA198B72AB006872EB /* UIColor+getColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+getColor.m"; path = "3rd-Support/UIColor+getColor.m"; sourceTree = "<group>"; };
 		64E609C81953FC74002CD827 /* ic_number_status_37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_number_status_37.png; sourceTree = "<group>"; };
 		64E609C91953FC74002CD827 /* ic_number_status_45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_number_status_45.png; sourceTree = "<group>"; };
 		64EF52AE1988B91000E9D088 /* iseek2_18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iseek2_18@2x.png"; sourceTree = "<group>"; };
@@ -425,6 +441,7 @@
 		0FB7EB9D1902002F000E4104 /* 3rd-Support */ = {
 			isa = PBXGroup;
 			children = (
+				64E582C8198B6401006872EB /* RippleTableViewController */,
 				640D38B9196FC37600C2044A /* CLLocation+YCLocation.h */,
 				640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */,
 				0FB7EB9E1902007F000E4104 /* UIImage+Extras.h */,
@@ -433,6 +450,8 @@
 				640D38B7196FAE9000C2044A /* NSString+deviceName.m */,
 				640D38BC196FC9A500C2044A /* NSNumber+exchargeRange.h */,
 				640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */,
+				64E582D9198B72AB006872EB /* UIColor+getColor.h */,
+				64E582DA198B72AB006872EB /* UIColor+getColor.m */,
 			);
 			name = "3rd-Support";
 			sourceTree = "<group>";
@@ -739,6 +758,22 @@
 			name = mapManagerViewController;
 			sourceTree = "<group>";
 		};
+		64E582C8198B6401006872EB /* RippleTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64E582C9198B6401006872EB /* GLIRViewController.h */,
+				64E582CA198B6401006872EB /* GLIRViewController.m */,
+				64E582CB198B6401006872EB /* RippleModel.h */,
+				64E582CC198B6401006872EB /* RippleModel.m */,
+				64E582CD198B6401006872EB /* RippleTableViewController.h */,
+				64E582CE198B6401006872EB /* RippleTableViewController.m */,
+				64E582CF198B6401006872EB /* Shader.fsh */,
+				64E582D0198B6401006872EB /* Shader.vsh */,
+			);
+			name = RippleTableViewController;
+			path = "3rd-Support/RippleTableViewController";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -870,6 +905,7 @@
 				0FE2339C198AA700004DFA08 /* zhen.png in Resources */,
 				0FBBBA3E19869F5500941EEF /* iseek2_05.png in Resources */,
 				6434549F1901276F00CFD3CC /* frame3.png in Resources */,
+				64E582D5198B6401006872EB /* Shader.vsh in Resources */,
 				0FB7EBB5190206FF000E4104 /* start_on@2x.png in Resources */,
 				643454BF1901276F00CFD3CC /* find range.png in Resources */,
 				0FB7EBB1190206FF000E4104 /* radar_on@2x.png in Resources */,
@@ -879,6 +915,7 @@
 				64E609CA1953FC74002CD827 /* ic_number_status_37.png in Resources */,
 				643454A71901276F00CFD3CC /* signal_r2.png in Resources */,
 				6434549C1901276F00CFD3CC /* 1138×640(start).jpg in Resources */,
+				64E582D4198B6401006872EB /* Shader.fsh in Resources */,
 				0FB7EBB2190206FF000E4104 /* settings_off@2x.png in Resources */,
 				641D18A41966C931005228B8 /* camera_enable.png in Resources */,
 				643454BC1901276F00CFD3CC /* battery4.png in Resources */,
@@ -973,13 +1010,17 @@
 				649BDA5C192E23100053A92A /* deviceDisconnectInfo.m in Sources */,
 				0F18FB5419100CD500327A5C /* addedDeviceTableViewCell.m in Sources */,
 				0FD333AF1906CD07004960A6 /* soundVibrateManager.m in Sources */,
+				64E582D3198B6401006872EB /* RippleTableViewController.m in Sources */,
 				640D38BB196FC37600C2044A /* CLLocation+YCLocation.m in Sources */,
+				64E582D1198B6401006872EB /* GLIRViewController.m in Sources */,
 				64DF94741910CAD700C41FDB /* locationCoordinateInfo.m in Sources */,
 				649BDA59192E00770053A92A /* mapViewController.m in Sources */,
 				0FB13AEE1902DBB4007A5D91 /* findTableViewCell.m in Sources */,
 				0FB7EBA01902007F000E4104 /* UIImage+Extras.m in Sources */,
 				6434542B1901273900CFD3CC /* main.m in Sources */,
+				64E582DB198B72AB006872EB /* UIColor+getColor.m in Sources */,
 				0FC8E86E19043A4E00F71B3D /* searchRadarView.m in Sources */,
+				64E582D2198B6401006872EB /* RippleModel.m in Sources */,
 				640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

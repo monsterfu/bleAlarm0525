@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hex Color Picker: Les meg</title>
+		<style type="text/css">
+			body {
+				font-family: "Lucida Grande";
+				font-size: 0.9em;
+				background-color: #f4f4f4;
+			}
+			
+			section, header, hgroup, footer {
+				display: block;
+			}
+			
+			b {
+				font-size: 1.3em;
+				color: maroon;
+			}
+			
+			section#wrap {
+				margin-left: auto;
+				margin-right: auto;
+				width: 40em;
+				background-color: white;
+				padding: 0;
+				
+				-webkit-border-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+				
+			}
+			
+			section section {
+				padding: 0.8em;
+				font-size: 0.85em;
+				line-height: 1.6em;
+			}
+			
+			samp {
+				font-family: Menlo, Monaco;
+			}
+			
+			dd {
+				padding-bottom: 0.8em;
+			}
+			
+			header {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: #c6c6c6;
+
+				-webkit-border-top-left-radius: 0.5em;
+				-webkit-border-top-right-radius: 0.5em;
+				-webkit-box-shadow: 0 0.1em 0.17em rgba(0, 0, 0, 0.5);
+			}
+			
+			
+			footer {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c9c9c9), to(#b4b4b4));
+				background-color: white;
+
+				-webkit-border-bottom-left-radius: 0.5em;
+				-webkit-border-bottom-right-radius: 0.5em;
+				-webkit-box-shadow: 0 -0.1em 0.17em rgba(0, 0, 0, 0.5);
+				padding: 0.4em;
+				font-size: 0.8em;
+				text-align: center;
+				color: #444;
+			}
+			
+			header hgroup {
+				display: block;
+				padding: 0.8em;
+			}
+			
+			nav {
+				width: 100%;
+				display: table;
+				border-top: 1px solid #aaa;
+			}
+
+			nav a:first-child {
+				border-left: 0 none;
+			}
+			
+			nav a {
+				display: table-cell;
+				text-align: center;
+				width: 16.667%;
+				line-height: 1.9em;
+				
+				border-left: 1px solid #aaa;
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d7d7d7), to(#b9B9b9));
+				background-color: #c9c9c9;
+				
+				color: #333;
+				text-decoration: none;
+				
+			}
+			
+			body.en nav a.en,
+			body.ca nav a.ca,
+			body.es nav a.es,
+			body.no nav a.no,
+			body.nl nav a.nl
+			 {
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b9b9b9), to(#d7d7d7));
+				background-color: #d4d4d4;
+				font-weight: bold;
+			}
+			
+			
+			h2 {
+				display: block;
+				margin: 0;
+				padding: 0;
+			}
+			
+			h2 em {
+				font-style: normal;
+				font-weight: normal;
+			}
+			
+			h3 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			h3:after {
+				content: " · ";
+			}
+			
+			h4 {
+				display: inline;
+				font-size: 0.9em;
+				font-weight: normal;
+			}
+			h4 a {
+				color: #444;
+			}
+			
+			h1 {
+				font-size: 1.2em;
+			}
+		</style>
+	</head>
+	<body class="no">
+		<section id="wrap">
+		<header>
+		<hgroup>
+		<h2>Hex Color Picker <em>1.6</em></h2>
+		<h3>waffle software</h3>
+		<h4><a href="http://wafflesoftware.net/hexpicker">wafflesoftware.net/hexpicker</a></h4></hgroup>
+		<nav><a class="en" href="Read%20me.html">English</a><a class="ca" href="Llegiu-me%20%5Bcatalà%5D.html">Catalá</a><a class="de" href="Lies%20mich%20%5BDeutsch%5D.html">Deutsch</a><a class="es" href="Léeme%20%5Bespañol%5D.html">Español</a><a class="nl" href="Read%20me%20%5Bnederlands%5D.html">Nederlands</a><a class="no" href="Les%20meg%20%5Bnorsk%5D.html">Norsk</a></nav>
+		</header>
+		<section lang="no">
+<h1>Installering</h1>
+
+<p>Flytt filen HexColorPicker.colorPicker til en av disse stedene:</p>
+
+<dl><dt>For installering kun på din brukerkonto:</dt>
+<dd>Kopier eller flytt filen til...<br />
+    <samp>[din hjemmemappe] &rarr; Bibliotek &rarr; ColorPickers</samp><br />
+    (Opprett ColorPickers-mappen hvis den ikke finnes)</dd>
+
+<dt>For installering på datamaskinen (tilgjengelig for alle brukere):</dt>
+<dd>Kopier eller flytt filen til...<br />
+    <samp>[din harddisk] &rarr; Bibliotek &rarr; ColorPickers</samp><br />
+    (Opprett ColorPickers-mappen hvis den ikke finnes)</dd>
+
+<dt>For installering for noen brukere, men ikke alle:</dt>
+<dd>Kopier filen til...<br />
+    <samp>[din harddisk] &rarr; Brukere &rarr; [brukernavn] &rarr; Bibliotek &rarr; ColorPickers</samp><br />
+    (Opprett ColorPickers-mappen hvis den ikke finnes)<br />
+Gjenta dette steget for hver bruker.</dd>
+</dl>
+
+<p>Det kan hende at du må starte åpne programmer på nytt for å dra nytte av Hex Color Picker i disse programmene.</p>
+
+<h1>Bruk</h1>
+
+<ol>
+<li><p>Hent frem den vanlige fargevelgeren. (Den heter gjerne «Vis farger» i ulike menyer, eller kan hentes fram når du klikker på en farge for å redigere den.)</p></li>
+<li><p>Klikk Hex Color Picker-ikonet (tegnet # på en blågradert sirkel) på toppen av vinduet.</p></li>
+<li><p>Bruk tekstfeltet til å skrive inn eller kopiere hex-koden for den gjeldende fargen, eller bruk vanlige fargevelger-fasiliteter (inkludert andre fargepanel) for å justere fargen slik du vil.</p></li>
+</ol>
+
+<h2>Hex-kodeforkortelser og HTML-/CSS-fargenavn</h2>
+
+<p>Du kan bruke forkortelser når du redigerer hex-koden. Disse formatene støttes:</p>
+<ul>
+<li>"A" &rarr; "AAAAAA"</li>
+<li>"AB" &rarr; "ABABAB"</li>
+<li>"ABC" &rarr; "AABBCC"</li>
+</ul>
+
+<p>Du trenger ikke skrive # før hex-koden.</p>
+
+<p>Hvis du klikker Valg nederst og krysser av for «Godta HTML-fargenavn», kan du også skrive inn forskjellige HTML-/CSS-fargenavn. Hex Color Picker følger tabellen beskrevet her: <a href="http://www.w3.org/TR/css3-color/#svg-color" hreflang="en">http://www.w3.org/TR/css3-color/#svg-color</a></p>
+
+<h2>Store/små bokstaver</h2>
+
+<p>Du kan velge hvorvidt du vil ha store eller små bokstaver i hex-koden (tallene A &rarr; F). Klikk Alternativer nederst og kryss av eller fjern krysset for «Bruk store bokstaver i hex-siffer» etter behov.</p>
+
+<h2>Søk etter oppdateringer</h2>
+
+<p>Siden mange glemmer å sjekke etter oppdateringer til Hex Color Picker på websiden, er det en mulighet til å få Hex Color Picker til å sjekke selv. Første gang du henter frem fargepanelet vil Hex Color Picker spørre deg om du ønsker å søke etter oppdateringer automatisk eller ikke, og etter det kan du endre innstillingen ved å klikke Alternativer og krysse av eller fjerne krysset for «Søk etter oppdateringer automatisk».</p>
+
+<p>Når Hex Color Picker søker etter oppdateringer (som den kun vil gjøre en gang i løpet av en tolvtimersperiode) trenger den å spørre Hex Color Picker-websiden om informasjon.</p>
+
+<p>Når Hex Color Picker spør websiden om informasjon om tilgjengelige versjoner, sender den en del informasjon: versjonen av Hex Color Picker, versjonen av Mac OS X og type prosessor (Intel eller PowerPC, 32-bit eller 64-bit). Disse tre informasjonsbitene er alt som trengs for å gi et korrekt svar på spørsmålet «er det en oppdatering tilgjengelig?», og ingen informasjon utover dette, slik som informasjon som kan brukes til å identifisere datamaskinen eller plasseringen din, sendes av Hex Color Picker.</p>
+
+<h1>Spørsmål og svar</h1>
+
+<p>Q: Jeg kan ikke se ikonet i verktøylinjen for fargepanelet!</p>
+
+<p>A: Hvis du ikke kan se noen ikoner, kan du klikke knappen øverst til høyre for å vise verktøylinjen. Hvis du kan se ikoner, men ikke kan se Hex Color Picker-ikonet, kan du endre størrelse på fargepanelet slik at alle ikoner passer inn, eller klikke >>-pilene oppe til høyre for å vise en meny med ikonene som ellers ikke vises.</p>
+
+<p>Hvis du <em>likevel</em> ikke ser Hex Color Picker, bør du forsikre deg om at den er korrekt installert, og at du har restartet applikasjonen etter at Hex Color Picker ble installert hvis den var åpen på det tidspunktet.</p>
+
+<p>Q: Hvordan bruker jeg Hex Color Picker i Adobe Photoshop?</p>
+
+<p>A: Noen applikasjoner bruker eget fargepanel. Heldigvis har Photoshop en innstilling for å bruke Mac OS X-fargepanelet.</p>
+
+<p>Gå til Photoshop-menyen &rarr; Valg &rarr; Generelt.
+Endre Fargevelger fra Adobe til Apple og klikk OK.</p>
+
+<p>Hvis du bruker en annen applikasjon og kan ikke endre farge ved hjelp av Mac OS X-fargepanelet, vær vennlig å etterspørre den funksjonen fra utvikleren av programmet.</p>
+
+<p>Q: Hvorfor har handlingsmenyen til Hex Color Picker en Kopier-kommando?</p>
+
+<p>A: I noen applikasjoner, under enkelte omstendigheter, er Rediger-menyen utilgjengelig. Kopier-kommandoen gjør at tastatursnarveien Cmd-C fortsatt virker, og den vil bare ta over for den vanlige Kopier-kommandoen i Rediger-menyen når tastaturfokus er i fargepanelet.</p>
+		</section>
+		<footer>Copyright © 2010 waffle software</footer>
+		</section>
+	</body>
+</html>

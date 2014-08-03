@@ -76,7 +76,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKAnnotationView *newAnnotation=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
+    newAnnotation.image = [UIImage imageNamed:@"zhen.png"];
+    newAnnotation.canShowCallout=YES;
+    return newAnnotation;
+}
 
 
-
+- (IBAction)backButtonTouch:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

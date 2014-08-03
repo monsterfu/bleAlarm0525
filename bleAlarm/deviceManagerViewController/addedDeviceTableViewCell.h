@@ -29,4 +29,7 @@
 - (IBAction)switchChanged:(UISwitch *)sender;
 
 -(void)setDevInfo:(deviceInfo *)newDevInfo;
+
+@property (weak, nonatomic) IBOutlet SevenSwitch *customSwitch;
+
 @end

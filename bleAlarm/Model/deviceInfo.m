@@ -72,7 +72,7 @@
 {
     NSString *imageName;
     if (self.signalStrength.floatValue == 0) {
-        return [UIImage imageNamed:@"signal1.png"];
+        return [UIImage imageNamed:@"signal2.png"];
     }
     if (self.signalStrength.floatValue > -44.0)
         imageName = @"signal4.png";
@@ -83,7 +83,7 @@
     else if (self.signalStrength.floatValue > -70.0)
         imageName = @"signal2.png";
     else
-        imageName = @"signal1.png";
+        imageName = @"signal2.png";
     return [UIImage imageNamed:imageName];
 }
 - (UIImage *) currentBatteryStrengthImage

@@ -24,5 +24,5 @@
 
 - (void)render:(CADisplayLink*)displayLink;
 - (void)cleanRipple;
-
+- (void)viewfoceUnload;
 @end

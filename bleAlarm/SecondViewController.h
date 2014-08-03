@@ -12,6 +12,7 @@
 #import "GlobalHeader.h"
 #import "mapViewController.h"
 #import "GLIRViewController.h"
+#import "dimissDetailTableViewController.h"
 
 @interface SecondViewController : GLIRViewController<deviceInfoDelegate,ConnectionManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
@@ -34,7 +35,6 @@
     
     UIAlertView* _alert;
 }
-@property (weak, nonatomic) IBOutlet UIImageView *radarImagView;
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 - (IBAction)sliderChange:(UISlider *)sender;
@@ -45,8 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *singalImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *findButton;
-@property (weak, nonatomic) IBOutlet UILabel *mixLabel;
 
+@property (weak, nonatomic) IBOutlet SevenSwitch *switchView;
 
 
 - (IBAction)findButtonTouch:(UIButton *)sender;
@@ -54,4 +54,10 @@
 
 @property (strong, nonatomic) deviceInfo *devInfo;
 -(void)setDevInfo:(deviceInfo *)devsInfo;
+
+- (IBAction)backButtonTouch:(UIButton *)sender;
+- (IBAction)editButtonTouch:(UIButton *)sender;
+
+
+
 @end

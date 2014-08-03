@@ -11,9 +11,14 @@
 #import "recordAnnotation.h"
 #import "deviceInfo.h"
 #import "deviceDisconnectInfo.h"
+#import "deviceDisconnectInfo.h"
 
 @interface mapViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) deviceInfo *devInfo;
+
+- (IBAction)backButtonTouch:(UIButton *)sender;
+
+
 @end

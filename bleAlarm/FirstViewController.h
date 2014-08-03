@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *centerImageView;
 
 
 @property (nonatomic, retain)NSMutableArray* devicesArray;

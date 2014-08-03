@@ -276,6 +276,19 @@ enum
     displayLink = nil;    
 }
 
+- (void)viewfoceUnload
+{
+    [self tearDownGL];
+    
+    if ([EAGLContext currentContext] == self.context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    self.context = nil;
+    
+    [displayLink invalidate];
+    displayLink = nil;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);

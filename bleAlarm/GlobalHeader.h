@@ -20,11 +20,14 @@
 #import "CLLocation+YCLocation.h"
 #import "NSNumber+exchargeRange.h"
 #import "UIColor+getColor.h"
+#import "SevenSwitch.h"
 
 //customer used define
 #define USER_DEFAULT  [NSUserDefaults standardUserDefaults]
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
-
+#define DEVICE_WIDTH  [UIScreen mainScreen].bounds.size.width
+#define DEVICE_HEIGHT  [UIScreen mainScreen].bounds.size.height
 //SANDBOX KEY
 
 #define KEY_DEVICE_INFO   @"key_device_info"

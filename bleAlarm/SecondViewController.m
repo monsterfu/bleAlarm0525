@@ -21,10 +21,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [_slider setThumbImage:[UIImage imageNamed:@"bar dot.png"] forState:UIControlStateNormal];
     
-    CGRect frame = CGRectMake(0, 0, _radarImagView.frame.size.width, _radarImagView.frame.size.height);
-    _searchView = [searchRadarView stardcaseFrame:frame terInt: _radarImagView.frame.size.width/4];
-    [_radarImagView addSubview:_searchView];
-    
     _deviceNameLabel.text = [NSString deviceNameWithDevice:_devInfo];
     _deviceNameLabel.delegate = self;
    
@@ -41,7 +37,6 @@
     _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
     _slider.value = [_devInfo.rangeLimit floatValue];
     
-    [_mixLabel setText:[NSString stringWithFormat:@"-%.2fdbm",[[NSNumber exchargeRange:_slider.value] floatValue]]];
     UIImage* image = [UIImage imageNamed:@"settings_off"];
     _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
     _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
@@ -70,14 +65,42 @@
     singleTapGestureRecognizer.cancelsTouchesInView = NO;
     singleTapGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:singleTapGestureRecognizer];
+    
+    [_slider setThumbImage:[UIImage imageNamed:@"iseek2_03"] forState:UIControlStateNormal];
+    [_slider setThumbImage:[UIImage imageNamed:@"iseek2_05"] forState:UIControlStateNormal];
+    
+    [_slider setMinimumTrackImage:[UIImage imageNamed:@"iseek2_10"] forState:UIControlStateNormal];
+    [_slider setMaximumTrackImage:[UIImage imageNamed:@"iseek2_18"] forState:UIControlStateNormal];
+    
+    [_switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    _switchView.offImage = [UIImage imageNamed:@"cross.png"];
+    _switchView.onImage = [UIImage imageNamed:@"check.png"];
+    _switchView.onColor = [UIColor colorWithHue:0.08f saturation:0.74f brightness:1.00f alpha:1.00f];
+    _switchView.isRounded = YES;
 }
 
+-(void)switchChanged:(SevenSwitch*)sender
+{
+        _canmeraOpen = sender.on;
+}
 - (void)handlePanGesture:(UITapGestureRecognizer *)gesture {
     CGPoint location = [gesture locationInView:nil];
     [_ripple initiateRippleAtLocation:location];
     [_deviceNameLabel resignFirstResponder];
 }
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self cleanRipple];
+    stopUdpate = NO;
+}
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    stopUdpate = YES;
+//    [self cleanRipple];
+}
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -161,18 +184,20 @@
     [USER_DEFAULT synchronize];
     
     _devInfo.warningStrength = [NSNumber exchargeRange:sender.value];
-    [_mixLabel setText:[NSString stringWithFormat:@"-%.2fdbm",[_devInfo.warningStrength floatValue]]];
     _canNotice = YES;
 }
 #pragma mark - viewController
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"disconnectDetail"])
+    
+    if ([segue.identifier isEqualToString:@"dismissDetailIdentifier"])
     {
-        mapViewController * secondViewController = (mapViewController *)segue.destinationViewController;
-        secondViewController.devInfo = _devInfo;
+        dimissDetailTableViewController * _dimissDetailTableViewController = (dimissDetailTableViewController *)segue.destinationViewController;
+        _dimissDetailTableViewController.devInfo = _devInfo;
     }
+    
+    
 }
 
 #pragma mark - ble
@@ -276,6 +301,16 @@
     }
 }
 
+- (IBAction)backButtonTouch:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self viewfoceUnload];
+}
+
+- (IBAction)editButtonTouch:(UIButton *)sender {
+    [_deviceNameLabel becomeFirstResponder];
+}
+
 -(void)didUpdateData:(deviceInfo*)info
 {
     if (_devInfo != info) {
@@ -291,8 +326,8 @@
         meter = 69.0f;
     }
     
-    NSUInteger distance = ((meter -30)/40)*(_radarImagView.frame.size.width/2);
-    [_searchView setMeterInt:distance];
+//    NSUInteger distance = ((meter -30)/40)*(_radarImagView.frame.size.width/2);
+//    [_searchView setMeterInt:distance];
 }
 - (IBAction)findButtonTouch:(UIButton *)sender {
     
@@ -305,8 +340,7 @@
             _openl = NO;
             if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
                 [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
-                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateNormal];
-                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_37.png"] forState:UIControlStateHighlighted];
+                [_findButton setSelected:YES];
             }
         }
         else{

@@ -35,7 +35,25 @@
     
     _ldTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(leidaAnimation) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:_ldTimer forMode:NSRunLoopCommonModes];
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    rotationAnimation.duration = 3;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 1000;
+    [_centerImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
+    
+}
+static NSUInteger angle = 0;
+-(void)startAnimation
+{
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        _centerImageView.transform = CATransform3DGetAffineTransform(CATransform3DMakeRotation(angle, 0, 0, 1));
+    } completion:^(BOOL finished) {
+        angle += 1;
+        [self startAnimation];
+    }];
 }
 -(void)leidaAnimation
 {
@@ -147,7 +165,13 @@
         return [newDeviceArray count];
     }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+//        return CELL_HEADER_HEIGHT/2;
+    }
+    return CELL_HEADER_HEIGHT;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return CELL_ROW_HEIGHT;
@@ -163,11 +187,19 @@
             label.text = [NSString stringWithFormat:NSLocalizedString(@"已添加设备",nil)];
         }
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:16];
-        label.textColor = [UIColor getColor:@"e2fafc"];
+        label.font = [UIFont systemFontOfSize:12];
+        label.textColor = [UIColor getColor:@"8DDBFF"];
         return label;
     }else{
         UIImageView* headerView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iseek3_02"]];
+        headerView.frame = CGRectMake(0, 0, DEVICE_WIDTH, CELL_HEADER_HEIGHT);
+        UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, headerView.frame.size.height)];
+        label.backgroundColor = [UIColor clearColor];
+        label.text = NSLocalizedString(@"正在搜索…",nil);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:12];
+        label.textColor = [UIColor getColor:@"8DDBFF"];
+        [headerView addSubview:label];
         return headerView;
     }
 }
@@ -178,12 +210,14 @@
         addedCell = [tableView dequeueReusableCellWithIdentifier:@"addedDeviceCell" forIndexPath:indexPath];
         addedCell.delegate = self;
         addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+        addedCell.textLabel.textColor = [UIColor getColor:@"8DDBFF"];
         [addedCell setDevInfo:[addedDeviceArray objectAtIndex:indexPath.row]];
         return addedCell;
     }else{
         newCell = [tableView dequeueReusableCellWithIdentifier:@"newDeviceCell" forIndexPath:indexPath];
         _devInfo = [newDeviceArray objectAtIndex:indexPath.row];
         newCell.textLabel.text = _devInfo.idString;
+        addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
         newCell.delegate = self;
         return newCell;
     }

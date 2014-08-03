@@ -38,15 +38,26 @@
 -(void)setDevInfo:(deviceInfo *)newDevInfo
 {
     self.deviceLabel.text = [NSString deviceNameWithDevice:newDevInfo];
+    self.deviceLabel.textColor = [UIColor getColor:@"8DDBFF"];
     _signalImageView.image = [newDevInfo currentSignalStrengthImage];
     _devInfo = newDevInfo;
     if (newDevInfo.connected) {
-        [_bleConnectImage setHidden:NO];
+        [_bleConnectImage setImage:[UIImage imageNamed:@"iseek3_08"]];
     }else{
-        [_bleConnectImage setHidden:YES];
+        [_bleConnectImage setImage:[UIImage imageNamed:@"iseek3_24"]];
     }
     
-    [_switchView setOn:newDevInfo.open animated:YES];
+    [_customSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    //self.view.backgroundColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+//    _customSwitch.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+//    _customSwitch.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+//    _customSwitch.inactiveColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+//    _customSwitch.onColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
+//    _customSwitch.borderColor = [UIColor clearColor];
+//    _customSwitch.shadowColor = [UIColor blueColor];
+    
+    [_customSwitch setOn:newDevInfo.open animated:YES];
     
     _devInfo.delegate = self;
 }

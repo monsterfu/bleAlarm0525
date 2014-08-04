@@ -30,9 +30,12 @@
     // Do any additional setup after loading the view.
     
     _mapView.delegate = self;
+    
+    NSLocale *cnTime = [[NSLocale alloc]initWithLocaleIdentifier:[[USER_DEFAULT objectForKey:@"AppleLanguages"]objectAtIndex:0]];
+    
     for (deviceDisconnectInfo* info in [_devInfo locationCoordArray]) {
         
-        NSString* title = [info.date description];
+        NSString* title = [[info.date descriptionWithLocale:cnTime]substringToIndex:10];
         
         CLLocation* _location = [[CLLocation alloc]initWithLatitude:info.locationCoordinate2D.latitude longitude:info.locationCoordinate2D.longitude];
         CLLocation* _newLocation = [_location locationMarsFromEarth];
@@ -81,6 +84,7 @@
     MKAnnotationView *newAnnotation=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
     newAnnotation.image = [UIImage imageNamed:@"zhen.png"];
     newAnnotation.canShowCallout=YES;
+    newAnnotation.selected = YES;
     return newAnnotation;
 }
 

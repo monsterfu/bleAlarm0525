@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="nh7-qo-CDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="nh7-qo-CDr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -49,6 +49,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aqo-v3-gSL">
+                                                    <rect key="frame" x="251" y="9" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.88627450980392153" green="0.98039215686274506" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="thumbTintColor" red="0.086274509803921567" green="0.53333333333333333" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                                                </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O67-PK-iR7">
                                                     <rect key="frame" x="50" y="14" width="102" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,7 +69,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signal2.png" id="2JC-vN-Ti6">
-                                                    <rect key="frame" x="202" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="223" y="14" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -72,6 +80,7 @@
                                             <outlet property="bleConnectImage" destination="egG-aq-fDj" id="owD-ST-LXC"/>
                                             <outlet property="deviceLabel" destination="O67-PK-iR7" id="vC7-7n-0md"/>
                                             <outlet property="signalImageView" destination="2JC-vN-Ti6" id="Jkc-8Z-fhJ"/>
+                                            <outlet property="switchView" destination="aqo-v3-gSL" id="qAk-dl-l7u"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newDeviceCell" textLabel="YoT-MR-iiN" imageView="gVU-hj-maj" rowHeight="44" style="IBUITableViewCellStyleDefault" id="f3L-1m-iMg" customClass="newDeviceTableViewCell">
@@ -181,7 +190,7 @@
                                                     <rect key="frame" x="50" y="0.0" width="255" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.55534948149999996" green="0.86249317290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.086274509803921567" green="0.53333333333333333" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="zhen.png" id="nlJ-kq-yWq">
@@ -268,11 +277,15 @@
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
-                <viewController title="Second" id="QUy-BD-bpt" customClass="SecondViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gMD-aP-Fq6" customClass="GLKView">
+                <viewController storyboardIdentifier="secondViewController" title="Second" id="QUy-BD-bpt" customClass="SecondViewController" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="gMD-aP-Fq6" customClass="GLKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2.png" id="xuL-gP-0Ie">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery3.png" id="hMy-V2-P7A">
                                 <rect key="frame" x="45" y="202" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -294,8 +307,12 @@
                                     <action selector="sliderChange:" destination="QUy-BD-bpt" eventType="valueChanged" id="DZG-4v-0k0"/>
                                 </connections>
                             </slider>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yuan.png" id="6O6-Lh-k0d">
+                                <rect key="frame" x="91" y="189" width="146" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z1y-8r-hyJ">
-                                <rect key="frame" x="101" y="215" width="119" height="93"/>
+                                <rect key="frame" x="102" y="215" width="119" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" backgroundImage="iseek1 (18).png"/>
@@ -408,6 +425,7 @@
                                 <rect key="frame" x="122" y="146" width="86" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.79008636629999995" green="0.87757135289999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -419,10 +437,14 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="batteryImageView" destination="hMy-V2-P7A" id="LgR-bB-VQb"/>
+                        <outlet property="batteryLabel" destination="tA4-9F-m9V" id="5bm-sD-2IL"/>
                         <outlet property="deviceNameLabel" destination="i7d-VF-6TQ" id="nX3-4o-Tp0"/>
                         <outlet property="findButton" destination="z1y-8r-hyJ" id="tVZ-wp-u8W"/>
+                        <outlet property="radarImagView" destination="6O6-Lh-k0d" id="puH-Gi-jWe"/>
                         <outlet property="singalImageView" destination="Jll-bx-z96" id="VsG-07-n5n"/>
                         <outlet property="slider" destination="Vpx-LG-I8z" id="Nx5-Bc-hUN"/>
+                        <outlet property="switchView" destination="FJl-e1-ptY" id="qeZ-tx-nYR"/>
+                        <outlet property="useDismissImageView" destination="xuL-gP-0Ie" id="7iI-bi-IpZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
@@ -498,6 +520,7 @@
         <image name="iseek3_24.png" width="17" height="17"/>
         <image name="leida.gif" width="320" height="320"/>
         <image name="signal2.png" width="13" height="13"/>
+        <image name="yuan.png" width="73" height="73"/>
         <image name="zhen.png" width="20" height="31"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

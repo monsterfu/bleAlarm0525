@@ -25,6 +25,8 @@
     UIImagePickerController *cameraVC;
     NSTimer* _ldTimer;
     NSUInteger _ldAnimationIndex;
+    
+    SecondViewController* _secondViewController;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;

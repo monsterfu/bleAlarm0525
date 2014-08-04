@@ -16,7 +16,6 @@
 
 @interface SecondViewController : GLIRViewController<deviceInfoDelegate,ConnectionManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
-    searchRadarView* _searchView;
     BOOL _openl;
     UIAlertView* _alertView;
     
@@ -34,6 +33,7 @@
     NSTimer* _warmingTimer;
     
     UIAlertView* _alert;
+    NSTimer* _timerWater;
 }
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
@@ -42,15 +42,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *deviceNameLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *batteryImageView;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *singalImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *findButton;
+
+@property (weak, nonatomic) IBOutlet UIImageView *radarImagView;
 
 @property (weak, nonatomic) IBOutlet SevenSwitch *switchView;
 
 
 - (IBAction)findButtonTouch:(UIButton *)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *useDismissImageView;
 
 @property (strong, nonatomic) deviceInfo *devInfo;
 -(void)setDevInfo:(deviceInfo *)devsInfo;

@@ -43,7 +43,9 @@
     rotationAnimation.repeatCount = 1000;
     [_centerImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    _secondViewController = [storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
+    [self addChildViewController:_secondViewController];
 }
 static NSUInteger angle = 0;
 -(void)startAnimation
@@ -188,7 +190,7 @@ static NSUInteger angle = 0;
         }
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:12];
-        label.textColor = [UIColor getColor:@"8DDBFF"];
+        label.textColor = [UIColor getColor:@"1688c4"];
         return label;
     }else{
         UIImageView* headerView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iseek3_02"]];
@@ -198,7 +200,7 @@ static NSUInteger angle = 0;
         label.text = NSLocalizedString(@"正在搜索…",nil);
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:12];
-        label.textColor = [UIColor getColor:@"8DDBFF"];
+        label.textColor = [UIColor getColor:@"1688c4"];
         [headerView addSubview:label];
         return headerView;
     }
@@ -210,14 +212,15 @@ static NSUInteger angle = 0;
         addedCell = [tableView dequeueReusableCellWithIdentifier:@"addedDeviceCell" forIndexPath:indexPath];
         addedCell.delegate = self;
         addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
-        addedCell.textLabel.textColor = [UIColor getColor:@"8DDBFF"];
+        addedCell.textLabel.textColor = [UIColor getColor:@"1688c4"];
         [addedCell setDevInfo:[addedDeviceArray objectAtIndex:indexPath.row]];
         return addedCell;
     }else{
         newCell = [tableView dequeueReusableCellWithIdentifier:@"newDeviceCell" forIndexPath:indexPath];
         _devInfo = [newDeviceArray objectAtIndex:indexPath.row];
         newCell.textLabel.text = _devInfo.idString;
-        addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+        newCell.textLabel.textColor = [UIColor whiteColor];
+        newCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
         newCell.delegate = self;
         return newCell;
     }
@@ -228,7 +231,10 @@ static NSUInteger angle = 0;
     if (indexPath.section == 0) {
         deviceInfo* device = [addedDeviceArray objectAtIndex:indexPath.row];
         if (device.connected) {
+//            _secondViewController.devInfo = device;
+//            [self.navigationController pushViewController:_secondViewController animated:YES];
             [self performSegueWithIdentifier:@"deviceConnect" sender:nil];
+            
         }
     }else{
         [addedDeviceArray addObject:[newDeviceArray objectAtIndex:indexPath.row]];

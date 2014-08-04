@@ -260,7 +260,18 @@ enum
         _program = 0;
     }
 }
-
+-(void)dealloc
+{
+    [self tearDownGL];
+    
+    if ([EAGLContext currentContext] == self.context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    self.context = nil;
+    
+    [displayLink invalidate];
+    displayLink = nil;
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

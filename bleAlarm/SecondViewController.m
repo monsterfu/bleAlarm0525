@@ -13,11 +13,11 @@
 @end
 
 @implementation SecondViewController
-
 - (void)viewDidLoad
 {
     self.rippleImageName = @"bg2.png";
     [super viewDidLoad];
+    [_useDismissImageView setHidden:YES];
 	// Do any additional setup after loading the view, typically from a nib.
     [_slider setThumbImage:[UIImage imageNamed:@"bar dot.png"] forState:UIControlStateNormal];
     
@@ -25,11 +25,11 @@
     _deviceNameLabel.delegate = self;
    
     
-    if (_devInfo.connected) {
-        [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
-    }else{
-        [_findButton setTitle:NSLocalizedString(@"连接",nil) forState:UIControlStateNormal];
-    }
+//    if (_devInfo.connected) {
+//        [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
+//    }else{
+//        [_findButton setTitle:NSLocalizedString(@"连接",nil) forState:UIControlStateNormal];
+//    }
     _openl  = NO;
     _canNotice = YES;
     _canCamera = NO;
@@ -37,19 +37,7 @@
     _areaIndexArray = @[[NSNumber numberWithInteger:40],[NSNumber numberWithInteger:80],[NSNumber numberWithInteger:90],[NSNumber numberWithInteger:93],[NSNumber numberWithInteger:100]];
     _slider.value = [_devInfo.rangeLimit floatValue];
     
-    UIImage* image = [UIImage imageNamed:@"settings_off"];
-    _cameraButton = [[UIBarButtonItem alloc]initWithImage:[image imageByScalingToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(cameraButtonTouch:)];
-    _dismissButton = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"丢失详情",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonTouched)];
-    self.navigationItem.rightBarButtonItems = @[_dismissButton,_cameraButton];
-    
-    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-    //[self.view addGestureRecognizer:tapGestureRecognizer];
-    if (_devInfo.connected) {
-        [_cameraButton setEnabled:YES];
-        _canCamera = YES;
-    }else{
-        [_cameraButton setEnabled:NO];
-    }
+   
     _canmeraOpen = NO;
     
     
@@ -73,12 +61,23 @@
     [_slider setMaximumTrackImage:[UIImage imageNamed:@"iseek2_18"] forState:UIControlStateNormal];
     
     [_switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-    _switchView.offImage = [UIImage imageNamed:@"cross.png"];
-    _switchView.onImage = [UIImage imageNamed:@"check.png"];
-    _switchView.onColor = [UIColor colorWithHue:0.08f saturation:0.74f brightness:1.00f alpha:1.00f];
+    _switchView.offImage = [UIImage imageNamed:@"lingsheng2"];
+    _switchView.onImage = [UIImage imageNamed:@"paizhao2"];
+    _switchView.onColor = [UIColor getColor:@"1688c4"];
     _switchView.isRounded = YES;
+    
+    _timerWater = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(waterRandom) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop]addTimer:_timerWater forMode:NSRunLoopCommonModes];
 }
-
+-(void)waterRandom
+{
+    int width = DEVICE_WIDTH;
+    int height = DEVICE_HEIGHT;
+    int x = arc4random()%width;
+    int y = arc4random()%height;
+    CGPoint randomPoint = CGPointMake(x, y);
+    [_ripple initiateRippleAtLocation:randomPoint];
+}
 -(void)switchChanged:(SevenSwitch*)sender
 {
         _canmeraOpen = sender.on;
@@ -91,7 +90,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self cleanRipple];
+//    [self cleanRipple];
     stopUdpate = NO;
 }
 
@@ -128,26 +127,6 @@
 }
 #pragma mark -camera
 
-- (IBAction)cameraButtonTouch:(UIBarButtonItem *)sender {
-    if (!_canCamera) {
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"设备未连接，无法使用遥控相机，请连接后使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-        [alertView show];
-    }else{
-        if (_canmeraOpen) {
-            _canmeraOpen = NO;
-            UIImage* image = [UIImage imageNamed:@"settings_off"];
-            
-            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];
-        }else{
-            _canmeraOpen = YES;
-            UIImage* image = [UIImage imageNamed:@"camera_enable"];
-            
-            [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 30)]];//
-        }
-        return;
-        
-    }
-}
 -(void)takePictureAction
 {
     if (cameraVC) {
@@ -223,7 +202,6 @@
 {
     _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), [NSString deviceNameWithDevice:device], NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
     [_alert show];
-    [_findButton setTitle:NSLocalizedString(@"失去连接",nil) forState:UIControlStateNormal];
     
     if (_warmingTimer) {
         return;
@@ -235,11 +213,6 @@
 {
     [_warmingTimer invalidate];
     _warmingTimer = nil;
-    [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
-    
-    UIImage* image = [UIImage imageNamed:@"camera"];
-    [_cameraButton setImage:[image imageByScalingToSize:CGSizeMake(30, 40)]];
-    _canCamera = YES;
 }
 - (void) didOutofRangWithDevice:(deviceInfo*)device
 {
@@ -316,18 +289,23 @@
     if (_devInfo != info) {
         return;
     }
+    _batteryLabel.text = [NSString stringWithFormat:@"%.f%%",info.batteryLevel.floatValue];
     _singalImageView.image = [info currentSignalStrengthImage];
     _batteryImageView.image = [info currentBatteryStrengthImage];
     CGFloat meter = (-1)*[info.signalStrength floatValue];
     
     if (meter < 30.0f) {
-        meter = 31.0f;
+        meter = 30.0f;
     }else if(meter > 70.0f) {
-        meter = 69.0f;
+        meter = 70.0f;
     }
     
-//    NSUInteger distance = ((meter -30)/40)*(_radarImagView.frame.size.width/2);
-//    [_searchView setMeterInt:distance];
+    CGFloat distance = meter/70.0f;
+    NSLog(@"distance:%f,%f",distance,distance);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    _radarImagView.transform = CGAffineTransformScale(CGAffineTransformIdentity, distance, distance);
+    [UIView commitAnimations];
 }
 - (IBAction)findButtonTouch:(UIButton *)sender {
     
@@ -336,23 +314,8 @@
     }
     
     if (_devInfo.connected) {
-        if (_openl){
-            _openl = NO;
-            if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:NSLocalizedString(@"找到我",nil) forState:UIControlStateNormal];
-                [_findButton setSelected:YES];
-            }
+        if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
         }
-        else{
-            _openl = YES;
-            if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-                [_findButton setTitle:NSLocalizedString(@"安静",nil) forState:UIControlStateNormal];
-                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateNormal];
-                [_findButton setBackgroundImage:[UIImage imageNamed:@"ic_number_status_45.png"] forState:UIControlStateHighlighted];
-            }
-        }
-        
-        
     }else{
         
     }

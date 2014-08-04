@@ -35,7 +35,7 @@
     
     for (deviceDisconnectInfo* info in [_devInfo locationCoordArray]) {
         
-        NSString* title = [[info.date descriptionWithLocale:cnTime]substringToIndex:10];
+        NSString* title = [info.date descriptionWithLocale:cnTime];
         
         CLLocation* _location = [[CLLocation alloc]initWithLatitude:info.locationCoordinate2D.latitude longitude:info.locationCoordinate2D.longitude];
         CLLocation* _newLocation = [_location locationMarsFromEarth];

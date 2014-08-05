@@ -71,10 +71,24 @@ static ConnectionManager *sharedConnectionManager;
         
         warningStrengthCheckTimer = [NSTimer timerWithTimeInterval:4.0f target:self selector:@selector(outOfRangeWarning) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]addTimer:warningStrengthCheckTimer forMode:NSDefaultRunLoopMode];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deviceDismissInfoChange) name:NSNotificationCenter_dismissRecordChange object:nil];
     }
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NSNotificationCenter_dismissRecordChange object:nil];
+}
+
+-(void)deviceDismissInfoChange
+{
+    [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+    NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:_addedDeviceArray];
+    [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+    [USER_DEFAULT synchronize];
+}
 #pragma mark -scan
 - (void) startScanForDevice
 {
@@ -103,6 +117,9 @@ static ConnectionManager *sharedConnectionManager;
     if (checkDevice.open) {
         [self.delegate didOutofRangWithDevice:checkDevice];
         [self scheduleOutOfRangeNotification:checkDevice];
+        
+        [checkDevice.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSNotificationCenter_dismissRecordChange object:nil];
     }
 }
 #pragma mark - fuction
@@ -355,10 +372,7 @@ static ConnectionManager *sharedConnectionManager;
     [self scheduleOutOfRangeNotification:device];
     [device.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
     
-    [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
-    NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:_addedDeviceArray];
-    [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
-    [USER_DEFAULT synchronize];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NSNotificationCenter_dismissRecordChange object:nil];
 }
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)persipheral error:(NSError *)error
 {
@@ -489,7 +503,6 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     NSLog(@"Characteristic value : %@ with ID %@", characteristic.value, characteristic.UUID);
-    
 }
 
 

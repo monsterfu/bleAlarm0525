@@ -95,13 +95,26 @@ static NSUInteger angle = 0;
 
     [self.tableView reloadData];
 }
-
+-(void)warningAction
+{
+    [[soundVibrateManager sharedInstance]playAlertSound];
+    [[soundVibrateManager sharedInstance]vibrate];
+}
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
     addedDeviceArray = [ConnectionManager sharedInstance].addedDeviceArray;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     
     [self.tableView reloadData];
+    
+    _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), [NSString deviceNameWithDevice:device], NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+    [_alert show];
+    
+    if (_warmingTimer) {
+        return;
+    }
+    _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
 }
 - (void) didConnectWithDevice:(deviceInfo*)device
 {
@@ -112,6 +125,8 @@ static NSUInteger angle = 0;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     
     [self.tableView reloadData];
+    [_warmingTimer invalidate];
+    _warmingTimer = nil;
 }
 - (void) didOutofRangWithDevice:(deviceInfo*)device
 {
@@ -288,5 +303,11 @@ static NSUInteger angle = 0;
 -(void)updateCellInfo:(deviceInfo*)device
 {
     
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [_warmingTimer invalidate];
+    _warmingTimer = nil;
 }
 @end

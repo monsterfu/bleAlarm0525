@@ -68,6 +68,8 @@
     
     _timerWater = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(waterRandom) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:_timerWater forMode:NSRunLoopCommonModes];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewfoceUnload) name:NSNotificationCenter_appWillEnterBackGround object:nil];
 }
 -(void)waterRandom
 {

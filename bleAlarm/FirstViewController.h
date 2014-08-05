@@ -13,7 +13,7 @@
 #import "newDeviceTableViewCell.h"
 #import "SecondViewController.h"
 
-@interface FirstViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ConnectionManagerDelegate,deviceInfoDelegate,addedDeviceTableViewCellDelegate,newDeviceTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface FirstViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ConnectionManagerDelegate,deviceInfoDelegate,addedDeviceTableViewCellDelegate,newDeviceTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
 {
     NSTimer* searchAnimationTimer;
     NSMutableArray* addedDeviceArray;
@@ -27,6 +27,9 @@
     NSUInteger _ldAnimationIndex;
     
     SecondViewController* _secondViewController;
+    NSTimer* _warmingTimer;
+    
+    UIAlertView* _alert;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;

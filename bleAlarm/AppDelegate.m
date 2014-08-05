@@ -14,7 +14,7 @@
 {
     // Override point for customization after application launch.
     
-    
+    [application setApplicationIconBadgeNumber:0];
     return YES;
 }
 							
@@ -25,6 +25,18 @@
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (application.applicationState == UIApplicationStateActive) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"温馨提示",nil)
+                                                            message:[NSString stringWithFormat:@"%@", alert]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"知道了"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [[soundVibrateManager sharedInstance]playAlertSound];
+        [[soundVibrateManager sharedInstance]vibrate];
+    }
+    [application setApplicationIconBadgeNumber:0];
     [application setApplicationIconBadgeNumber:0];
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

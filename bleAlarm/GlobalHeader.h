@@ -33,4 +33,8 @@
 #define KEY_DEVICE_INFO   @"key_device_info"
 
 #define KEY_DEVICELIST_INFO   @"key_devicelist_info"         //设备列表
+
+
+#define NSNotificationCenter_dismissRecordChange            @"NSNotificationCenter_dismissRecordChange"
+#define NSNotificationCenter_appWillEnterBackGround         @"NSNotificationCenter_appWillEnterBackGround"
 #endif

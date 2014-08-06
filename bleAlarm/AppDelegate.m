@@ -10,11 +10,20 @@
 
 @implementation AppDelegate
 
+void (^block)(CTCall*) = ^(CTCall* call) { NSLog(@"%@", call.callState); };
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
     [application setApplicationIconBadgeNumber:0];
+    
+    callCenter1 = [[CTCallCenter alloc] init];
+    callCenter1.callEventHandler = block;
+    
+    callCenter2 = [[CTCallCenter alloc] init];
+    callCenter2.callEventHandler = block;
+    
     return YES;
 }
 							

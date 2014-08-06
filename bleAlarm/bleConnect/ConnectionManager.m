@@ -346,7 +346,6 @@ static ConnectionManager *sharedConnectionManager;
             for (deviceInfo* newDevice in _newsDeviceArray) {
                 if ([newDevice.identifier isEqualToString:[args_peripheral.identifier UUIDString]]) {
                     isFound = YES;
-                    
                 }
             }
             if (!isFound){

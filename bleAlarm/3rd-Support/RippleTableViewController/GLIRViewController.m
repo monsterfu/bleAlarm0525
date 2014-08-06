@@ -234,7 +234,9 @@ enum
     GLKView* view = (GLKView*)self.view;
     //avoid UIKit freeze    
     [self update];
-    [view display];
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive){
+        [view display];
+    }
 }
 
 - (void)cleanUpTextures

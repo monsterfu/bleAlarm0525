@@ -110,6 +110,7 @@
 		640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38B7196FAE9000C2044A /* NSString+deviceName.m */; };
 		640D38BB196FC37600C2044A /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */; };
 		640D38BE196FC9A500C2044A /* NSNumber+exchargeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */; };
+		64189D83199207EC007E0747 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64189D82199207EC007E0747 /* CoreTelephony.framework */; };
 		641D189E1966ACC2005228B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A01966ACC2005228B8 /* Localizable.strings */; };
 		641D18A41966C931005228B8 /* camera_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 641D18A21966C931005228B8 /* camera_enable.png */; };
 		6434541F1901273900CFD3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434541E1901273900CFD3CC /* Foundation.framework */; };
@@ -311,6 +312,7 @@
 		640D38BA196FC37600C2044A /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+YCLocation.m"; path = "3rd-Support/CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		640D38BC196FC9A500C2044A /* NSNumber+exchargeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+exchargeRange.h"; path = "3rd-Support/NSNumber+exchargeRange.h"; sourceTree = "<group>"; };
 		640D38BD196FC9A500C2044A /* NSNumber+exchargeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+exchargeRange.m"; path = "3rd-Support/NSNumber+exchargeRange.m"; sourceTree = "<group>"; };
+		64189D82199207EC007E0747 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		641D189F1966ACC2005228B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		641D18A11966ACC7005228B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		641D18A21966C931005228B8 /* camera_enable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_enable.png; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64189D83199207EC007E0747 /* CoreTelephony.framework in Frameworks */,
 				649BDA52192DFE190053A92A /* CoreLocation.framework in Frameworks */,
 				0FD333AC1906CC93004960A6 /* AudioToolbox.framework in Frameworks */,
 				0FC8E864190432DD00F71B3D /* MapKit.framework in Frameworks */,
@@ -596,6 +599,7 @@
 		6434541D1901273900CFD3CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64189D82199207EC007E0747 /* CoreTelephony.framework */,
 				649BDA51192DFE190053A92A /* CoreLocation.framework */,
 				0FD333AB1906CC93004960A6 /* AudioToolbox.framework */,
 				0FC8E863190432DD00F71B3D /* MapKit.framework */,

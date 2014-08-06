@@ -46,6 +46,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     _secondViewController = [storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
     [self addChildViewController:_secondViewController];
+    
 }
 static NSUInteger angle = 0;
 -(void)startAnimation
@@ -57,6 +58,7 @@ static NSUInteger angle = 0;
         [self startAnimation];
     }];
 }
+
 -(void)leidaAnimation
 {
     if (_ldAnimationIndex < 9) {

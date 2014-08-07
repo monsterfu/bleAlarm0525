@@ -101,6 +101,7 @@ static NSUInteger angle = 0;
 {
     [[soundVibrateManager sharedInstance]playAlertSound];
     [[soundVibrateManager sharedInstance]vibrate];
+    [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:YES];
 }
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {

@@ -375,6 +375,7 @@
 		643454D81901288700CFD3CC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		643454DB190129C400CFD3CC /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionManager.h; path = bleConnect/ConnectionManager.h; sourceTree = "<group>"; };
 		643454DC190129C400CFD3CC /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionManager.m; path = bleConnect/ConnectionManager.m; sourceTree = "<group>"; };
+		645D5D2B1993228E001ABEC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6487FA84193197A900AC9A61 /* Bluetooth-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-Logo@2x.png"; sourceTree = "<group>"; };
 		649BDA51192DFE190053A92A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		649BDA54192E005F0053A92A /* recordAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recordAnnotation.h; path = mapManagerViewController/recordAnnotation.h; sourceTree = "<group>"; };
@@ -1104,6 +1105,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0FEA33AB196052E900CBEC18 /* zh-Hans */,
+				645D5D2B1993228E001ABEC1 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

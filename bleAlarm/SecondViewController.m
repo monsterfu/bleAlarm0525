@@ -199,6 +199,7 @@
 {
     [[soundVibrateManager sharedInstance]playAlertSound];
     [[soundVibrateManager sharedInstance]vibrate];
+    [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:YES];
 }
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
@@ -224,6 +225,7 @@
         [_alertView show];
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
+        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
     }
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device
@@ -316,8 +318,7 @@
     }
     
     if (_devInfo.connected) {
-        if ([[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl]) {
-        }
+        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
     }else{
         
     }

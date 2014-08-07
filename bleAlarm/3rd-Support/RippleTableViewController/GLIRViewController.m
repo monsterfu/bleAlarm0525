@@ -107,70 +107,11 @@ enum
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    stopUdpate = NO;
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
-    if (!self.context) {
-        NSLog(@"Failed to create ES context");
-    }
-    
-    GLKView *view = (GLKView *)self.view;
-    view.context = self.context;
-    //    self.preferredFramesPerSecond = 60;
-    
-    //avoid UIKit freeze
-    //http://stackoverflow.com/questions/10080932/glkviewcontrollerdelegate-getting-blocked
-    view.enableSetNeedsDisplay = NO;
-    self.preferredFramesPerSecond = 0;
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-    displayLink.frameInterval = 2;
-    
-    
-    _screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _screenHeight = [UIScreen mainScreen].bounds.size.height;
-    view.contentScaleFactor = [UIScreen mainScreen].scale;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        // meshFactor controls the ending ripple mesh size.
-        // For example mesh width = screenWidth / meshFactor.
-        // It's chosen based on both screen resolution and device size.
-        _meshFactor = 8;
-    }
-    else
-    {
-        _meshFactor = 4;
-    }
-    
-    [self setupGL];
-    
-    
-    UIImage * myImage = [UIImage imageNamed:self.rippleImageName];
-    CGImageRef imageRef = [myImage CGImage];
-    imageRef = [self CGImageRotatedByAngle:imageRef angle:90.0f];
-    _pixelBuffer = [self pixelBufferFromCGImage:imageRef];
-    _width = CVPixelBufferGetWidth(_pixelBuffer);
-    _height = CVPixelBufferGetHeight(_pixelBuffer);
-    
-    //-- Create CVOpenGLESTextureCacheRef for optimal CVImageBufferRef to GLES texture conversion.
-    CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, (__bridge CVEAGLContext)((__bridge void *)_context), NULL, &_textureCache);
-    if (err)  {
-        NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", err);
-        return;
-    }
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [self tearDownGL];
     
-    if ([EAGLContext currentContext] == self.context) {
-        [EAGLContext setCurrentContext:nil];
-    }
-    self.context = nil;
-    
-    [displayLink invalidate];
-    displayLink = nil;
 }
 - (void)viewDidLoad
 {
@@ -357,15 +298,15 @@ enum
 
 - (void)viewfoceUnload
 {
-//    [self tearDownGL];
-//    
-//    if ([EAGLContext currentContext] == self.context) {
-//        [EAGLContext setCurrentContext:nil];
-//    }
-//    self.context = nil;
-//    
-//    [displayLink invalidate];
-//    displayLink = nil;
+    [self tearDownGL];
+    
+    if ([EAGLContext currentContext] == self.context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    self.context = nil;
+    
+    [displayLink invalidate];
+    displayLink = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

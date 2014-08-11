@@ -14,8 +14,6 @@
 #import <CoreTelephony/CTCallCenter.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    CTCallCenter* callCenter1;
-    CTCallCenter* callCenter2;
 }
 @property (strong, nonatomic) UIWindow *window;
 

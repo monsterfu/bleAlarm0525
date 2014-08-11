@@ -10,7 +10,6 @@
 
 @implementation AppDelegate
 
-void (^block)(CTCall*) = ^(CTCall* call) { NSLog(@"%@", call.callState); };
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,11 +17,8 @@ void (^block)(CTCall*) = ^(CTCall* call) { NSLog(@"%@", call.callState); };
     
     [application setApplicationIconBadgeNumber:0];
     
-    callCenter1 = [[CTCallCenter alloc] init];
-    callCenter1.callEventHandler = block;
     
-    callCenter2 = [[CTCallCenter alloc] init];
-    callCenter2.callEventHandler = block;
+    
     
     return YES;
 }

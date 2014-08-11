@@ -318,7 +318,7 @@
     }
     
     if (_devInfo.connected) {
-        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
+        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:YES];
     }else{
         
     }

@@ -14,6 +14,12 @@
 @implementation ConnectionManager
 @synthesize manager;
 
+void (^block)(CTCall*) = ^(CTCall* call) {
+    
+    NSLog(@"%@", call.callState);
+    [[ConnectionManager sharedInstance]scheduleCallingState:call.callState];
+};
+
 static ConnectionManager *sharedConnectionManager;
 
 + (ConnectionManager*) sharedInstance
@@ -30,6 +36,8 @@ static ConnectionManager *sharedConnectionManager;
     {
         _delegate = delegate;
         
+        callCenter1 = [[CTCallCenter alloc] init];
+        callCenter1.callEventHandler = block;
         
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
@@ -145,6 +153,7 @@ static ConnectionManager *sharedConnectionManager;
     }else{
         val = 0;
     }
+    val = 2;
     NSData* valData = [NSData dataWithBytes:(void*)&val length:sizeof(val)];
     
     CBPeripheral* peripheralss = [_peripheralDictionary objectForKey:name];
@@ -155,6 +164,27 @@ static ConnectionManager *sharedConnectionManager;
         result = YES;
     }
     return result;
+}
+//来电提示操作
+-(void)reminderDevice:(NSTimer*)useinfo
+{
+    NSString* name = [useinfo userInfo];
+    uint8_t val;
+    if (_dialingSign == NO) {
+        val = 2;
+        _dialingSign = YES;
+    }else{
+        val = 0;
+        _dialingSign = NO;
+    }
+    NSData* valData = [NSData dataWithBytes:(void*)&val length:sizeof(val)];
+    
+    CBPeripheral* peripheralss = [_peripheralDictionary objectForKey:name];
+    CBCharacteristic* characterisiticss = [_characteristicDictionary objectForKey:name];
+    
+    if (peripheralss && characterisiticss) {
+        [peripheralss writeValue:valData forCharacteristic:characterisiticss type:CBCharacteristicWriteWithoutResponse];
+    }
 }
 
 -(void)scheduleOutOfRangeNotification:(deviceInfo*)device
@@ -194,7 +224,21 @@ static ConnectionManager *sharedConnectionManager;
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:_localAskFoundNotice];
 }
-
+-(void)scheduleCallingState:(NSString*)stateStr
+{
+    for (deviceInfo* added in _addedDeviceArray) {
+        if ([stateStr isEqualToString:CTCallStateDialing]) {
+            _dialingGapTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
+        }else if([stateStr isEqualToString:CTCallStateIncoming]) {
+            _dialingGapTimer = [NSTimer timerWithTimeInterval:1.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
+        }else if([stateStr isEqualToString:CTCallStateConnected]) {
+            _dialingGapTimer = [NSTimer timerWithTimeInterval:2.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
+        }else if([stateStr isEqualToString:CTCallStateDisconnected]) {
+            [_dialingGapTimer invalidate];
+        }
+    }
+    
+}
 #pragma mark - perprial delegate
 #pragma mark - ble delegates
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripherals

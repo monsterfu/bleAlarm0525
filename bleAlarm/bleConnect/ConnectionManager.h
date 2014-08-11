@@ -12,6 +12,10 @@
 #import "deviceInfo.h"
 #import "GlobalHeader.h"
 #import "deviceDisconnectInfo.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
+#import <CoreTelephony/CTCall.h>
+#import <CoreTelephony/CTCallCenter.h>
 
 @protocol ConnectionManagerDelegate
 - (void) isBluetoothEnabled:(bool) enabled;
@@ -44,6 +48,12 @@
     
     NSTimer* disconnectTimer;
     
+    
+    BOOL _dialingSign;//来点提示音 开、关、开、关标记
+    NSTimer* _dialingGapTimer;//来点提示音间隔
+    CTCallCenter* callCenter1;
+    CTCallCenter* callCenter2;
+    
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;
@@ -66,6 +76,6 @@
 - (void) startScanForDevice;
 - (void) stopScanForDevice;
 - (void) removeDevice:(deviceInfo*)device;
-
--(BOOL)findDevice:(NSString*)name isOn:(BOOL)on;
+- (void) scheduleCallingState:(NSString*)stateStr;
+- (BOOL) findDevice:(NSString*)name isOn:(BOOL)on;
 @end

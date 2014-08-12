@@ -311,11 +311,11 @@
                                 </connections>
                             </slider>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yuan.png" id="6O6-Lh-k0d">
-                                <rect key="frame" x="88" y="153" width="146" height="146"/>
+                                <rect key="frame" x="88" y="194" width="146" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z1y-8r-hyJ">
-                                <rect key="frame" x="102" y="179" width="119" height="93"/>
+                                <rect key="frame" x="102" y="220" width="119" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" backgroundImage="iseek1 (18).png"/>

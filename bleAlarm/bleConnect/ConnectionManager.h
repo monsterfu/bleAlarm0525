@@ -54,6 +54,7 @@
     CTCallCenter* callCenter1;
     CTCallCenter* callCenter2;
     
+    CBUUID* _batteryUUID;
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;

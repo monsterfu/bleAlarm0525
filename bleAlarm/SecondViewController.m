@@ -40,6 +40,7 @@
    
     _canmeraOpen = NO;
     
+    _isLightOn = NO;
     
     UIPanGestureRecognizer  *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     panGestureRecognizer.enabled = YES;
@@ -316,9 +317,19 @@
     if ([sender.titleLabel.text isEqualToString:NSLocalizedString(@"失去连接", nil) ]) {
         return;
     }
-    
+    if (_openl) {
+        _openl = NO;
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek1 (19)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek1 (18)"] forState:UIControlStateHighlighted];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek1 (18)"] forState:UIControlStateSelected];
+    }else{
+        _openl = YES;
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek12 (2)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek12 (1)"] forState:UIControlStateHighlighted];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek12 (1)"] forState:UIControlStateSelected];
+    }
     if (_devInfo.connected) {
-        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:YES];
+        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
     }else{
         
     }
@@ -347,5 +358,35 @@
     [_deviceNameLabel resignFirstResponder];
     return YES;
 }
-
+#pragma mark - captureLight
+-(void)captureLightOn:(BOOL)on
+{
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch]) {
+        [device lockForConfiguration:nil];
+        if (on) {
+            [device setTorchMode: AVCaptureTorchModeOn];
+        }
+        else
+        {
+            [device setTorchMode: AVCaptureTorchModeOff];
+        }
+        
+        [device unlockForConfiguration];
+    }
+}
+- (IBAction)captureLightButtonTouch:(UIButton *)sender {
+    if (_isLightOn) {
+        _isLightOn = NO;
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (3)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (4)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (4)"] forState:UIControlStateNormal];
+    }else{
+        _isLightOn = YES;
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (2)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (1)"] forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"iseek13 (1)"] forState:UIControlStateNormal];
+    }
+    [self captureLightOn:_isLightOn];
+}
 @end

@@ -318,11 +318,13 @@
                                 <rect key="frame" x="102" y="220" width="119" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="iseek1 (18).png"/>
-                                <state key="selected" backgroundImage="iseek1 (19).png">
+                                <state key="normal" backgroundImage="iseek1 (19).png">
+                                    <color key="titleShadowColor" red="0.42849671830000002" green="0.8947305485" blue="0.52235733640000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" backgroundImage="iseek1 (18).png">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" backgroundImage="iseek1 (19).png">
+                                <state key="highlighted" backgroundImage="iseek1 (18).png">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -430,6 +432,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="f9h-Hy-C7m">
+                                <rect key="frame" x="137" y="348" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="iseek13 (3).png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="iseek13 (4).png"/>
+                                <state key="highlighted" backgroundImage="iseek13 (4).png"/>
+                                <connections>
+                                    <action selector="captureLightButtonTouch:" destination="QUy-BD-bpt" eventType="touchUpInside" id="HXP-5x-qay"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.79008636629999995" green="0.87757135289999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -442,6 +457,7 @@
                     <connections>
                         <outlet property="batteryImageView" destination="hMy-V2-P7A" id="LgR-bB-VQb"/>
                         <outlet property="batteryLabel" destination="tA4-9F-m9V" id="5bm-sD-2IL"/>
+                        <outlet property="captureLightButton" destination="f9h-Hy-C7m" id="xik-1w-B5g"/>
                         <outlet property="deviceNameLabel" destination="i7d-VF-6TQ" id="nX3-4o-Tp0"/>
                         <outlet property="findButton" destination="z1y-8r-hyJ" id="tVZ-wp-u8W"/>
                         <outlet property="radarImagView" destination="6O6-Lh-k0d" id="puH-Gi-jWe"/>
@@ -512,12 +528,14 @@
         <image name="gif_03.png" width="75" height="75"/>
         <image name="iseek1 (13).png" width="48" height="48"/>
         <image name="iseek1 (15).png" width="48" height="48"/>
-        <image name="iseek1 (18).png" width="72" height="72"/>
-        <image name="iseek1 (19).png" width="72" height="72"/>
+        <image name="iseek1 (18).png" width="145" height="145"/>
+        <image name="iseek1 (19).png" width="145" height="145"/>
         <image name="iseek1 (3).png" width="23" height="23"/>
         <image name="iseek1 (4).png" width="23" height="23"/>
         <image name="iseek1 (5).png" width="23" height="23"/>
         <image name="iseek1 (6).png" width="23" height="23"/>
+        <image name="iseek13 (3).png" width="96" height="96"/>
+        <image name="iseek13 (4).png" width="96" height="96"/>
         <image name="iseek2_13.png" width="17" height="17"/>
         <image name="iseek2_15.png" width="17" height="17"/>
         <image name="iseek3_08.png" width="17" height="17"/>

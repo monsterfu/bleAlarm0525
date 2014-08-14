@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "searchRadarView.h"
 #import "deviceInfo.h"
 #import "GlobalHeader.h"
@@ -34,6 +35,7 @@
     
     UIAlertView* _alert;
     NSTimer* _timerWater;
+    BOOL _isLightOn;
 }
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
@@ -64,6 +66,8 @@
 - (IBAction)backButtonTouch:(UIButton *)sender;
 - (IBAction)editButtonTouch:(UIButton *)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *captureLightButton;
+- (IBAction)captureLightButtonTouch:(UIButton *)sender;
 
 
 @end

@@ -33,8 +33,19 @@
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     _ldAnimationIndex = 0;
     
-    _ldTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(leidaAnimation) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:_ldTimer forMode:NSRunLoopCommonModes];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewEnterForeground) name:NSNotificationCenter_appWillEnterForeground object:nil];
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NSNotificationCenter_appWillEnterForeground object:nil];
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)viewEnterForeground
+{
     CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
@@ -42,44 +53,18 @@
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = 1000;
     [_centerImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    _secondViewController = [storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
-    [self addChildViewController:_secondViewController];
-    
 }
-static NSUInteger angle = 0;
--(void)startAnimation
-{
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        _centerImageView.transform = CATransform3DGetAffineTransform(CATransform3DMakeRotation(angle, 0, 0, 1));
-    } completion:^(BOOL finished) {
-        angle += 1;
-        [self startAnimation];
-    }];
-}
-
--(void)leidaAnimation
-{
-    if (_ldAnimationIndex < 9) {
-        _ldAnimationIndex ++;
-    }else{
-        _ldAnimationIndex = 0;
-    }
-    [UIView animateWithDuration:0.4 animations:^{
-        [_animImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%u.png",_ldAnimationIndex+1]]];
-    }];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [[ConnectionManager sharedInstance]setDelegate:self];
     [_tableView reloadData];
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    rotationAnimation.duration = 3;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 1000;
+    [_centerImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
 #pragma mark - connectionManagerDelegate

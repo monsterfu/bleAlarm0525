@@ -37,4 +37,5 @@
 
 #define NSNotificationCenter_dismissRecordChange            @"NSNotificationCenter_dismissRecordChange"
 #define NSNotificationCenter_appWillEnterBackGround         @"NSNotificationCenter_appWillEnterBackGround"
+#define NSNotificationCenter_appWillEnterForeground         @"NSNotificationCenter_appWillEnterForeground"
 #endif

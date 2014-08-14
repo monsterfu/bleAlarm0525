@@ -10,7 +10,7 @@
 
 #define TRANSFER_SERVICE_UUID @"1802"
 #define TRANSFER_CHARACTERISTIC_UUID    @"2A06"
-
+#define TRANSFER_BATTERY_UUID  @"180F"
 @implementation ConnectionManager
 @synthesize manager;
 
@@ -153,7 +153,6 @@ static ConnectionManager *sharedConnectionManager;
     }else{
         val = 0;
     }
-    val = 2;
     NSData* valData = [NSData dataWithBytes:(void*)&val length:sizeof(val)];
     
     CBPeripheral* peripheralss = [_peripheralDictionary objectForKey:name];
@@ -510,6 +509,8 @@ static ConnectionManager *sharedConnectionManager;
         NSLog(@"Service found with UUID: %@",service.UUID);
         if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]) {
             [args_peripheral discoverCharacteristics:nil forService:service];
+        }else if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_BATTERY_UUID]]) {
+            [args_peripheral discoverCharacteristics:nil forService:service];
         }
     }
     
@@ -541,6 +542,15 @@ static ConnectionManager *sharedConnectionManager;
             }
         }
     }
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_BATTERY_UUID]])
+    {
+        for (CBCharacteristic *aChar in service.characteristics)
+        {
+            NSLog(@"Characteristic FOUND: %@ %@ %u",aChar.value,aChar.UUID,aChar.properties);
+            _batteryUUID = aChar.UUID;
+            [args_peripheral readValueForCharacteristic:aChar];
+        }
+    }
 }
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
@@ -549,8 +559,16 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     NSLog(@"Characteristic value : %@ with ID %@", characteristic.value, characteristic.UUID);
+    if ([characteristic.UUID isEqual:_batteryUUID]) {
+        checkDevice = [_deviceManagerDictionary objectForKey:[peripheral.identifier UUIDString]];
+        
+        NSString *aString = [NSString stringWithFormat:@"%@",characteristic.value];
+        aString = [aString substringFromIndex:1];
+        aString = [aString substringToIndex:2];
+        
+        checkDevice.batteryLevel = [NSNumber numberWithFloat:strtoul([aString UTF8String],0,16)];
+    }
 }
-
 
 -(int)getRawValue:(Byte)highByte lowByte:(Byte)lowByte{
     

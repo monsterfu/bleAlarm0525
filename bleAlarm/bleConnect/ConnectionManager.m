@@ -284,11 +284,18 @@ static ConnectionManager *sharedConnectionManager;
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests
 {
     NSLog(@"didReceiveWriteRequests");
-    
     CBATTRequest* request = (CBATTRequest*)[requests objectAtIndex:0];
     deviceInfo* device = [_deviceManagerDictionary objectForKey:[request.central.identifier UUIDString]];
     if (device) {
-        [self.delegate didDeviceWanaFindMe:device];
+        CBATTRequest* request = [requests objectAtIndex:0];
+        int someInt = 0;
+        [request.value getBytes:&someInt length:2];
+        if (someInt) {
+            [self.delegate didDeviceWanaFindMe:device on:YES];
+        }else{
+            [self.delegate didDeviceWanaFindMe:device on:NO];
+        }
+        
         [self scheduleAskFoundNotification:device];
     }
 }

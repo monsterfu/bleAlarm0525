@@ -30,6 +30,8 @@
     NSTimer* _warmingTimer;
     
     UIAlertView* _alert;
+    
+    UIAlertView* _findPhoneAlert;
 }
 
 @property (strong, nonatomic) deviceInfo *devInfo;

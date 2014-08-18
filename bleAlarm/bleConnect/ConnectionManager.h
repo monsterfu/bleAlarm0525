@@ -23,7 +23,7 @@
 - (void) didDisconnectWithDevice:(deviceInfo*)device;
 - (void) didConnectWithDevice:(deviceInfo*)device;
 - (void) didOutofRangWithDevice:(deviceInfo*)device;
-- (void) didDeviceWanaFindMe:(deviceInfo*)device;
+- (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on;
 @end
 
 @interface ConnectionManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate,CBPeripheralManagerDelegate,CLLocationManagerDelegate>{

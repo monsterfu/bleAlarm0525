@@ -36,6 +36,7 @@
     UIAlertView* _alert;
     NSTimer* _timerWater;
     BOOL _isLightOn;
+    UIAlertView* _findPhoneAlert;
 }
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;

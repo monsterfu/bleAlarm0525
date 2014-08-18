@@ -229,7 +229,7 @@
         [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
     }
 }
-- (void) didDeviceWanaFindMe:(deviceInfo*)device
+- (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on
 {
 //    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"警告" message:[NSString stringWithFormat:@"%@想要找到你",device.idString] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //    [alert show];
@@ -237,18 +237,28 @@
 //    [[soundVibrateManager sharedInstance]vibrate];
     if (!_canmeraOpen) {
         if ([device isEqual:_devInfo]) {
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
-            [alert show];
-            [[soundVibrateManager sharedInstance]playAlertSound];
-            [[soundVibrateManager sharedInstance]vibrate];
+            if (on) {
+                _findPhoneAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+                [_findPhoneAlert show];
+                [[soundVibrateManager sharedInstance]playAlertSound];
+                [[soundVibrateManager sharedInstance]vibrate];
+            }else{
+                [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
+            }
+            
             return;
         }
     }else{
         if (![device isEqual:_devInfo]) {
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
-            [alert show];
-            [[soundVibrateManager sharedInstance]playAlertSound];
-            [[soundVibrateManager sharedInstance]vibrate];
+            if (on) {
+                _findPhoneAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"想要找到你", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
+                [_findPhoneAlert show];
+                [[soundVibrateManager sharedInstance]playAlertSound];
+                [[soundVibrateManager sharedInstance]vibrate];
+            }else{
+                [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
+            }
+            
             return;
         }
         if (cameraVC) {

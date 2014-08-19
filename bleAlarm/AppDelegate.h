@@ -12,8 +12,13 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
+#import <AVFoundation/AVFoundation.h>
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *myTimer;
+@property (nonatomic, strong) NSString* callStateStr;
+
++(AppDelegate *)App;
 @end

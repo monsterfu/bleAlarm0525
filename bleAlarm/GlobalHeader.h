@@ -14,6 +14,7 @@
 #import "soundVibrateManager.h"
 #import"ConnectionManager.h"
 #import "deviceInfo.h"
+#import "AppDelegate.h"
 
 #import "UIImage+Extras.h"
 #import "NSString+deviceName.h"

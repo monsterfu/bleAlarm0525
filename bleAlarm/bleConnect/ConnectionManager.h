@@ -79,4 +79,5 @@
 - (void) removeDevice:(deviceInfo*)device;
 - (void) scheduleCallingState:(NSString*)stateStr;
 - (BOOL) findDevice:(NSString*)name isOn:(BOOL)on;
+- (void) reminderDeviceStr:(NSString*)str;
 @end

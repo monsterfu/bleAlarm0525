@@ -316,7 +316,6 @@
     }
     
     CGFloat distance = meter/70.0f;
-    NSLog(@"distance:%f,%f",distance,distance);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
     _radarImagView.transform = CGAffineTransformScale(CGAffineTransformIdentity, distance, distance);

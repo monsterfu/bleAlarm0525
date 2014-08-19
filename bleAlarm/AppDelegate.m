@@ -16,17 +16,52 @@
     // Override point for customization after application launch.
     
     [application setApplicationIconBadgeNumber:0];
+    NSError *setCategoryErr = nil;
+    NSError *activationErr  = nil;
+    [[AVAudioSession sharedInstance]
+     setCategory: AVAudioSessionCategoryPlayback
+     error: &setCategoryErr];
+    [[AVAudioSession sharedInstance]
+     setActive: YES
+     error: &activationErr];
     
     
-    
+    NSTimer* _dialingGapTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(test) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
     
     return YES;
+}
++(AppDelegate *)App{
+    return (AppDelegate *)[[UIApplication sharedApplication]delegate];
+}
+-(void)test
+{
+    [[ConnectionManager sharedInstance]scheduleCallingState:[AppDelegate App].callStateStr];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    NSLog(@"applicationWillResignActive");
+    UIApplication*   app = [UIApplication sharedApplication];
+    __block    UIBackgroundTaskIdentifier bgTask;
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    });
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {

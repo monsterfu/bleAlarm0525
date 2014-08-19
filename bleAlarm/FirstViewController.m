@@ -238,7 +238,8 @@
 {
     if (indexPath.section == 0) {
         deviceInfo* device = [addedDeviceArray objectAtIndex:indexPath.row];
-        if (device.connected) {
+//        if (device.connected)
+        {
 //            _secondViewController.devInfo = device;
 //            [self.navigationController pushViewController:_secondViewController animated:YES];
             [self performSegueWithIdentifier:@"deviceConnect" sender:nil];

@@ -165,6 +165,27 @@ static ConnectionManager *sharedConnectionManager;
     return result;
 }
 //来电提示操作
+-(void)reminderDeviceStr:(NSString*)str
+{
+    uint8_t val;
+    if (_dialingSign == NO) {
+        val = 2;
+        _dialingSign = YES;
+    }else{
+        val = 0;
+        _dialingSign = NO;
+    }
+    val = 2;
+    NSData* valData = [NSData dataWithBytes:(void*)&val length:sizeof(val)];
+    
+    CBPeripheral* peripheralss = [_peripheralDictionary objectForKey:str];
+    CBCharacteristic* characterisiticss = [_characteristicDictionary objectForKey:str];
+    
+    if (peripheralss && characterisiticss) {
+        [peripheralss writeValue:valData forCharacteristic:characterisiticss type:CBCharacteristicWriteWithoutResponse];
+        NSLog(@"reminderDevice  ++++++");
+    }
+}
 -(void)reminderDevice:(NSTimer*)useinfo
 {
     NSString* name = [useinfo userInfo];
@@ -183,6 +204,7 @@ static ConnectionManager *sharedConnectionManager;
     
     if (peripheralss && characterisiticss) {
         [peripheralss writeValue:valData forCharacteristic:characterisiticss type:CBCharacteristicWriteWithoutResponse];
+        NSLog(@"reminderDevice  ++++++");
     }
 }
 
@@ -226,15 +248,21 @@ static ConnectionManager *sharedConnectionManager;
 -(void)scheduleCallingState:(NSString*)stateStr
 {
     for (deviceInfo* added in _addedDeviceArray) {
+        if (!added.open) {
+            return;
+        }
         if ([stateStr isEqualToString:CTCallStateDialing]) {
             _dialingGapTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
             [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
+            [self reminderDeviceStr:added.identifier];
         }else if([stateStr isEqualToString:CTCallStateIncoming]) {
             _dialingGapTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
             [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
+            [self reminderDeviceStr:added.identifier];
         }else if([stateStr isEqualToString:CTCallStateConnected]) {
             _dialingGapTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
             [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
+            [self reminderDeviceStr:added.identifier];
         }else if([stateStr isEqualToString:CTCallStateDisconnected]) {
             [_dialingGapTimer invalidate];
         }
@@ -471,7 +499,7 @@ static ConnectionManager *sharedConnectionManager;
 
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)arg_peripheral error:(NSError *)error
 {
-    NSLog(@"[[[[[[[[[[[[[[[peripheral.ddd:%f]]]]]]]]]]]]]]]",[arg_peripheral.RSSI floatValue]);
+//    NSLog(@"[[[[[[[[[[[[[[[peripheral.ddd:%f]]]]]]]]]]]]]]]",[arg_peripheral.RSSI floatValue]);
     checkDevice = [_deviceManagerDictionary objectForKey:[arg_peripheral.identifier UUIDString]];
     if (checkDevice) {
         checkDevice.signalStrength = arg_peripheral.RSSI;

@@ -81,6 +81,7 @@
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="bleConnectImage" destination="egG-aq-fDj" id="owD-ST-LXC"/>
+                                            <outlet property="customSwitch" destination="aqo-v3-gSL" id="Odf-qd-uxS"/>
                                             <outlet property="deviceLabel" destination="O67-PK-iR7" id="vC7-7n-0md"/>
                                             <outlet property="signalImageView" destination="2JC-vN-Ti6" id="Jkc-8Z-fhJ"/>
                                             <outlet property="switchView" destination="aqo-v3-gSL" id="qAk-dl-l7u"/>

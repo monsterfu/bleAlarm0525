@@ -55,6 +55,7 @@
     CTCallCenter* callCenter2;
     
     CBUUID* _batteryUUID;
+    BOOL _finePhoneOpen;
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;

@@ -221,6 +221,7 @@
         addedCell.delegate = self;
         addedCell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
         addedCell.textLabel.textColor = [UIColor getColor:@"1688c4"];
+        addedCell.tag = indexPath.row;
         [addedCell setDevInfo:[addedDeviceArray objectAtIndex:indexPath.row]];
         return addedCell;
     }else{
@@ -294,9 +295,12 @@
 }
 #pragma mark - cellDelegate
 
--(void)updateCellInfo:(deviceInfo*)device
+-(void)updateCellInfo:(deviceInfo*)device tag:(NSUInteger)tag
 {
-    
+    [USER_DEFAULT removeObjectForKey:KEY_DEVICELIST_INFO];
+    NSData* aDate = [NSKeyedArchiver archivedDataWithRootObject:addedDeviceArray];
+    [USER_DEFAULT setObject:aDate forKey:KEY_DEVICELIST_INFO];
+    [USER_DEFAULT synchronize];
 }
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

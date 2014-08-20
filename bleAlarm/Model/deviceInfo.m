@@ -51,7 +51,7 @@
     dev.locationCoordArray = [NSMutableArray array];
     dev.identifier = identifier;
     dev.connected = NO;
-    dev.open = YES;
+    dev.open = NO;
     dev.warningStrength = [NSNumber numberWithFloat:90.0f];
     dev.isUserForceDisconnect = NO;
     dev.rangeLimit = [NSNumber numberWithFloat:100.0f];

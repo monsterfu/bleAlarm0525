@@ -11,7 +11,7 @@
 
 @protocol addedDeviceTableViewCellDelegate <NSObject>
 
--(void)updateCellInfo:(deviceInfo*)device;
+-(void)updateCellInfo:(deviceInfo*)device tag:(NSUInteger)tag;
 
 @end
 
@@ -30,6 +30,6 @@
 
 -(void)setDevInfo:(deviceInfo *)newDevInfo;
 
-@property (weak, nonatomic) IBOutlet SevenSwitch *customSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *customSwitch;
 
 @end

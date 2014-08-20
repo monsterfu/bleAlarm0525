@@ -60,7 +60,7 @@ static ConnectionManager *sharedConnectionManager;
         
         _deviceManagerDictionary = [NSMutableDictionary dictionary];
         
-        
+        _finePhoneOpen = YES;
         warningStrength = 0;
         
         NSData* aData = [USER_DEFAULT objectForKey:KEY_DEVICELIST_INFO];
@@ -269,6 +269,7 @@ static ConnectionManager *sharedConnectionManager;
             [self reminderDeviceStr:added.identifier on:YES];
         }else if([stateStr isEqualToString:CTCallStateDisconnected]) {
             [self reminderDeviceStr:added.identifier on:NO];
+            [AppDelegate App].callStateStr = nil;
         }
     }
     
@@ -322,9 +323,11 @@ static ConnectionManager *sharedConnectionManager;
         CBATTRequest* request = [requests objectAtIndex:0];
         int someInt = 0;
         [request.value getBytes:&someInt length:2];
-        if (someInt) {
+        if (_finePhoneOpen) {
+            _finePhoneOpen = NO;
             [self.delegate didDeviceWanaFindMe:device on:YES];
         }else{
+            _finePhoneOpen = YES;
             [self.delegate didDeviceWanaFindMe:device on:NO];
         }
         

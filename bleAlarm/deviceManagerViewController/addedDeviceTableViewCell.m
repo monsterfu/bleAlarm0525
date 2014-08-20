@@ -33,6 +33,7 @@
 
 - (IBAction)switchChanged:(UISwitch *)sender {
     _devInfo.open = sender.on;
+    [self.delegate updateCellInfo:_devInfo tag:self.tag];
 }
 
 -(void)setDevInfo:(deviceInfo *)newDevInfo
@@ -71,10 +72,10 @@
 
 -(void)didDisconnectedNotice:(deviceInfo *)device
 {
-    [self.delegate updateCellInfo:device];
+    [self.delegate updateCellInfo:device tag:self.tag];
 }
 
 -(void)didConnectedNotice:(deviceInfo *)device{
-    [self.delegate updateCellInfo:device];
+    [self.delegate updateCellInfo:device tag:self.tag];
 }
 @end

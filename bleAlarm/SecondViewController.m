@@ -202,6 +202,12 @@
     [[soundVibrateManager sharedInstance]vibrate];
     [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:YES];
 }
+-(void)warningAction1
+{
+    [[soundVibrateManager sharedInstance]playAlertSound];
+    [[soundVibrateManager sharedInstance]vibrate];
+}
+
 - (void) didDisconnectWithDevice:(deviceInfo*)device
 {
     _alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"您已失去与",nil), [NSString deviceNameWithDevice:device], NSLocalizedString(@"的连接",nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];
@@ -242,8 +248,11 @@
                 [_findPhoneAlert show];
                 [[soundVibrateManager sharedInstance]playAlertSound];
                 [[soundVibrateManager sharedInstance]vibrate];
+                _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction1) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
             }else{
                 [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
+                [_warmingTimer invalidate];
             }
             
             return;
@@ -255,8 +264,11 @@
                 [_findPhoneAlert show];
                 [[soundVibrateManager sharedInstance]playAlertSound];
                 [[soundVibrateManager sharedInstance]vibrate];
+                _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction1) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
             }else{
                 [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
+                [_warmingTimer invalidate];
             }
             
             return;

@@ -321,15 +321,30 @@
     _batteryImageView.image = [info currentBatteryStrengthImage];
     CGFloat meter = (-1)*[info.signalStrength floatValue];
     
-    if (meter < 30.0f) {
-        meter = 30.0f;
-    }else if(meter > 70.0f) {
-        meter = 70.0f;
+//    if (0 <= value&& value <= 25) {
+//        return [NSNumber numberWithFloat:40.0f+(40.0f/25.0f)*value];
+//    }else if (25 < value&& value <= 50){
+//        return[NSNumber numberWithFloat:80.0f+(10.0f/25.0f)*(value - 25)];
+//    }else if (50 < value&& value <= 75){
+//        return[NSNumber numberWithFloat:90.0f+(3.0f/25.0f)*(value - 50)];
+//    }else if (75 < value&& value <= 100){
+//        return[NSNumber numberWithFloat:93.0f+(7.0f/25.0f)*(value - 75)];
+//    }
+    CGFloat distance = meter/100.0f;
+    if (meter <= 40.0f) {
+        distance = 0.1f + 0.15f*(meter)/40.0f;
+    }else if(40.0f < meter&& meter <= 80.0f) {
+        distance = 0.25f + 0.25f*(meter-40.0f)/40.0f;
+    }else if(80.0f < meter&& meter <= 90.0f) {
+        distance = 0.5f + 0.25f*(meter-80.0f)/10.0f;
+    }else if(90.0f < meter&& meter <= 93.0f) {
+        distance = 0.25f + 0.25f*(meter-90.0f)/3.0f;
+    }else if(93.0f < meter&& meter <= 100.0f) {
+        distance = 0.75f + 0.25f*(meter-93.0f)/7.0f;
     }
     
-    CGFloat distance = meter/70.0f;
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.1];
     _radarImagView.transform = CGAffineTransformScale(CGAffineTransformIdentity, distance, distance);
     [UIView commitAnimations];
 }

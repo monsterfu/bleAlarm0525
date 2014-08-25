@@ -123,6 +123,7 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     if (checkDevice.open) {
+        [[ConnectionManager sharedInstance]findDevice:checkDevice.identifier isOn:YES];
         [self.delegate didOutofRangWithDevice:checkDevice];
         [self scheduleOutOfRangeNotification:checkDevice];
         

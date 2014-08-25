@@ -233,6 +233,8 @@
         [[soundVibrateManager sharedInstance]playAlertSound];
         [[soundVibrateManager sharedInstance]vibrate];
         [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
+        _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
     }
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on
@@ -344,7 +346,7 @@
     }
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationDuration:0.9];
     _radarImagView.transform = CGAffineTransformScale(CGAffineTransformIdentity, distance, distance);
     [UIView commitAnimations];
 }
@@ -375,6 +377,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    _canNotice = YES;
     [_warmingTimer invalidate];
     _warmingTimer = nil;
 }

@@ -32,7 +32,7 @@
     addedDeviceArray = [ConnectionManager sharedInstance].addedDeviceArray;
     newDeviceArray = [ConnectionManager sharedInstance].newsDeviceArray;
     _ldAnimationIndex = 0;
-    
+    _canNotice = YES;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewEnterForeground) name:NSNotificationCenter_appWillEnterForeground object:nil];
 }
 -(void)dealloc
@@ -125,13 +125,17 @@
 }
 - (void) didOutofRangWithDevice:(deviceInfo*)device
 {
-    return;
-    UIAlertView* _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
-    [_alertView show];
-    [[soundVibrateManager sharedInstance]playAlertSound];
-    [[soundVibrateManager sharedInstance]vibrate];
+    if (_canNotice) {
+        _canNotice = NO;
+        _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
+        [_alertView show];
+        [[soundVibrateManager sharedInstance]playAlertSound];
+        [[soundVibrateManager sharedInstance]vibrate];
+        [[ConnectionManager sharedInstance]findDevice:device.identifier isOn:YES];
+        _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
+    }
 }
-
 
 - (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on
 {
@@ -316,6 +320,7 @@
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    _canNotice = YES;
     [_warmingTimer invalidate];
     _warmingTimer = nil;
     if (_findPhoneAlert == alertView) {

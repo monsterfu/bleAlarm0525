@@ -21,11 +21,11 @@
     
     addedDeviceTableViewCell* addedCell;
     newDeviceTableViewCell* newCell;
-    
+    BOOL _canNotice;
     UIImagePickerController *cameraVC;
     NSTimer* _ldTimer;
     NSUInteger _ldAnimationIndex;
-    
+    UIAlertView* _alertView;
     SecondViewController* _secondViewController;
     NSTimer* _warmingTimer;
     

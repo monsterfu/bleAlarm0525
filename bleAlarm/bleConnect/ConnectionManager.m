@@ -60,7 +60,7 @@ static ConnectionManager *sharedConnectionManager;
         
         _deviceManagerDictionary = [NSMutableDictionary dictionary];
         
-        _finePhoneOpen = YES;
+        _finePhoneOpen = NO;
         warningStrength = 0;
         
         NSData* aData = [USER_DEFAULT objectForKey:KEY_DEVICELIST_INFO];
@@ -326,10 +326,10 @@ static ConnectionManager *sharedConnectionManager;
         [request.value getBytes:&someInt length:2];
         if (_finePhoneOpen) {
             _finePhoneOpen = NO;
-            [self.delegate didDeviceWanaFindMe:device on:YES];
+            [self.delegate didDeviceWanaFindMe:device on:NO];
         }else{
             _finePhoneOpen = YES;
-            [self.delegate didDeviceWanaFindMe:device on:NO];
+            [self.delegate didDeviceWanaFindMe:device on:YES];
         }
         
         [self scheduleAskFoundNotification:device];
@@ -608,8 +608,11 @@ static ConnectionManager *sharedConnectionManager;
         NSString *aString = [NSString stringWithFormat:@"%@",characteristic.value];
         aString = [aString substringFromIndex:1];
         aString = [aString substringToIndex:2];
-        
-        checkDevice.batteryLevel = [NSNumber numberWithFloat:strtoul([aString UTF8String],0,16)];
+        CGFloat battery = strtoul([aString UTF8String],0,16);
+        if (battery > 100.0f) {
+            battery = 100.0f;
+        }
+        checkDevice.batteryLevel = [NSNumber numberWithFloat:battery];
     }
 }
 

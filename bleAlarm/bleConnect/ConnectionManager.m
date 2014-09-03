@@ -62,7 +62,8 @@ static ConnectionManager *sharedConnectionManager;
         
         _finePhoneOpen = NO;
         warningStrength = 0;
-        
+        _indexRSSI = 0;
+        _isOutWarning = NO;
         NSData* aData = [USER_DEFAULT objectForKey:KEY_DEVICELIST_INFO];
         _addedDeviceArray = [NSKeyedUnarchiver unarchiveObjectWithData:aData];
         if (_addedDeviceArray == nil) {
@@ -119,12 +120,24 @@ static ConnectionManager *sharedConnectionManager;
     if (!checkDevice) {
         return;
     }
-    if ([checkDevice.warningStrength floatValue] > warningStrength + 5) {
+    if ([checkDevice.warningStrength floatValue] > warningStrength) {
+        if (_isOutWarning) {
+            if (warningStrength <= 75) {
+                _isOutWarning = NO;
+                [[ConnectionManager sharedInstance]findDevice:checkDevice.identifier isOn:NO];
+                [self.delegate didOutofRangWithDevice:checkDevice on:NO];
+            }
+        }
         return;
     }
+    NSLog(@"checkDevice: %f   8888:%f",[checkDevice.warningStrength floatValue],warningStrength);
     if (checkDevice.open) {
+        if (_isOutWarning) {
+            return;
+        }
+        _isOutWarning = YES;
         [[ConnectionManager sharedInstance]findDevice:checkDevice.identifier isOn:YES];
-        [self.delegate didOutofRangWithDevice:checkDevice];
+        [self.delegate didOutofRangWithDevice:checkDevice on:YES];
         [self scheduleOutOfRangeNotification:checkDevice];
         
         [checkDevice.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
@@ -397,7 +410,7 @@ static ConnectionManager *sharedConnectionManager;
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)args_peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
     
-    NSLog(@"Discovered peripheral, name %@, data: %@, RSSI: %f", [args_peripheral name], advertisementData, RSSI.floatValue);
+//    NSLog(@"Discovered peripheral, name %@, data: %@, RSSI: %f", [args_peripheral name], advertisementData, RSSI.floatValue);
     
     //屏蔽不可连接设备
     BOOL connectable = [[advertisementData objectForKey:@"kCBAdvDataIsConnectable"]boolValue];
@@ -414,11 +427,11 @@ static ConnectionManager *sharedConnectionManager;
     NSArray *serviceData = [advertisementData objectForKey:@"kCBAdvDataServiceUUIDs"];
     if (!serviceData)
     {
-        NSLog(@"Discovered unknown device, %@", [args_peripheral name]);
+//        NSLog(@"Discovered unknown device, %@", [args_peripheral name]);
         return;
     }
     if (![_peripheralDictionary objectForKey:[args_peripheral.identifier UUIDString]]) {
-        NSLog(@"args_peripheral:%@",args_peripheral);
+//        NSLog(@"args_peripheral:%@",args_peripheral);
         
         devInfo = [deviceInfo deviceWithId:args_peripheral.name identifier:[args_peripheral.identifier UUIDString]];
 //        [devInfo.locationCoordArray addObject:[deviceDisconnectInfo shareInstanceWithLocation:_location date:[NSDate date]]];
@@ -510,7 +523,14 @@ static ConnectionManager *sharedConnectionManager;
 //    NSLog(@"[[[[[[[[[[[[[[[peripheral.ddd:%f]]]]]]]]]]]]]]]",[arg_peripheral.RSSI floatValue]);
     checkDevice = [_deviceManagerDictionary objectForKey:[arg_peripheral.identifier UUIDString]];
     if (checkDevice) {
+        
+        _peripheral = arg_peripheral;
+        checkRssiTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateRSSIAction) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop]addTimer:checkRssiTimer forMode:NSDefaultRunLoopMode];
+        
         checkDevice.signalStrength = arg_peripheral.RSSI;
+        
+        NSLog(@"peripheralDidUpdateRSSI:%f",[arg_peripheral.RSSI floatValue]);
         
         CGFloat meter = (-1)*[arg_peripheral.RSSI floatValue];
         
@@ -520,14 +540,21 @@ static ConnectionManager *sharedConnectionManager;
         if (warningStrength == 0) {
             warningStrength = meter;
         }
+        
+        if (_indexRSSI < 5) {
+            _indexRSSI ++;
+            //不停取均值
+            warningStrength = (warningStrength + meter)/2;
+            return;
+        }
+        _indexRSSI = 0;
         //不停取均值
         warningStrength = (warningStrength + meter)/2;
         
         [checkDevice.delegate didUpdateData:checkDevice];
+        NSLog(@"checkDevice:%f",[checkDevice.signalStrength floatValue]);
     }
-    _peripheral = arg_peripheral;
-    checkRssiTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateRSSIAction) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop]addTimer:checkRssiTimer forMode:NSDefaultRunLoopMode];
+    
 }
 
 -(void)updateRSSIAction

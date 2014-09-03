@@ -221,20 +221,30 @@
 }
 - (void) didConnectWithDevice:(deviceInfo*)device
 {
+    if (_alert) {
+        [_alert dismissWithClickedButtonIndex:0 animated:YES];
+        _alert = nil;
+    }
     [_warmingTimer invalidate];
     _warmingTimer = nil;
 }
-- (void) didOutofRangWithDevice:(deviceInfo*)device
+- (void) didOutofRangWithDevice:(deviceInfo*)device on:(BOOL)on
 {
-    if (_canNotice) {
+    if (1){//_canNotice) {
         _canNotice = NO;
-        _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
-        [_alertView show];
-        [[soundVibrateManager sharedInstance]playAlertSound];
-        [[soundVibrateManager sharedInstance]vibrate];
-        [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
-        _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
+        if (!on) {
+            [_warmingTimer invalidate];
+            [_alertView dismissWithClickedButtonIndex:0 animated:YES];
+            _alertView = nil;
+        }else{
+            _alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"警告",nil) message:[NSString stringWithFormat:@"%@%@",[NSString deviceNameWithDevice:device],NSLocalizedString(@"已超出设定范围", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil)  otherButtonTitles:nil, nil];
+            [_alertView show];
+            [[soundVibrateManager sharedInstance]playAlertSound];
+            [[soundVibrateManager sharedInstance]vibrate];
+            [[ConnectionManager sharedInstance]findDevice:_devInfo.identifier isOn:_openl];
+            _warmingTimer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(warningAction) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop]addTimer:_warmingTimer forMode:NSRunLoopCommonModes];
+        }
     }
 }
 - (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on
@@ -243,6 +253,12 @@
 //    [alert show];
 //    [[soundVibrateManager sharedInstance]playAlertSound];
 //    [[soundVibrateManager sharedInstance]vibrate];
+    
+    if (_findPhoneAlert == nil) {
+        on = YES;
+    }else{
+        on = NO;
+    }
     if (!_canmeraOpen) {
         if ([device isEqual:_devInfo]) {
             if (on) {
@@ -255,8 +271,8 @@
             }else{
                 [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
                 [_warmingTimer invalidate];
+                _findPhoneAlert = nil;
             }
-            
             return;
         }
     }else{
@@ -271,8 +287,8 @@
             }else{
                 [_findPhoneAlert dismissWithClickedButtonIndex:0 animated:YES];
                 [_warmingTimer invalidate];
+                _findPhoneAlert = nil;
             }
-            
             return;
         }
         if (cameraVC) {
@@ -380,6 +396,7 @@
     _canNotice = YES;
     [_warmingTimer invalidate];
     _warmingTimer = nil;
+    _findPhoneAlert = nil;
 }
 #pragma mark -UITextFieldDelegate
 

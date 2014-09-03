@@ -22,7 +22,7 @@
 - (void) didDiscoverDevice:(deviceInfo*)device;
 - (void) didDisconnectWithDevice:(deviceInfo*)device;
 - (void) didConnectWithDevice:(deviceInfo*)device;
-- (void) didOutofRangWithDevice:(deviceInfo*)device;
+- (void) didOutofRangWithDevice:(deviceInfo*)device on:(BOOL)on;
 - (void) didDeviceWanaFindMe:(deviceInfo*)device on:(BOOL)on;
 @end
 
@@ -56,6 +56,9 @@
     
     CBUUID* _batteryUUID;
     BOOL _finePhoneOpen;
+    
+    NSUInteger _indexRSSI;
+    BOOL _isOutWarning;
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;

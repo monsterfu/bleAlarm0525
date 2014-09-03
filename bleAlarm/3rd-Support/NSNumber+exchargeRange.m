@@ -13,7 +13,7 @@
 +(NSNumber*)exchargeRange:(CGFloat)value
 {
     if (0 <= value&& value <= 25) {
-        return [NSNumber numberWithFloat:70.0f+(15.0f/25.0f)*value];
+        return [NSNumber numberWithFloat:75.0f+(15.0f/25.0f)*value];
     }else if (25 < value&& value <= 50){
         return[NSNumber numberWithFloat:85.0f+(10.0f/25.0f)*(value - 25)];
     }else if (50 < value&& value <= 75){

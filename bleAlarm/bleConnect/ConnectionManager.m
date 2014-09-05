@@ -649,7 +649,7 @@ static ConnectionManager *sharedConnectionManager;
     int lo = ((int)lowByte) & 0xFF;
     
     int return_value = (hi<<8) | lo;
-    
+
     return return_value;
 }
 

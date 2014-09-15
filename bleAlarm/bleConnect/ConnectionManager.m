@@ -9,7 +9,11 @@
 #import "ConnectionManager.h"
 
 #define TRANSFER_SERVICE_UUID @"1802"
+#define TRANSFER_SERVICE_DEVICEINFO_UUID @"180A"
 #define TRANSFER_CHARACTERISTIC_UUID    @"2A06"
+#define TRANSFER_CHARACTERISTIC_DEVICEINFO1_UUID    @"2A29"
+#define TRANSFER_CHARACTERISTIC_DEVICEINFO2_UUID    @"2A24"
+#define TRANSFER_CHARACTERISTIC_DEVICEINFO3_UUID    @"2A25"
 #define TRANSFER_BATTERY_UUID  @"180F"
 @implementation ConnectionManager
 @synthesize manager;
@@ -131,7 +135,7 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     NSLog(@"checkDevice: %f   8888:%f",[checkDevice.warningStrength floatValue],warningStrength);
-    if (checkDevice.open) {
+    if (1){//checkDevice.open) {
         if (_isOutWarning) {
             return;
         }
@@ -272,7 +276,7 @@ static ConnectionManager *sharedConnectionManager;
         if ([stateStr isEqualToString:CTCallStateDialing]) {
 //            _dialingGapTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
 //            [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
-            [self reminderDeviceStr:added.identifier on:YES];
+            [self reminderDeviceStr:added.identifier on:NO];
         }else if([stateStr isEqualToString:CTCallStateIncoming]) {
 //            _dialingGapTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
 //            [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
@@ -280,7 +284,7 @@ static ConnectionManager *sharedConnectionManager;
         }else if([stateStr isEqualToString:CTCallStateConnected]) {
 //            _dialingGapTimer = [NSTimer timerWithTimeInterval:0.3 target:self selector:@selector(reminderDevice:) userInfo:added.identifier repeats:YES];
 //            [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSDefaultRunLoopMode];
-            [self reminderDeviceStr:added.identifier on:YES];
+            [self reminderDeviceStr:added.identifier on:NO];
         }else if([stateStr isEqualToString:CTCallStateDisconnected]) {
             [self reminderDeviceStr:added.identifier on:NO];
             [AppDelegate App].callStateStr = nil;
@@ -410,16 +414,23 @@ static ConnectionManager *sharedConnectionManager;
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)args_peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
     
-//    NSLog(@"Discovered peripheral, name %@, data: %@, RSSI: %f", [args_peripheral name], advertisementData, RSSI.floatValue);
+//   NSLog(@"Discovered peripheral, name %@, data: %@, RSSI: %f", [args_peripheral name], advertisementData, RSSI.floatValue);
     
     //屏蔽不可连接设备
     BOOL connectable = [[advertisementData objectForKey:@"kCBAdvDataIsConnectable"]boolValue];
     if (!connectable) {
         return;
     }
+    if ([[args_peripheral name] isEqualToString:@"YouNiGe"]) {
+        NSString* ss = [advertisementData objectForKey:@"kCBAdvDataManufacturerData"];
+        if (!ss) {
+            return;
+        }
+        NSLog(@"11111%@",[[NSString alloc] initWithData:[advertisementData objectForKey:@"kCBAdvDataManufacturerData"] encoding:NSUTF8StringEncoding]);
+    }
     
-    //屏蔽已连接设备
-//    if ([_peripheralDictionary objectForKey:args_peripheral.identifier]) {
+//    //屏蔽已连接设备
+//    if ([advertisementData objectForKey:@"kCBAdvDataManufacturerData"]) {
 //        return;
 //    }
     
@@ -505,7 +516,7 @@ static ConnectionManager *sharedConnectionManager;
     
     [manager connectPeripheral:persipheral options:nil];
     if (!device.open) {
-        return;
+//        return;
     }
     device.connected = NO;
     if (device) {
@@ -581,7 +592,8 @@ static ConnectionManager *sharedConnectionManager;
             [args_peripheral discoverCharacteristics:nil forService:service];
         }else if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_BATTERY_UUID]]) {
             [args_peripheral discoverCharacteristics:nil forService:service];
-        }
+        }else if([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_DEVICEINFO_UUID]])
+            [args_peripheral discoverCharacteristics:nil forService:service];
     }
     
     deviceInfo* device = [_deviceManagerDictionary objectForKey:[args_peripheral.identifier UUIDString]];
@@ -599,7 +611,17 @@ static ConnectionManager *sharedConnectionManager;
         //;
         return;
     }
-    if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]])
+    
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_DEVICEINFO_UUID]])
+    {
+        for (CBCharacteristic *aChar in service.characteristics)
+        {
+            NSLog(@"Characteristic test FOUND: %@ %@ %u",aChar.value,aChar.UUID,aChar.properties);
+            
+            /* Set notification on heart rate measurement */
+            [args_peripheral readValueForCharacteristic:aChar];
+        }
+    }else if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]])
     {
         for (CBCharacteristic *aChar in service.characteristics)
         {
@@ -611,8 +633,7 @@ static ConnectionManager *sharedConnectionManager;
                 [args_peripheral setNotifyValue:YES forCharacteristic:aChar];
             }
         }
-    }
-    if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_BATTERY_UUID]])
+    }else if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_BATTERY_UUID]])
     {
         for (CBCharacteristic *aChar in service.characteristics)
         {
@@ -629,6 +650,29 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     NSLog(@"Characteristic value : %@ with ID %@", characteristic.value, characteristic.UUID);
+    NSLog(@"Characteristic value111 : %@ with ID %@", [[NSString alloc] initWithData:characteristic.value encoding:NSASCIIStringEncoding], characteristic.UUID);
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_DEVICEINFO1_UUID]]) {
+        NSString* ManufacturerStr = [[NSString alloc] initWithData:characteristic.value encoding:NSASCIIStringEncoding];
+        NSLog(@"Characteristic value1 : %@ with ID %@", ManufacturerStr, characteristic.UUID);
+        if (![ManufacturerStr isEqualToString:@"Dialog Semi"]&&![ManufacturerStr isEqualToString:@"Dialog-BFU"]) {
+            [manager cancelPeripheralConnection:peripheral];
+        }
+    }
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_DEVICEINFO2_UUID]]) {
+        NSString* ManufacturerStr = [[NSString alloc] initWithData:characteristic.value encoding:NSASCIIStringEncoding];
+        NSLog(@"Characteristic value1 : %@ with ID %@", ManufacturerStr, characteristic.UUID);
+        if (![ManufacturerStr isEqualToString:@"DA14580"]){//&&![ManufacturerStr isEqualToString:@"Dialog-BFU"]) {
+            [manager cancelPeripheralConnection:peripheral];
+        }
+    }
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_DEVICEINFO3_UUID]]) {
+        NSString* ManufacturerStr = [[NSString alloc] initWithData:characteristic.value encoding:NSASCIIStringEncoding];
+        NSLog(@"Characteristic value1 : %@ with ID %@", ManufacturerStr, characteristic.UUID);
+        if (![ManufacturerStr isEqualToString:@"v_3.0.2.139"]&&![ManufacturerStr isEqualToString:@"v_3.0.2.139"]) {
+            [manager cancelPeripheralConnection:peripheral];
+        }
+    }
+    
     if ([characteristic.UUID isEqual:_batteryUUID]) {
         checkDevice = [_deviceManagerDictionary objectForKey:[peripheral.identifier UUIDString]];
         

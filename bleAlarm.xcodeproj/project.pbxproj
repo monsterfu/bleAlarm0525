@@ -177,6 +177,7 @@
 		649BDA56192E005F0053A92A /* recordAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA55192E005F0053A92A /* recordAnnotation.m */; };
 		649BDA59192E00770053A92A /* mapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA57192E00770053A92A /* mapViewController.m */; };
 		649BDA5C192E23100053A92A /* deviceDisconnectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA5B192E23100053A92A /* deviceDisconnectInfo.m */; };
+		649BE4A619C83F6900284D7C /* BackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BE4A419C83F6900284D7C /* BackgroundRunner.m */; };
 		64DF94741910CAD700C41FDB /* locationCoordinateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */; };
 		64DF94771910E29800C41FDB /* newDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF94761910E29800C41FDB /* newDeviceTableViewCell.m */; };
 		64E582D1198B6401006872EB /* GLIRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E582CA198B6401006872EB /* GLIRViewController.m */; };
@@ -398,6 +399,8 @@
 		649BDA58192E00770053A92A /* mapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mapViewController.h; path = mapManagerViewController/mapViewController.h; sourceTree = "<group>"; };
 		649BDA5A192E23100053A92A /* deviceDisconnectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deviceDisconnectInfo.h; path = mapManagerViewController/deviceDisconnectInfo.h; sourceTree = "<group>"; };
 		649BDA5B192E23100053A92A /* deviceDisconnectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = deviceDisconnectInfo.m; path = mapManagerViewController/deviceDisconnectInfo.m; sourceTree = "<group>"; };
+		649BE4A419C83F6900284D7C /* BackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundRunner.m; sourceTree = "<group>"; };
+		649BE4A519C83F6900284D7C /* BackgroundRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundRunner.h; sourceTree = "<group>"; };
 		64DF94721910CAD700C41FDB /* locationCoordinateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = locationCoordinateInfo.h; path = Model/locationCoordinateInfo.h; sourceTree = "<group>"; };
 		64DF94731910CAD700C41FDB /* locationCoordinateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = locationCoordinateInfo.m; path = Model/locationCoordinateInfo.m; sourceTree = "<group>"; };
 		64DF94751910E29800C41FDB /* newDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newDeviceTableViewCell.h; path = deviceManagerViewController/newDeviceTableViewCell.h; sourceTree = "<group>"; };
@@ -808,6 +811,8 @@
 		643454DA1901299C00CFD3CC /* bleConnect */ = {
 			isa = PBXGroup;
 			children = (
+				649BE4A419C83F6900284D7C /* BackgroundRunner.m */,
+				649BE4A519C83F6900284D7C /* BackgroundRunner.h */,
 				643454DB190129C400CFD3CC /* ConnectionManager.h */,
 				643454DC190129C400CFD3CC /* ConnectionManager.m */,
 			);
@@ -1107,6 +1112,7 @@
 				0F4C2D35198D61DF005B9623 /* dimissDetailTableViewController.m in Sources */,
 				64E582D2198B6401006872EB /* RippleModel.m in Sources */,
 				640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */,
+				649BE4A619C83F6900284D7C /* BackgroundRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

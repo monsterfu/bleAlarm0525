@@ -20,7 +20,7 @@
 
 void (^block)(CTCall*) = ^(CTCall* call) {
     
-    NSLog(@"%@", call.callState);
+    NSLog(@"FUCKFUCKFUCKFUCKFUCKFUCKFUCK%@", call.callState);
     [AppDelegate App].callStateStr = call.callState;
 };
 
@@ -42,6 +42,12 @@ static ConnectionManager *sharedConnectionManager;
         
         callCenter1 = [[CTCallCenter alloc] init];
         callCenter1.callEventHandler = block;
+        
+        callCenter2 = [[CTCallCenter alloc] init];
+        callCenter2.callEventHandler = block;
+        
+        _dialingGapTimer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(test) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSRunLoopCommonModes];
         
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
@@ -90,6 +96,26 @@ static ConnectionManager *sharedConnectionManager;
     return self;
 }
 
+-(void)test
+{
+    NSSet* callSet1 = callCenter1.currentCalls;
+    NSSet* callSet2 = callCenter1.currentCalls;
+    NSLog(@"callset1:%@",callSet1);
+    NSLog(@"callset2:%@",callSet2);
+    NSArray *array = [callSet1 allObjects];
+    if (array.count) {
+        CTCall* ctCall = [array objectAtIndex:0];
+        [[ConnectionManager sharedInstance]scheduleCallingState:ctCall.callState];
+    }else{
+        
+        callSet2 = callCenter2.currentCalls;
+        array = [callSet2 allObjects];
+        CTCall* ctCall = [array objectAtIndex:0];
+        [[ConnectionManager sharedInstance]scheduleCallingState:ctCall.callState];
+    }
+    
+    
+}
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:NSNotificationCenter_dismissRecordChange object:nil];
@@ -191,7 +217,7 @@ static ConnectionManager *sharedConnectionManager;
             val = 2;
             _dialingSign = YES;
         }else{
-            val = 0;
+            val = 2;
             _dialingSign = NO;
         }
     }else{
@@ -565,7 +591,6 @@ static ConnectionManager *sharedConnectionManager;
         [checkDevice.delegate didUpdateData:checkDevice];
         NSLog(@"checkDevice:%f",[checkDevice.signalStrength floatValue]);
     }
-    
 }
 
 -(void)updateRSSIAction

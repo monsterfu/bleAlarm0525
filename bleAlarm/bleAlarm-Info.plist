@@ -38,6 +38,9 @@
 		<string>external-accessory</string>
 		<string>fetch</string>
 		<string>location</string>
+		<string>newsstand-content</string>
+		<string>remote-notification</string>
+		<string>voip</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

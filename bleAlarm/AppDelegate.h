@@ -14,6 +14,8 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "BackgroundRunner.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
@@ -21,4 +23,5 @@
 @property (nonatomic, strong) NSString* callStateStr;
 
 +(AppDelegate *)App;
+-(void)test;
 @end

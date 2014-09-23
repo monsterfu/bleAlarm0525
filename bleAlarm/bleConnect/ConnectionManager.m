@@ -41,11 +41,9 @@ static ConnectionManager *sharedConnectionManager;
         _delegate = delegate;
         
         callCenter1 = [[CTCallCenter alloc] init];
-        callCenter1.callEventHandler = block;
+        callCenter1.callEventHandler = nil;
         
-        callCenter2 = [[CTCallCenter alloc] init];
-        callCenter2.callEventHandler = block;
-        
+        _diffSign = NO;
         _dialingGapTimer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(test) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]addTimer:_dialingGapTimer forMode:NSRunLoopCommonModes];
         
@@ -580,11 +578,16 @@ static ConnectionManager *sharedConnectionManager;
         
         if (_indexRSSI < 5) {
             _indexRSSI ++;
+            if (meter > warningStrength+10 && _diffSign == NO ) {
+                _diffSign = YES;
+                return;
+            }
             //不停取均值
             warningStrength = (warningStrength + meter)/2;
             return;
         }
         _indexRSSI = 0;
+        _diffSign = NO;
         //不停取均值
         warningStrength = (warningStrength + meter)/2;
         

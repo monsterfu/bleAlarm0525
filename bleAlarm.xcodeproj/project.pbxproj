@@ -172,6 +172,12 @@
 		643454D71901276F00CFD3CC /* shake_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 643454991901276F00CFD3CC /* shake_on.png */; };
 		643454D91901288700CFD3CC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643454D81901288700CFD3CC /* CoreBluetooth.framework */; };
 		643454DD190129C400CFD3CC /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 643454DC190129C400CFD3CC /* ConnectionManager.m */; };
+		643A635A19D1214900CEB5F7 /* LogoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643A635919D1214900CEB5F7 /* LogoViewController.m */; };
+		643A635F19D124B400CEB5F7 /* url1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 643A635B19D124B400CEB5F7 /* url1@2x.png */; };
+		643A636019D124B400CEB5F7 /* url2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 643A635C19D124B400CEB5F7 /* url2@2x.png */; };
+		643A636119D124B400CEB5F7 /* url3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 643A635D19D124B400CEB5F7 /* url3@2x.png */; };
+		643A636219D124B400CEB5F7 /* url4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 643A635E19D124B400CEB5F7 /* url4@2x.png */; };
+		643A636419D1E87600CEB5F7 /* url5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 643A636319D1E87600CEB5F7 /* url5@2x.png */; };
 		6487FA85193197A900AC9A61 /* Bluetooth-Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6487FA84193197A900AC9A61 /* Bluetooth-Logo@2x.png */; };
 		649BDA52192DFE190053A92A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649BDA51192DFE190053A92A /* CoreLocation.framework */; };
 		649BDA56192E005F0053A92A /* recordAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BDA55192E005F0053A92A /* recordAnnotation.m */; };
@@ -390,6 +396,13 @@
 		643454D81901288700CFD3CC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		643454DB190129C400CFD3CC /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionManager.h; path = bleConnect/ConnectionManager.h; sourceTree = "<group>"; };
 		643454DC190129C400CFD3CC /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionManager.m; path = bleConnect/ConnectionManager.m; sourceTree = "<group>"; };
+		643A635819D1214900CEB5F7 /* LogoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoViewController.h; sourceTree = "<group>"; };
+		643A635919D1214900CEB5F7 /* LogoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoViewController.m; sourceTree = "<group>"; };
+		643A635B19D124B400CEB5F7 /* url1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url1@2x.png"; sourceTree = "<group>"; };
+		643A635C19D124B400CEB5F7 /* url2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url2@2x.png"; sourceTree = "<group>"; };
+		643A635D19D124B400CEB5F7 /* url3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url3@2x.png"; sourceTree = "<group>"; };
+		643A635E19D124B400CEB5F7 /* url4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url4@2x.png"; sourceTree = "<group>"; };
+		643A636319D1E87600CEB5F7 /* url5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url5@2x.png"; sourceTree = "<group>"; };
 		645D5D2B1993228E001ABEC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6487FA84193197A900AC9A61 /* Bluetooth-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-Logo@2x.png"; sourceTree = "<group>"; };
 		649BDA51192DFE190053A92A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -509,6 +522,11 @@
 		0FBBBA0019869F5500941EEF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				643A636319D1E87600CEB5F7 /* url5@2x.png */,
+				643A635B19D124B400CEB5F7 /* url1@2x.png */,
+				643A635C19D124B400CEB5F7 /* url2@2x.png */,
+				643A635D19D124B400CEB5F7 /* url3@2x.png */,
+				643A635E19D124B400CEB5F7 /* url4@2x.png */,
 				6416278F199C6197000876EF /* iseek12 (1).png */,
 				64162790199C6197000876EF /* iseek12 (2).png */,
 				64162791199C6197000876EF /* iseek13 (1).png */,
@@ -653,6 +671,8 @@
 				643454341901273900CFD3CC /* FirstViewController.m */,
 				643454361901273900CFD3CC /* SecondViewController.h */,
 				643454371901273900CFD3CC /* SecondViewController.m */,
+				643A635819D1214900CEB5F7 /* LogoViewController.h */,
+				643A635919D1214900CEB5F7 /* LogoViewController.m */,
 				0F4C2D33198D61DF005B9623 /* dimissDetailTableViewController.h */,
 				0F4C2D34198D61DF005B9623 /* dimissDetailTableViewController.m */,
 				649BDA53192DFFE10053A92A /* mapManagerViewController */,
@@ -930,6 +950,7 @@
 				643454CA1901276F00CFD3CC /* find_text.png in Resources */,
 				0F4C2D06198D56B5005B9623 /* iseek1 (4)@2x.png in Resources */,
 				0FE2339B198AA700004DFA08 /* qidong.png in Resources */,
+				643A636119D124B400CEB5F7 /* url3@2x.png in Resources */,
 				643454D11901276F00CFD3CC /* on_on.png in Resources */,
 				0FE23393198AA700004DFA08 /* 2.png in Resources */,
 				0F4C2D05198D56B5005B9623 /* iseek1 (3)@2x.png in Resources */,
@@ -975,6 +996,7 @@
 				0F4C2D1A198D58E8005B9623 /* iseek1 (9)@2x.png in Resources */,
 				6434543A1901273900CFD3CC /* Images.xcassets in Resources */,
 				643454CF1901276F00CFD3CC /* off_on.png in Resources */,
+				643A636219D124B400CEB5F7 /* url4@2x.png in Resources */,
 				0FC8E8691904390F00F71B3D /* bar_bottom@2x.png in Resources */,
 				0F23E52C198E2D84007C59F7 /* iseek3_18@2x.png in Resources */,
 				0FBBBA521986A00900941EEF /* leida@2x.gif in Resources */,
@@ -1004,6 +1026,7 @@
 				0F18FB4D1910023700327A5C /* signal4@2x.png in Resources */,
 				6416279B199C6197000876EF /* iseek13 (3).png in Resources */,
 				643454CE1901276F00CFD3CC /* off_off.png in Resources */,
+				643A636019D124B400CEB5F7 /* url2@2x.png in Resources */,
 				0F23E52B198E2D84007C59F7 /* iseek3_05@2x.png in Resources */,
 				6487FA85193197A900AC9A61 /* Bluetooth-Logo@2x.png in Resources */,
 				643454C91901276F00CFD3CC /* delete_on.png in Resources */,
@@ -1066,9 +1089,11 @@
 				0F23E535198E3BC5007C59F7 /* check.png in Resources */,
 				643454C01901276F00CFD3CC /* key.png in Resources */,
 				643454A81901276F00CFD3CC /* signal_r3.png in Resources */,
+				643A636419D1E87600CEB5F7 /* url5@2x.png in Resources */,
 				0F4C2D2C198D5A24005B9623 /* battery1@2x.png in Resources */,
 				64E609CB1953FC74002CD827 /* ic_number_status_45.png in Resources */,
 				0FBBBA2919869F5500941EEF /* gif.gif in Resources */,
+				643A635F19D124B400CEB5F7 /* url1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1138,7 @@
 				64E582D2198B6401006872EB /* RippleModel.m in Sources */,
 				640D38B8196FAE9000C2044A /* NSString+deviceName.m in Sources */,
 				649BE4A619C83F6900284D7C /* BackgroundRunner.m in Sources */,
+				643A635A19D1214900CEB5F7 /* LogoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

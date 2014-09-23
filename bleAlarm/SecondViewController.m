@@ -146,10 +146,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"didFinishPickingMediaWithInfo");
-    UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    [cameraVC dismissViewControllerAnimated:YES completion:nil];
-    cameraVC = nil;
+//    [cameraVC dismissViewControllerAnimated:YES completion:nil];
+//    cameraVC = nil;
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -299,7 +299,8 @@
                 [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
                 [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
                 [cameraVC setDelegate:self];
-                [cameraVC setAllowsEditing:YES];
+                [cameraVC setAllowsEditing:NO];
+                [cameraVC setShowsCameraControls:NO];
                 [self presentViewController:cameraVC animated:YES completion:nil];
                 
                 NSTimer* takePickTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePictureAction) userInfo:nil repeats:NO];

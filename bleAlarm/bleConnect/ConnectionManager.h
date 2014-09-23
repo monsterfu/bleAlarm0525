@@ -59,7 +59,7 @@
     
     NSUInteger _indexRSSI;
     BOOL _isOutWarning;
-    
+    BOOL _diffSign;
 }
 @property id<ConnectionManagerDelegate> delegate;
 @property(nonatomic,strong)CBCentralManager *manager;

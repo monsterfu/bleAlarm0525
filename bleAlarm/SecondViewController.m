@@ -298,6 +298,14 @@
                 cameraVC = [[UIImagePickerController alloc] init];
                 [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
                 [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
+                
+                UIButton* backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT-50, 100, 50)];
+                [backButton setTitle:@"取消" forState:UIControlStateNormal];
+                backButton.backgroundColor = [UIColor clearColor];
+                [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [backButton addTarget:self action:@selector(cameraBackButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+                [cameraVC.cameraOverlayView addSubview:backButton];
+                
                 [cameraVC setDelegate:self];
                 [cameraVC setAllowsEditing:NO];
                 [cameraVC setShowsCameraControls:NO];
@@ -308,6 +316,11 @@
             }
         }
     }
+}
+-(void)cameraBackButtonTouched
+{
+    [cameraVC dismissViewControllerAnimated:YES completion:nil];
+    cameraVC = nil;
 }
 #pragma mark -devInfo
 

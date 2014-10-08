@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="nh7-qo-CDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="nh7-qo-CDr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="-1562" y="-1239"/>
         </scene>
-        <!--First View Controller - First-->
+        <!--First-->
         <scene sceneID="W3I-pn-N6e">
             <objects>
                 <viewController title="First" id="CZ4-MO-1fc" customClass="FirstViewController" sceneMemberID="viewController">
@@ -151,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="-1118" y="-1216"/>
         </scene>
-        <!--Dimiss Detail Table View Controller - 丢失详情-->
+        <!--丢失详情-->
         <scene sceneID="UB8-76-Wsb">
             <objects>
                 <viewController title="丢失详情" id="ZbT-gZ-5W1" customClass="dimissDetailTableViewController" sceneMemberID="viewController">
@@ -391,7 +391,7 @@
             </objects>
             <point key="canvasLocation" x="-765" y="-1566"/>
         </scene>
-        <!--Second View Controller - Second-->
+        <!--Second-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
                 <viewController storyboardIdentifier="secondViewController" title="Second" id="QUy-BD-bpt" customClass="SecondViewController" sceneMemberID="viewController">

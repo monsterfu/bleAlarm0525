@@ -10,29 +10,29 @@
 	<string>bleAlarm</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5C1EF171-F949-4E94-86FB-056B93756AB3</key>
+		<key>E15C248DC203B5F0909EF3AF66CE797E30485113</key>
 		<string>https://github.com/monsterfu/bleAlarm0525.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>bleAlarm.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5C1EF171-F949-4E94-86FB-056B93756AB3</key>
+		<key>E15C248DC203B5F0909EF3AF66CE797E30485113</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/monsterfu/bleAlarm0525.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5C1EF171-F949-4E94-86FB-056B93756AB3</string>
+	<string>E15C248DC203B5F0909EF3AF66CE797E30485113</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5C1EF171-F949-4E94-86FB-056B93756AB3</string>
+			<string>E15C248DC203B5F0909EF3AF66CE797E30485113</string>
 			<key>IDESourceControlWCCName</key>
 			<string>bleAlarm0525</string>
 		</dict>

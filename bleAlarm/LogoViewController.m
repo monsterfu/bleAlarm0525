@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _urlArray = @[@"http://www.dialog-semiconductor.com",@"http://www.honestar.com",@"http://www.sbote.com",@"http://www.skynoon.com",@"http://www.skynoon.com"];
+    _urlArray = @[@"http://www.dialog-semiconductor.com",@"http://www.honestar.com",@"http://www.sbote.com",@"http://www.skynoon.com",@"http://www.ute-tech.com.cn"];
 }
 
 - (void)didReceiveMemoryWarning

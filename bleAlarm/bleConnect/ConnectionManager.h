@@ -44,6 +44,9 @@
     
     deviceInfo* checkDevice;
     CGFloat warningStrength;
+    CGFloat warningStrengthTemp;
+    NSUInteger warningStrengthNum;
+    BOOL warningStrengthSignal;
     NSTimer* warningStrengthCheckTimer;
     
     NSTimer* disconnectTimer;

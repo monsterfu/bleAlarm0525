@@ -70,6 +70,7 @@ static ConnectionManager *sharedConnectionManager;
         
         _finePhoneOpen = NO;
         warningStrength = 0;
+        warningStrengthTemp = 0;
         _indexRSSI = 0;
         _isOutWarning = NO;
         NSData* aData = [USER_DEFAULT objectForKey:KEY_DEVICELIST_INFO];
@@ -150,7 +151,7 @@ static ConnectionManager *sharedConnectionManager;
     }
     if ([checkDevice.warningStrength floatValue] > warningStrength) {
         if (_isOutWarning) {
-            if (warningStrength <= 75) {
+            if (warningStrength <= 80) {
                 _isOutWarning = NO;
                 [[ConnectionManager sharedInstance]findDevice:checkDevice.identifier isOn:NO];
                 [self.delegate didOutofRangWithDevice:checkDevice on:NO];
@@ -263,7 +264,7 @@ static ConnectionManager *sharedConnectionManager;
         return;
     }
     _localOutOfRangeNotice.applicationIconBadgeNumber = 1;
-    _localOutOfRangeNotice.fireDate = [NSDate dateWithTimeIntervalSinceNow:2];
+    _localOutOfRangeNotice.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
     _localOutOfRangeNotice.timeZone = [NSTimeZone defaultTimeZone];
     _localOutOfRangeNotice.soundName = @"4031.wav";
     _localOutOfRangeNotice.repeatInterval = NSDayCalendarUnit;
@@ -576,16 +577,26 @@ static ConnectionManager *sharedConnectionManager;
             warningStrength = meter;
         }
         
-        if (_indexRSSI < 5) {
+        if (_indexRSSI < 10) {
             _indexRSSI ++;
-            if (meter > warningStrength+10 && _diffSign == NO ) {
-                _diffSign = YES;
-                return;
+            if (warningStrengthTemp == 0) {
+                warningStrengthTemp = meter;
             }
-            //不停取均值
-            warningStrength = (warningStrength + meter)/2;
+            
+            if (warningStrengthTemp > meter) {
+                warningStrengthTemp = meter;
+            }
+            
+//            if (meter > warningStrength+10 && _diffSign == NO ) {
+//                _diffSign = YES;
+//                return;
+//            }
+//            //不停取均值
+//            warningStrength = (warningStrength + meter)/2;
             return;
         }
+        warningStrength = warningStrengthTemp;
+        warningStrengthTemp = 0;
         _indexRSSI = 0;
         _diffSign = NO;
         //不停取均值

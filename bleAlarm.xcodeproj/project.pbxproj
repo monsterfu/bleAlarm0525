@@ -914,7 +914,7 @@
 				ORGANIZATIONNAME = HYQ;
 				TargetAttributes = {
 					6434541A1901273900CFD3CC = {
-						DevelopmentTeam = 8C87933EV5;
+						DevelopmentTeam = FFS4VQGRBD;
 					};
 					6434543E1901273900CFD3CC = {
 						TestTargetID = 6434541A1901273900CFD3CC;
@@ -1283,7 +1283,7 @@
 				INFOPLIST_FILE = "bleAlarm/bleAlarm-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8bf6966f-186c-4450-b81b-fcc2c2b11408";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1293,14 +1293,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Smit (HK) Limited";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smit (HK) Limited";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Bin Huang (FFS4VQGRBD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bin Huang (FFS4VQGRBD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bleAlarm/bleAlarm-Prefix.pch";
 				INFOPLIST_FILE = "bleAlarm/bleAlarm-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A38114EF-FFD7-473B-8448-3CF706A68E69";
+				PROVISIONING_PROFILE = "5ad9fefe-c635-486f-bf50-ed4928729539";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
